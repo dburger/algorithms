@@ -1,2 +1,5 @@
 # algorithms
-Collection of algorithm questions and solutions.
+
+A collection of algorithm questions and solutions.
+
+1.   [Two Sum](two-sum)
