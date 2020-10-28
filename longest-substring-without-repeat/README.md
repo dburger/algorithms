@@ -8,7 +8,8 @@ repeating characters.
 1. A brute force solution could loop over the string and find the longest
    substring with no duplicates from each starting position. This would
    involve a nested loop. Each check would involve a scan looking for
-   duplicates (accumulated in a Set). This makes this O(n^3).
+   duplicates (accumulated in a Set). The nested loop plus the has duplicate
+   check makes this O(n^3).
 1. A better solution would scan forward keeping track of a start of
    uniqueness and end for current. These values would be advanced while
    holding some auxiliary structure to identify duplicates and advance
