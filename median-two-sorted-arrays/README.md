@@ -13,8 +13,7 @@ return **the median** of the two sorted arrays.
 
 ### Brute force
 
-Merge the sorted arrays and pick the median. This is O(m) if `m` is the length
-of the longer array.
+Merge the sorted arrays and pick the median. This is O(max(m, n)).
 
 ```java
 class Solution {
@@ -50,6 +49,66 @@ class Solution {
             int mid = mergedLen / 2;
             return (merged[mid] + merged[mid - 1]) / 2.0;
         }
+    }
+}
+```
+
+### Binary search to the partition point
+
+This binary searches to the partition point between nums1 and nums2 that results
+in indexes i and j respectively that achieve:
+
+nums1[i - 1] < nums2[j]
+nums2[j - 1] < nums1[i]
+
+This is O(log(min(m, n))).
+
+```java
+class Solution {
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int m = nums1.length;
+        int n = nums2.length;
+        if (m > n) {
+            int[] tmpa = nums1;
+            nums1 = nums2;
+            nums2 = tmpa;
+            int tmp = m;
+            m = n;
+            n = tmp;
+        }
+        int iMin = 0, iMax = m, halfLen = (m + n + 1) / 2;
+        while (iMin <= iMax) {
+            int i = (iMin + iMax) / 2;
+            int j = halfLen - i;
+            if (i < iMax && nums2[j - 1] > nums1[i]) {
+                iMin = i + 1;
+            } else if (i > iMin && nums1[i - 1] > nums2[j]) {
+                iMax = i - 1;
+            } else {
+                int maxLeft = 0;
+                if (i == 0) {
+                    maxLeft = nums2[j - 1];
+                } else if (j == 0) {
+                    maxLeft = nums1[i - 1];
+                } else {
+                    maxLeft = Math.max(nums1[i - 1], nums2[j - 1]);
+                }
+                if ((m + n) % 2 == 1) {
+                    return maxLeft;
+                }
+
+                int minRight = 0;
+                if (i == m ) {
+                    minRight = nums2[j];
+                } else if (j == n) {
+                    minRight = nums1[i];
+                } else {
+                    minRight = Math.min(nums2[j], nums1[i]);
+                }
+                return (maxLeft + minRight) / 2.0;
+            }
+        }
+        return 0.0;
     }
 }
 ```
