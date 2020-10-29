@@ -44,7 +44,7 @@ class Solution {
             carry = sum / 10;
             ListNode temp = new ListNode(digit);
             if (head == null) {
-                head = curr = new ListNode(digit);
+                head = curr = temp;
             } else {
                 curr.next = temp;
                 curr = temp;
