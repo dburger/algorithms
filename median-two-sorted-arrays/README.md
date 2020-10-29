@@ -44,7 +44,7 @@ class Solution {
             fill++;
         }
         if (mergedLen % 2 == 1) {
-            return merged[(nums1Len + nums2Len) / 2];
+            return merged[mergedLen / 2];
         } else {
             int mid = mergedLen / 2;
             return (merged[mid] + merged[mid - 1]) / 2.0;
