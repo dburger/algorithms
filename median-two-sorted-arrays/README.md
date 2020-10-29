@@ -58,8 +58,8 @@ class Solution {
 This binary searches to the partition point between nums1 and nums2 that results
 in indexes i and j respectively that achieve:
 
-nums1[i - 1] < nums2[j]
-nums2[j - 1] < nums1[i]
+* nums1[i - 1] < nums2[j]
+* nums2[j - 1] < nums1[i]
 
 This is O(log(min(m, n))).
 
