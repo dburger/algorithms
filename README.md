@@ -9,4 +9,5 @@ A collection of algorithm questions and solutions.
 1. [Regular Expression Matching](regular-expression-matching)
 1. [Group Anagrams](group-anagrams)
 1. [First Missing Positive](first-missing-positive)
+1. [Wildcard Matching](wildcard-matching)
 1. [Maximum Subarray](maximum-subarray)
