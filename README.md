@@ -5,6 +5,7 @@ A collection of algorithm questions and solutions.
 1. [Two Sum](two-sum)
 1. [Add Two Numbers](add-two-numbers)
 1. [Longest Substring Without Repeating Characters](longest-substring-without-repeat)
+1. [String to Integer (atoi)](string-to-integer-atoi)
 1. [Median of Two Sorted Arrays](median-two-sorted-arrays)
 1. [Regular Expression Matching](regular-expression-matching)
 1. [Group Anagrams](group-anagrams)
