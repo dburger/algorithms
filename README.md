@@ -15,3 +15,4 @@ A collection of algorithm questions and solutions.
 1. [Container With Most Water](container-most-water)
 1. [Substring With Concatenation of all Words](substring-concatenation-all-words)
 1. [Find all Duplicates in an Array](find-all-duplicates-array)
+1. [Coin Change](coin-change)
