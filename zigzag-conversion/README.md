@@ -6,7 +6,7 @@ of rows like this:
 ```text
 P A H N
 APLSIIG
-YIR
+Y I R
 ```
 
 And then read line by line: `"PAHNAPLSIIGYIR"`.
