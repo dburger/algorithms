@@ -18,3 +18,4 @@ A collection of algorithm questions and solutions.
 1. [Coin Change](coin-change)
 1. [ZigZag Conversion](zigzag-conversion)
 1. [First Unique Character in a String](first-unique-character)
+1. [Same Tree](same-tree)
