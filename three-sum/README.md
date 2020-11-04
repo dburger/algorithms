@@ -22,11 +22,16 @@ while loop that can cover up to almost n locations within each outer loop.
 class Solution {
 
     public List<List<Integer>> threeSum(int[] nums) {
+        // The sort allows the narrowing of the sliding window to
+        // work and also makes sure that dupes are identified
+        // (same order submitted to Set).
         Arrays.sort(nums);
         Set<List<Integer>> s = new HashSet<>();
+        // Consider each triplet, by identifying a starting number.
         for (int i = 0; i < nums.length - 2; i++) {
             int j = i + 1;
             int k = nums.length - 1;
+            // And walking in j and k, narrowing in on the correct sum.
             while (j < k) {
                 int sum = nums[i] + nums[j] + nums[k];
                 if (sum == 0) {
