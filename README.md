@@ -21,3 +21,4 @@ A collection of algorithm questions and solutions.
 1. [Same Tree](same-tree)
 1. [Three Sum](three-sum)
 1. [Search in Rotated Sorted Array](search-rotated-sorted-array)
+1. [Rotate List](rotate-list)
