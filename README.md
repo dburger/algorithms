@@ -22,3 +22,4 @@ A collection of algorithm questions and solutions.
 1. [Three Sum](three-sum)
 1. [Search in Rotated Sorted Array](search-rotated-sorted-array)
 1. [Rotate List](rotate-list)
+1. [Find First and Last Position of Element in Sorted Array](first-last-position-sorted-array)
