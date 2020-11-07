@@ -24,3 +24,4 @@ A collection of algorithm questions and solutions.
 1. [Rotate List](rotate-list)
 1. [Find First and Last Position of Element in Sorted Array](first-last-position-sorted-array)
 1. [Multiply Strings](multiply-strings)
+1. [Plus One](plus-one)
