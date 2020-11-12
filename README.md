@@ -25,3 +25,4 @@ A collection of algorithm questions and solutions.
 1. [Find First and Last Position of Element in Sorted Array](first-last-position-sorted-array)
 1. [Multiply Strings](multiply-strings)
 1. [Plus One](plus-one)
+1. [Minimum Path Sum](minimum-path-sum)
