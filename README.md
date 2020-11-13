@@ -29,3 +29,4 @@ A collection of algorithm questions and solutions.
 1. [Unique Paths](unique-paths)
 1. [Unique Paths II](unique-paths-two)
 1. [Insert Interval](insert-interval)
+1. [Add Binary](add-binary)
