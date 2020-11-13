@@ -31,3 +31,4 @@ A collection of algorithm questions and solutions.
 1. [Insert Interval](insert-interval)
 1. [Add Binary](add-binary)
 1. [Simplify Path](simplify-path)
+1. [Three Sum Closest](three-sum-closest)
