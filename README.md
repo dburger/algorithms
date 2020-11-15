@@ -33,3 +33,4 @@ A collection of algorithm questions and solutions.
 1. [Simplify Path](simplify-path)
 1. [Three Sum Closest](three-sum-closest)
 1. [Insertion Sort List](insertion-sort-list)
+1. [Set Matrix Zeroes](set-matrix-zeroes)
