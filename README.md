@@ -37,3 +37,4 @@ A collection of algorithm questions and solutions.
 1. [Edit Distance](edit-distance)
 1. [Climbing Stairs](climbing-stairs)
 1. [Remove Duplicates from Sorted List](remove-duplicates-sorted-list)
+1. [Merge Sorted Array](merge-sorted-array)
