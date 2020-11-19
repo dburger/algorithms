@@ -43,3 +43,5 @@ A collection of algorithm questions and solutions.
 1. [Length of Last Word](length-last-word)
 1. [Alphabet Board Path](alphabet-board-path)
 1. [Binary Tree Level Order Traversal](binary-tree-level-order-traversal)
+1. [Binary Tree Preorder Traversal](binary-tree-preorder-traversal)
+1. [Binary Tree Postorder Traversal](binary-tree-postorder-traversal)
