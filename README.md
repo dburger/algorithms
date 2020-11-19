@@ -40,3 +40,4 @@ A collection of algorithm questions and solutions.
 1. [Merge Sorted Array](merge-sorted-array)
 1. [Gas Station](gas-station)
 1. [Combinations](combinations)
+1. [Length of Last Word](length-last-word)
