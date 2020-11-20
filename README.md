@@ -46,3 +46,4 @@ A collection of algorithm questions and solutions.
 1. [Binary Tree Preorder Traversal](binary-tree-preorder-traversal)
 1. [Binary Tree Postorder Traversal](binary-tree-postorder-traversal)
 1. [Minimum Window Substring](minimum-window-substring)
+1. [Permutation in String](permutation-in-string)
