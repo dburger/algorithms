@@ -21,12 +21,7 @@ Assume a BST is defined as follows:
 ```java
 class Solution {
     public boolean isValidBST(TreeNode root) {
-        if (root == null) {
-            return true;
-        }
-        // All left subtree nodes must be less than root.
-        // All right subtree nodes must be greater than root.
-        return isValidBST(root.left, null, root.val) && isValidBST(root.right, root.val, null);
+        return isValidBST(root, null, null);
     }
 
     private boolean isValidBST(TreeNode node, Integer lo, Integer hi) {
