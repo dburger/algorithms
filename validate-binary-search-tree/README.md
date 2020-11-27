@@ -13,6 +13,7 @@ Assume a BST is defined as follows:
 ## Hints
 
 1. Think recursion and passing the bounds for a subtree downwards.
+1. Alternatively, would a traversal put the tree in an order that can be checked?
 
 ## Solutions
 
@@ -76,6 +77,28 @@ class Solution {
       nodes.push(node);
       los.push(lo);
       his.push(hi);
+    }
+}
+```
+
+### Inorder traversal and check
+
+```java
+class Solution {
+    public boolean isValidBST(TreeNode root) {
+      Stack<TreeNode> nodes = new Stack<>();
+      double prior = -Double.MAX_VALUE;
+      while (!nodes.isEmpty() || root != null) {
+        while (root != null) {
+          nodes.push(root);
+          root = root.left;
+        }
+        root = nodes.pop();
+        if (root.val <= prior) return false;
+        prior = root.val;
+        root = root.right;
+      }
+      return true;
     }
 }
 ```
