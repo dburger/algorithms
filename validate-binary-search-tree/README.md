@@ -49,9 +49,9 @@ This is a good demo of converting recursion to iteration.
 ```java
 class Solution {
     public boolean isValidBST(TreeNode root) {
-        LinkedList<TreeNode> nodes = new LinkedList<>();
-        LinkedList<Integer> los = new LinkedList<>();
-        LinkedList<Integer> his = new LinkedList<>();
+        Stack<TreeNode> nodes = new Stack<>();
+        Stack<Integer> los = new Stack<>();
+        Stack<Integer> his = new Stack<>();
 
         pushAll(root, null, null, nodes, los, his);
 
@@ -72,7 +72,7 @@ class Solution {
         return true;
     }
 
-    private void pushAll(TreeNode node, Integer lo, Integer hi, LinkedList<TreeNode> nodes, LinkedList<Integer> los, LinkedList<Integer> his) {
+    private void pushAll(TreeNode node, Integer lo, Integer hi, Stack<TreeNode> nodes, Stack<Integer> los, Stack<Integer> his) {
       nodes.push(node);
       los.push(lo);
       his.push(hi);
