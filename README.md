@@ -51,3 +51,4 @@ A collection of algorithm questions and solutions.
 1. [Product of Array Except Self](product-array-except-self)
 1. [Find Minimum in Rotated Sorted Array](find-minimum-rotated-sorted-array)
 1. [Water Bottles](water-bottles)
+1. [Validate Binary Search Tree](validate-binary-search-tree)
