@@ -56,3 +56,4 @@ A collection of algorithm questions and solutions.
 1. [Roman to Integer](roman-to-integer)
 1. [Integer to Roman](integer-to-roman)
 1. [Search a 2d Matrix](search-2d-matrix)
+1. [Square Root of x](sqrtx)
