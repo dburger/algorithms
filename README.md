@@ -53,3 +53,4 @@ A collection of algorithm questions and solutions.
 1. [Water Bottles](water-bottles)
 1. [Validate Binary Search Tree](validate-binary-search-tree)
 1. [Clone Graph](clone-graph)
+1. [Roman to Integer](roman-to-integer)
