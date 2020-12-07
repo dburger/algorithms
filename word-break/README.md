@@ -55,3 +55,43 @@ class Solution {
     }
 }
 ```
+
+### Dynamic programming table
+
+This is a bit tricky and not as fast as the above solution. I think there may
+be a seed of a good idea here but haven't fleshed it out here fully. Here we
+build a table of rows and columns where `(r, c) == 1` only if the subtring
+from r to c can be achieved by some concatention of strings in `wordDict`.
+Determining this becomes determining if:
+
+1. The subtring from r to c is a word.
+1. r is the start of the entire string, or, there is a 1 somewhere in the
+   rth column. That is another sequence of strings matches that leads up
+   to this one.
+
+```java
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        Set<String> words = new HashSet<>(wordDict);
+        int n = s.length();
+        boolean[][] dp = new boolean[n + 1][n + 1];
+        for (int r = 0; r < n + 1; r++) {
+          for (int c = r + 1; c < n + 1; c++) {
+            String part = s.substring(r, c);
+            if (words.contains(part)) {
+              dp[r][c] = (r == 0 || hastrue(dp, r));
+            }
+          }
+        }
+      return hastrue(dp, n);
+    }
+    private boolean hastrue(boolean[][] dp, int c) {
+      for (int r = 0; r < dp.length && r < c; r++) {
+        if (dp[r][c]) {
+          return true;
+        }
+      }
+      return false;
+    }
+}
+```
