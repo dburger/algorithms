@@ -61,3 +61,4 @@ A collection of algorithm questions and solutions.
 1. [Kth Smallest Element in a BST](kth-smallest-element-bst)
 1. [Sum Root to Leaf Numbers](sum-root-to-leaf-numbers)
 1. [Maximum Depth of Binary Tree](maximum-depth-binary-tree)
+1. [Student Attendance Record I](student-attendance-record-one)
