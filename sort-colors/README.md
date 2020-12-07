@@ -57,8 +57,10 @@ class Solution {
 ### Swap in place
 
 I beleive this is the intended solution. here we maintain three index pointers.
-The algorithm proceeds until the white index pointer passes the blue. Comments
-indicate the decisions at each step.
+The index pointers are interpreted as one beyond, or one before, where the
+corresponding color is already established. The algorithm proceeds until the
+white index pointer passes the blue. Comments indicate the decisions at each
+step.
 
 ```java
 class Solution {
