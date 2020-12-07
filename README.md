@@ -59,3 +59,4 @@ A collection of algorithm questions and solutions.
 1. [Square Root of x](sqrtx)
 1. [h index](h-index)
 1. [Kth Smallest Element in a BST](kth-smallest-element-bst)
+1. [Sum Root to Leaf Numbers](sum-root-to-leaf-numbers)
