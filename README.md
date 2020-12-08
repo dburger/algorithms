@@ -67,3 +67,4 @@ A collection of algorithm questions and solutions.
 1. [Deepest Leaves Sum](deepest-leaves-sum)
 1. [Subsets](subsets)
 1. [Word Search](word-search)
+1. [Combination Sum](combination-sum)
