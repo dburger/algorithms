@@ -66,3 +66,4 @@ A collection of algorithm questions and solutions.
 1. [Word Break](word-break)
 1. [Deepest Leaves Sum](deepest-leaves-sum)
 1. [Subsets](subsets)
+1. [Word Search](word-search)
