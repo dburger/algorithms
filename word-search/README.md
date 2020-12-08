@@ -56,3 +56,45 @@ class Solution {
     }
 }
 ```
+
+### Brute force with string optimization
+
+The brute force above works, but it can be slightly sped up by not creating the
+new word `part` during expansion. Instead, an index to the current working
+position can be passed.
+
+```java
+class Solution {
+    public boolean exist(char[][] board, String word) {
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[0].length; col++) {
+                if (expands(row, col, board, word, 0)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean expands(int row, int col, char[][] board, String word, int index) {
+        if (index >= word.length()) {
+            return true;
+        }
+        if (row < 0 || row >= board.length || col < 0 || col >= board[0].length) {
+            return false;
+        }
+        char c = word.charAt(index);
+        if (board[row][col] != c) {
+            return false;
+        }
+        board[row][col] = '.';
+        index++;
+        boolean expands = expands(row - 1, col, board, word, index) ||
+            expands(row + 1, col, board, word, index) ||
+            expands(row, col - 1, board, word, index) ||
+            expands(row, col + 1, board, word, index);
+        board[row][col] = c;
+        return expands;
+    }
+}
+```
