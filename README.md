@@ -71,3 +71,4 @@ A collection of algorithm questions and solutions.
 1. [Decode Ways](decode-ways)
 1. [Surrounded Regions](surrounded-regions)
 1. [Valid Sudoku](valid-sudoku)
+1. [Implement strStr()](implement-str-str)
