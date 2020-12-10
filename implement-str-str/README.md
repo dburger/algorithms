@@ -36,7 +36,8 @@ class Solution {
         if (hlen == 0 || hlen < nlen) {
             return -1;
         }
-        for (int i = 0; i < hlen - nlen + 1; i++) {
+        int max = hlen - nlen + 1;
+        for (int i = 0; i < max; i++) {
             if (needle.charAt(0) == haystack.charAt(i)) {
                 int j = 1;
                 for (; j < nlen; j++) {
