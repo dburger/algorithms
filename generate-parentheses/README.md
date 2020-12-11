@@ -59,6 +59,71 @@ class Solution {
 }
 ```
 
+### Brute force optimized
+
+Here we exploit the fact that once a check for validity goes negative in the
+open parens count it cannot become a valid paren string. Thus we can exit
+earlier.
+
+
+```java
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> acc = new ArrayList<>();
+        gp("", 2 * n, acc);
+        return acc;
+    }
+
+    private void gp(String parens, int len, List<String> acc) {
+        if (len == 0) {
+            if (valid(parens)) {
+                acc.add(parens);
+            }
+            return;
+        } else if (invalid(parens)) {
+            return;
+        }
+
+        gp(parens + "(", len - 1, acc);
+        gp(parens + ")", len - 1, acc);
+    }
+
+    private boolean valid(String parens) {
+        int open = 0;
+        for (int i = 0; i < parens.length(); i++) {
+            switch (parens.charAt(i)) {
+              case '(':
+                  open++;
+                  break;
+              default:
+                  open--;
+                  if (open < 0) {
+                      return false;
+                  }
+            }
+        }
+        return open == 0;
+    }
+
+    private boolean invalid(String parens) {
+        int open = 0;
+        for (int i = 0; i < parens.length(); i++) {
+            switch (parens.charAt(i)) {
+              case '(':
+                  open++;
+                  break;
+              default:
+                  open--;
+                  if (open < 0) {
+                      return true;
+                  }
+            }
+        }
+        return false;
+    }
+}
+```
+
 ### Magic recursion
 
 This algorithm is really elegant and simple to program. It follows the idea from
