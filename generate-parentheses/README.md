@@ -129,6 +129,8 @@ class Solution {
 This algorithm is really elegant and simple to program. It follows the idea from
 the hint above.
 
+#### Java version
+
 ```java
 class Solution {
     public List<String> generateParenthesis(int n) {
@@ -152,6 +154,30 @@ class Solution {
             // Adding a closed would be valid here, add one and recurse.
             gp(parens + ")", n, open, closed + 1, acc);
         }
+    }
+}
+```
+
+#### Golang version
+
+```go
+func generateParenthesis(n int) []string {
+    acc := []string{}
+    gp("", n, 0, 0, &acc)
+    return acc
+}
+
+func gp(parens string, n int, open int, closed int, acc *[]string) {
+    if open + closed == 2 * n {
+        *acc = append(*acc, parens)
+        return
+    }
+
+    if open < n {
+        gp(parens + "(", n, open + 1, closed, acc)
+    }
+    if closed < open {
+        gp(parens + ")", n, open, closed + 1, acc)
     }
 }
 ```
