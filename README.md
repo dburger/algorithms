@@ -72,3 +72,4 @@ A collection of algorithm questions and solutions.
 1. [Surrounded Regions](surrounded-regions)
 1. [Valid Sudoku](valid-sudoku)
 1. [Implement strStr()](implement-str-str)
+1. [Generate Parentheses](generate-parentheses)
