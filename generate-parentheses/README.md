@@ -5,13 +5,59 @@ of well-formed parentheses.
 
 ## Hints
 
+1. Brute force - generate all possible strings and add them if they are valid.
+   You know how to check for valid right? Proceed from left to right and keep
+   an open parens count. If never goes negative and finishes at 0 it is valid.
 1. Recursion with an accumulator can do the trick, but how to proceed? Think
-   in terms of how you check if parentheses are well formed. That is you proceed
-   from left to right with an open parentheses count and verify that you never
-   go negative and end up at 0. In this case you work to add parentheses only
-   if they can lead to a valid solution (never go negative and end up at 0).
+   in terms of how you check if parentheses are well formed (as mentioned in
+   prior hint). In this case you work to add parentheses only if they can lead
+   to a valid solution.
 
 ## Solutions
+
+### Brute force
+
+Here we use brute force to generate all possible parentheses strings and only
+add them if they are valid.
+
+```java
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> acc = new ArrayList<>();
+        gp("", 2 * n, acc);
+        return acc;
+    }
+
+    private void gp(String parens, int len, List<String> acc) {
+        if (len == 0) {
+            if (valid(parens)) {
+                acc.add(parens);
+            }
+            return;
+        }
+
+        gp(parens + "(", len - 1, acc);
+        gp(parens + ")", len - 1, acc);
+    }
+
+    private boolean valid(String parens) {
+        int open = 0;
+        for (int i = 0; i < parens.length(); i++) {
+            switch (parens.charAt(i)) {
+              case '(':
+                  open++;
+                  break;
+              default:
+                  open--;
+            }
+            if (open < 0) {
+                return false;
+            }
+        }
+        return open == 0;
+    }
+}
+```
 
 ### Magic recursion
 
