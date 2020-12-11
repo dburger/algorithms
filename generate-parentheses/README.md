@@ -49,9 +49,9 @@ class Solution {
                   break;
               default:
                   open--;
-            }
-            if (open < 0) {
-                return false;
+                  if (open < 0) {
+                      return false;
+                  }
             }
         }
         return open == 0;
