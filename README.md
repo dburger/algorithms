@@ -75,3 +75,4 @@ A collection of algorithm questions and solutions.
 1. [Generate Parentheses](generate-parentheses)
 1. [Merge Sort](merge-sort)
 1. [Quick Sort](qsort)
+1. [Reverse Linked List](reverse-linked-list)
