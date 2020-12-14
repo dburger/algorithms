@@ -76,3 +76,4 @@ A collection of algorithm questions and solutions.
 1. [Merge Sort](merge-sort)
 1. [Quick Sort](qsort)
 1. [Reverse Linked List](reverse-linked-list)
+1. [Scramble String](scramble-string)
