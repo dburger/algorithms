@@ -30,3 +30,32 @@ class Solution {
     }
 }
 ```
+
+### Iterative
+
+The iterative version proceeds much like the recursive version. Pointers to
+previous and current nodes are set with `prev = null` and `curr = head`. In
+each iteration it first checked if current has a next. If not, the loop
+terminates. Within the loop current is pointed back at previous and the new
+previous and current nodes are set. When the loop terminates the final pointing
+of current back to previous is made and the final current is returned.
+
+```java
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+        ListNode prev = null;
+        ListNode curr = head;
+        while (curr.next != null) {
+            ListNode temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        curr.next = prev;
+        return curr;
+    }
+}
+```
