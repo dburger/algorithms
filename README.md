@@ -81,3 +81,4 @@ A collection of algorithm questions and solutions.
 1. [Bulls and Cows](bulls-and-cows)
 1. [Spiral Matrix](spiral-matrix)
 1. [Spiral Matrix II](spiral-matrix-ii)
+1. [Minimum Depth Binary Tree](minimum-depth-binary-tree)
