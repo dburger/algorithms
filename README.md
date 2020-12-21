@@ -89,3 +89,4 @@ A collection of algorithm questions and solutions.
 1. [Minimum Time Difference](minimum-time-difference)
 1. [Path Sum](path-sum)
 1. [Heaters](heaters)
+1. [Count Numbers with Unique Digits](count-tournament-matches)
