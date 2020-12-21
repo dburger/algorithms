@@ -91,3 +91,4 @@ A collection of algorithm questions and solutions.
 1. [Heaters](heaters)
 1. [Count Numbers with Unique Digits](count-tournament-matches)
 1. [Maximum Repeating Substring](maximum-repeating-substring)
+1. [Path Sum II](path-sum-ii)
