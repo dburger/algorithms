@@ -20,7 +20,8 @@ of given numbers.
 ### Brute force
 
 Brute force is rather straight forward. Note the xor here to reduce to
-just the different bits and the `countBits` counting technique.
+just the different bits and the `countBits` counting technique. Note that this
+implementation, while correct, will get **time limit exceeded** on leeter.
 
 ```java
 class Solution {
