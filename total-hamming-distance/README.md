@@ -45,3 +45,35 @@ class Solution {
     }
 }
 ```
+
+### Counting bits
+
+The counting bits approach is pretty easy once you see the possibility.
+By counting the numbers that have each bit, then each bits contribution
+to the sum is `cnt * (nums.length - cnt)`.  This is because for each
+number that has the bit it contributes 1 for each number that doesn't
+have the bit.
+
+Note that this solution collapses what might be easier to read as two
+separate loops into one. This can be done because as soon as we are
+finished with a bit we can add in its contribution to the sum.
+
+```java
+class Solution {
+    public int totalHammingDistance(int[] nums) {
+        int len = nums.length;
+        int sum = 0;
+        for (int i = 0; i < 32; i++) {
+          int mask = 1 << i;
+          int b = 0;
+          for (int j = 0; j < len; j++) {
+            if ((nums[j] & mask) > 0) {
+              b++;
+            }
+          }
+          sum = sum + b * (len - b);
+        }
+        return sum;
+    }
+}
+```
