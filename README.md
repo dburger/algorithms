@@ -94,3 +94,4 @@ A collection of algorithm questions and solutions.
 1. [Path Sum II](path-sum-ii)
 1. [Palindrome Partitioning](palindrome-partitioning)
 1. [Flood Fill](flood-fill)
+1. [Find Pivot Index](find-pivot-index)
