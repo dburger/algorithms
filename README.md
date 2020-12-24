@@ -95,3 +95,4 @@ A collection of algorithm questions and solutions.
 1. [Palindrome Partitioning](palindrome-partitioning)
 1. [Flood Fill](flood-fill)
 1. [Find Pivot Index](find-pivot-index)
+1. [Integer Replacement](integer-replacement)
