@@ -112,3 +112,56 @@ public class Solution {
     }
 }
 ```
+
+### Head swapper
+
+This is a clever as hell approach which is similar to the list length solution
+above - but no explicit counting of the length need take place. In this approach
+the lists are iterated until the hit upon the same first node. How can you do
+that? Well generally if you iterate to the tail of a list you can make sure that
+both lists have the same tail. If they don't, then obviously they don't
+intersect. Now on a second iteration the pointers are flipped so that `currA`
+is set to iterate list B. Likewise `currB` is set to iterate list A. Because of
+this flipping of the list pointers, the pointer that started on the shorter list
+has been given the exact head start needed when iterating the longer list. This
+is equivalent to the "walking out the same distance" part of the above
+algorithm. This means that they will in fact converge on the correct node.
+
+This solution has O(n) time complexity where n is the length of the longer list.
+The space complexity is O(1).
+
+```java
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) {
+            return null;
+        }
+        ListNode lastA = null;
+        ListNode lastB = null;
+        ListNode currA = headA;
+        ListNode currB = headB;
+        while (currA != currB) {
+            ListNode prev = currA;
+            currA = currA.next;
+            if (currA == null) {
+                lastA = prev;
+                if (lastB != null && lastA != lastB) {
+                    return null;
+                }
+                currA = headB;
+            }
+
+            prev = currB;
+            currB = currB.next;
+            if (currB == null) {
+                lastB = prev;
+                if (lastA != null && lastB != lastA) {
+                    return null;
+                }
+                currB = headA;
+            }
+        }
+        return currA;
+    }
+}
+```
