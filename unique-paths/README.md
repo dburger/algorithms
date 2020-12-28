@@ -9,12 +9,74 @@ How many possible unique paths are there?
 
 ## Hints
 
-1. Another classic dynamic programming problem. Filling in a grid with the
-   unique paths up to cell (i, j) will do the trick.
+1. Dynamic programming approach one - can you think of the base cases with
+   memoization?
+1. Another classic dynamic programming problem approach, filling in a grid with
+   the unique paths up to cell (i, j) will do the trick.
 
 ## Solutions
 
-### Classic dynamic programming
+### Dynamic programming memoization
+
+This solution works by reducing the matrix size and working back to base cases
+with classic recursion. A memoizer is thrown in to prevent repeated computation.
+Moving down is equivalent to reducing the matrix by one row. Moving to the right
+is equivalent to reducing the matrix by one col. The base cases are when you are
+reduced to one row or one column. In each case, there is only one path to the
+end.
+
+Here we got fancy (read proper) and added a `Matrix` type, with the required
+`equals` and `hashCode` methods, to function as a proper `Map` key. We could
+have gone way simpler and just encoded a string as `${row}-${col}` but this is
+a bit nicer.
+
+```java
+class Solution {
+    // This is set up for the memoizer key.
+    private class Matrix {
+        int rows;
+        int cols;
+        Matrix(int rows, int cols) {
+            this.rows = rows;
+            this.cols = cols;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            Matrix other = (Matrix) o;
+            return other.rows == this.rows && other.cols == this.cols;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = Integer.hashCode(this.rows);
+            result = 31 * result + Integer.hashCode(this.cols);
+            return result;
+        }
+    }
+
+    public int uniquePaths(int m, int n) {
+        Map<Matrix, Integer> memo = new HashMap<>();
+        return up(m, n, memo);
+    }
+
+    private int up(int m, int n, Map<Matrix, Integer> memo) {
+        Matrix key = new Matrix(m, n);
+        if (memo.containsKey(key)) {
+            return memo.get(key);
+        }
+        // Invalid matrix.
+        if (m == 0 || n == 0) return 0;
+        // One row or one column, only one path to the end cell.
+        if (m == 1 || n == 1) return 1;
+        int result = up(m - 1, n, memo) + up(m, n - 1, memo);
+        memo.put(key, result);
+        return result;
+    }
+}
+```
+
+### Classic dynamic programming table
 
 ```java
 class Solution {
