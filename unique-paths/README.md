@@ -78,6 +78,12 @@ class Solution {
 
 ### Classic dynamic programming table
 
+This approach uses a classic dynamic programming table approach. The entry
+in `(r, c)` gives the unique paths to that zero based row and col position.
+It is seeded by filling row 0 and col 0 with all ones. Then for the remaining
+`(r, c)` each entry can be derived as `(r - 1, c) + (r, c - 1)`. That is, the
+addition of the ways coming from moving down and moving to the right.
+
 ```java
 class Solution {
     public int uniquePaths(int m, int n) {
