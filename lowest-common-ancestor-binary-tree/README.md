@@ -66,3 +66,32 @@ class Solution {
     }
 }
 ```
+
+### Smarter recursion
+
+While the above solution works and has good running time, it is overly complex
+for what needs to be done here. Since the nodes in the constraint of this
+problem are guaranteed to exist in the tree, a fairly straight forward recursion
+works. Here when `p` or `q` is seen, they are returned. If a recursive case is
+entered that looked at both the left and right branches, and it returns nodes
+from both invocations, then that is the lowest common ancestor. This approach
+has O(n) time complexity but is trivially faster than the above solution per the
+leeter timings.
+
+```java
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) return null;
+        if (root == p || root == q) return root;
+        TreeNode lca1 = lowestCommonAncestor(root.left, p, q);
+        TreeNode lca2 = lowestCommonAncestor(root.right, p, q);
+        if (lca1 != null && lca2 != null) {
+            return root;
+        } else if (lca1 != null) {
+            return lca1;
+        } else {
+            return lca2;
+        }
+    }
+}
+```
