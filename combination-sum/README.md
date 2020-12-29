@@ -43,6 +43,8 @@ class Solution {
             acc.add(new ArrayList<>(path));
             return;
         }
+        // index here prevents the same set in a different order from
+        // being produced.
         for (int i = index; i < candidates.length; i++) {
             int candidate = candidates[i];
             path.add(candidate);
