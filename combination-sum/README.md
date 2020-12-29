@@ -12,6 +12,9 @@ chosen numbers is different.
 It is **gauranteed** that the number of unique combinations that sum up to
 `target` is less than `150` combinations for the given input.
 
+**Note:** This is similar to [Can Sum](can-sum), [How Sum](how-sum),
+[Best Sum](best-sum).
+
 ## Hints
 
 1. A variation of combination generating code gets quite close to this solution.
