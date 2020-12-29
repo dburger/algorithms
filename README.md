@@ -102,3 +102,4 @@ A collection of algorithm questions and solutions.
 1. [Making a Large Island](making-large-island)
 1. [Word Ladder](word-ladder)
 1. [Lowest Common Ancestor of a Binary Tree](lowest-common-ancestor-binary-tree)
+1. [Random Pick Index](random-pick-index)
