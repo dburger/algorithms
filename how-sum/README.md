@@ -91,31 +91,27 @@ need to identify one solution so we break after adding any result.
 
 ```java
 class Solution {
-    public List<List<Integer>> howSum(int[] candidates, int target) {
-        List<List<List<Integer>>> table = new ArrayList<>(target + 1);
+    public List<Integer> howSum(int[] candidates, int target) {
+        List<List<Integer>> table = new ArrayList<>(target + 1);
         // To sum to 0, selecting none of the candidates works.
         List<Integer> empty = new ArrayList<>();
-        List<List<Integer>> result = new ArrayList<>();
-        result.add(empty);
-        table.add(0, result);
+        table.add(0, empty);
         for (int i = 1; i <= target; i++) {
-            result = new ArrayList<>();
+            table.add(i, null);
             for (int c : candidates) {
                 if (i - c >= 0) {
-                    for (List<Integer> l : table.get(i - c)) {
+                    List<Integer> l = table.get(i - c);
+                    if (l != null) {
                         List<Integer> copy = new ArrayList<>(l);
                         copy.add(c);
-                        result.add(copy);
-                        // We only need to identify one solution, so we break out
-                        // if we have populated a result for table.get(i).
+                        table.add(i, copy);
+                        // We only are looking for any one solution,
+                        // so we'll skip the rest of the candidates
+                        // now that we have found one.
                         break;
                     }
                 }
-                // We only need to identify one solution, so we break out
-                // if we have populated a result for table.get(i).
-                if (result.size() > 0) break;
             }
-            table.add(i, result);
         }
         return table.get(target);
     }
