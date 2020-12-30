@@ -5,7 +5,6 @@ string and an array of strings. The function should return a boolean indicating
 whether or not the `target` can be constructed by concatenating elements of the
 `wordBank` array. You may reuse elements of `wordBank` as many times as needed.
 
-
 ## Hints
 
 1. This problem can be solved using recursion that attempts to match at the
@@ -52,7 +51,7 @@ Like the solution above, but with a memoizer introduced for speed.
 ```java
 class Solution {
     public boolean canConstruct(String target, String[] wordBank) {
-        return canConstructx(target, 0, wordBank, new HashMap<>());
+        return canConstruct(target, 0, wordBank, new HashMap<>());
     }
 
     private boolean canConstruct(String target, int index, String[] wordBank, Map<Integer, Boolean> memo) {
