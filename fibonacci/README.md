@@ -61,3 +61,24 @@ class Solution {
     }
 }
 ```
+
+### Last and last last and all that
+
+```java
+class Solution {
+    public int fibonacci(int i) {
+        if (i < 2) {
+            return i;
+        }
+        int prev = 0;
+        int curr = 1;
+        while (i >= 2) {
+            int next = prev + curr;
+            prev = curr;
+            curr = next;
+            i--;
+        }
+        return curr;
+    }
+}
+```
