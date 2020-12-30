@@ -84,3 +84,27 @@ class Solution {
     }
 }
 ```
+
+### Dynamic programming table
+
+Here we use the classic table approach to build up a solution from smaller
+solutions.
+
+```java
+class Solution {
+    public boolean canSum(int[] candidates, int target) {
+        boolean[] table = new boolean[target + 1];
+        // Can sum to zero by choosing no elements from candidates.
+        table[0] = true;
+        for (int i = 1; i <= target; i++) {
+            for (int c : candidates) {
+                if (i - c >= 0 && table[i - c]) {
+                    table[i] = true;
+                    break;
+                }
+            }
+        }
+        return table[target];
+    }
+}
+```
