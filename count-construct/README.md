@@ -75,3 +75,35 @@ class Solution {
     }
 }
 ```
+
+### Dynamic programming table approach
+
+The classic dynamic programming table approach. Here the table is seeded with
+a 1 at position 0 - that is there is one way to get the empty string, select
+no elements from the `wordBank`. Then we iterate with look back. For each
+position `i` we check if looking back the length of the candidate we had a
+match and the candidate exists up to `i`. In that case, at position `i` we add
+in the number of ways to achieve that prior prefix.
+
+```java
+class Solution {
+    public int countConstruct(String target, String[] wordBank) {
+        Integer[] table = new Integer[target.length() + 1];
+        table[0] = 1;
+
+        for (int i = 1; i <= target.length(); i++) {
+            for (String w : wordBank) {
+                int prior = i - w.length();
+                if (prior >= 0 && table[prior] != null && target.indexOf(w, prior) == prior) {
+                    if (table[i] == null) {
+                        table[i] = 0;
+                    }
+                    table[i] += table[prior];
+                }
+            }
+        }
+
+        return table[target.length()];
+    }
+}
+```
