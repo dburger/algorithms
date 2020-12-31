@@ -144,3 +144,41 @@ class Solution {
     }
 }
 ```
+
+### Dynamic programming table approach
+
+Here the 0th position is seeded with a single result that indicates selecting
+none of the words from `wordBank`. That is an empty string can be achieved by
+using none of the word. Then for each `i`, we look to see if the candidate
+matches up to position `i`. If it does, for each solution at position i minus
+the candidate length we add another solution with the candidate thrown in.
+
+```java
+class Solution {
+    public List<List<String>> allConstruct(String target, String[] wordBank) {
+        List<List<List<String>>> table = new ArrayList<>(target.length() + 1);
+        // The empty string can be achieved by selecting no words from wordBank.
+        List<String> empty = new ArrayList<>();
+        List<List<String>> result = new ArrayList<>();
+        result.add(empty);
+        table.add(0, result);
+
+        for (int i = 1; i <= target.length(); i++) {
+            result = new ArrayList<>();
+            for (String w : wordBank) {
+                int prior = i - w.length();
+                if (prior >= 0 && target.indexOf(w, prior) == prior) {
+                    for (List<String> l : table.get(prior)) {
+                        List<String> copy = new ArrayList<>(l);
+                        copy.add(w);
+                        result.add(copy);
+                    }
+                }
+            }
+            table.add(i, result);
+        }
+
+        return table.get(target.length());
+    }
+}
+```
