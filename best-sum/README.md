@@ -83,6 +83,8 @@ class Solution {
 
 ### Dynamic programming table approach
 
+Here we build up the solution with a dynamic programming table approach.
+
 ```java
 class Solution {
     public List<Integer> bestSum(int[] candidates, int target) {
@@ -96,6 +98,8 @@ class Solution {
             for (int c : candidates) {
                 if (i - c >= 0) {
                     List<Integer> l = table.get(i - c);
+                    // If we have a solution and it is a "better" solution, set
+                    // it as the result.
                     if (l != null && (result == null || l.size() < result.size() - 1)) {
                         List<Integer> copy = new ArrayList<>(l);
                         copy.add(c);

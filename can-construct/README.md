@@ -75,3 +75,34 @@ class Solution {
     }
 }
 ```
+
+### Dynamic programming table approach
+
+The classic dynamic programming table approach. The value at `table[i]`
+indicates if the prefix up to character `i` can be constructed. As we
+advance through the table we look back the length of each candidate for
+a match plus the existence of that candidate extending up to `i`.
+
+```java
+class Solution {
+    public boolean canConstruct(String target, String[] wordBank) {
+        boolean[] table = new boolean[target.length() + 1];
+        // Empty string can be formed by selecting no words from wordbank.
+        table[0] = true;
+
+        for (int i = 1; i <= target.length(); i++) {
+            for (String w : wordBank) {
+                int prior = i - w.length();
+                if (prior >= 0 && table[prior] && target.indexOf(w, prior) == prior) {
+                    table[i] = true;
+                    // We don't need to check any other candidates, we already found one
+                    // that flips table[i] to true.
+                    break;
+                }
+            }
+        }
+
+        return table[target.length()];
+    }
+}
+```
