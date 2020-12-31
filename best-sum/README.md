@@ -80,3 +80,32 @@ class Solution {
     }
 }
 ```
+
+### Dynamic programming table approach
+
+```java
+class Solution {
+    public List<Integer> bestSum(int[] candidates, int target) {
+        List<List<Integer>> table = new ArrayList<>(target + 1);
+        // Sum of zero can be achieved by selecting no elements.
+        List<Integer> empty = new ArrayList<>();
+        table.add(empty);
+
+        for (int i = 1; i <= target; i++) {
+            List<Integer> result = null;
+            for (int c : candidates) {
+                if (i - c >= 0) {
+                    List<Integer> l = table.get(i - c);
+                    if (l != null && (result == null || l.size() < result.size() - 1)) {
+                        List<Integer> copy = new ArrayList<>(l);
+                        copy.add(c);
+                        result = copy;
+                    }
+                }
+            }
+            table.add(i, result);
+        }
+        return table.get(target);
+    }
+}
+```
