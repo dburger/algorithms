@@ -110,3 +110,4 @@ A collection of algorithm questions and solutions.
 1. [Count Construct](count-construct)
 1. [Fibonacci](fibonacci)
 1. [Task Scheduler](task-scheduler)
+1. [Rank Transform of an Array](rank-transform-array)
