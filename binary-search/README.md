@@ -14,6 +14,13 @@ and a `target` value, write a function to search for `target` in `nums`. If
 
 ## Solutions
 
+Note the calculation of `mid` in these solutions. We need the number half way
+between `lo` and `hi`. This could be calculated as `(lo + hi) / 2`. Instead,
+as you can see, we calculate this as `lo + (hi - lo) / 2`. Why?
+
+The reason is that the former, `(lo + hi) / 2` is susceptible to causing an
+overflow, while the latter, `lo + (hi - lo) / 2` is not.
+
 ### Recursive binary search
 
 The time complexity is O(log(n)) where n is the length of `nums`, as the list
