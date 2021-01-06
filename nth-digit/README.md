@@ -36,6 +36,7 @@ class Solution {
         // Set this up so the first power we advance to is 2.
         // That is we have already seen the first 9 digits and
         // numbers.
+        // (Using longs here prevents overflow with this approach.)
         long digits = 9;
         long num = 9;
         int pow = 1;
