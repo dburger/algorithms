@@ -116,3 +116,4 @@ A collection of algorithm questions and solutions.
 1. [Ugly Number](ugly-number)
 1. [Binary Search](binary-search)
 1. [X of a Kind in a Deck of Cards](x-of-kind-deck)
+1. [Minimum Operations to Make Array Equal](minimum-operations-array-equal)
