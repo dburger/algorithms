@@ -120,3 +120,4 @@ A collection of algorithm questions and solutions.
 1. [Minimum Operations to Make Array Equal](minimum-operations-array-equal)
 1. [Nth Digit](nth-digit)
 1. [Missing Number](missing-number)
+1. [Partition List](partition-list)
