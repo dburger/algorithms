@@ -122,3 +122,4 @@ A collection of algorithm questions and solutions.
 1. [Missing Number](missing-number)
 1. [Partition List](partition-list)
 1. [Additive Number](additive-number)
+1. [Reorder List](reorder-list)
