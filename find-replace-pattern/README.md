@@ -63,12 +63,12 @@ class Solution {
                 char mapped = translations[pc - 'a'];
                 if (mapped != wc) {
                     if (mapped != 0) {
-                        // Already mapped to something else.
+                        // pc already mapped to something else.
                         works = false;
                         break;
                     }
                     if (used[wc - 'a']) {
-                        // Already used by another pchar character.
+                        // wc already mapped from something else.
                         works = false;
                         break;
                     }
