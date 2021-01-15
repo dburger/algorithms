@@ -14,7 +14,7 @@ Given an n-ary tree, return the *level order* traversal of its nodes' values.
 ### Standard BFS with queue
 
 This solution follows the hint above, accumulating the lists as it does a
-typical BFS queue approach through the key. If the nodes had merely been
+typical BFS queue approach through the queue. If the nodes had merely been
 requested in the BFS order (a flat list), the depth and list wrangling could
 have been avoided here. This adds a bit of a wrinkle to the problem. Here
 the depth is tracked and when it changes a new list is introduced to continue
