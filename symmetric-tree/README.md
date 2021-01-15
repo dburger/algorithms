@@ -92,3 +92,43 @@ class Solution {
     }
 }
 ```
+
+### Recursion mirror
+
+This solution is cool. For two trees to be mirror images of one another consider
+what needs to occur. For tree `t1` to be a mirror of `t2`:
+
+1. The values at `t1` and `t2` need to be the same.
+1. The left subtree of `t1` needs to be a mirror of the right subtree of `t2`
+1. The right subtree of `t1` needs to be a mirror of the left subtree of `t2`
+
+This maps directly to a recursive solution, with the neat kicker that this is
+started by passing `root, root`.
+
+This solution has time complexity O(n) where n is the number of nodes in the
+tree. That is each node in the tree must be visited / compared. The space
+complexity is the depth of recursive calls that could occur. The recursive
+calls terminate when the tree is found to be non-symmetric. Therefore the
+deepest it could occur is if the tree were split into two, one-path symmetric
+chains and thus the depth would be n/2. That makes the space complexity
+O(n).
+
+```java
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        return isSymmetric(root, root);
+    }
+
+    private boolean isSymmetric(TreeNode t1, TreeNode t2) {
+        if (t1 == null && t2 == null) {
+            return true;
+        } else if (t1 == null || t2 == null) {
+            return false;
+        } else {
+            return t1.val == t2.val &&
+                isSymmetric(t1.left, t2.right) &&
+                isSymmetric(t1.right, t2.left);
+        }
+    }
+}
+```
