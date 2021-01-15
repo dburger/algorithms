@@ -132,3 +132,4 @@ A collection of algorithm questions and solutions.
 1. [Symmetric Tree](symmetric-tree)
 1. [Linked List Cycle](linked-list-cycle)
 1. [Duplicate Emails](duplicate-emails)
+1. [Next Permutation](next-permutation)
