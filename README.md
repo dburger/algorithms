@@ -131,3 +131,4 @@ A collection of algorithm questions and solutions.
 1. [N-ary Tree Level Order Traversal](n-ary-tree-level-order-traversal)
 1. [Symmetric Tree](symmetric-tree)
 1. [Linked List Cycle](linked-list-cycle)
+1. [Duplicate Emails](duplicate-emails)
