@@ -77,6 +77,7 @@ A collection of algorithm questions and solutions.
 1. [Merge Sort](merge-sort)
 1. [Quick Sort](qsort)
 1. [Reverse Linked List](reverse-linked-list)
+1. [Reverse Linked List II](reverse-linked-list-ii)
 1. [Scramble String](scramble-string)
 1. [Convert Sorted List to Binary Search Tree](convert-sorted-list-to-bst)
 1. [Bulls and Cows](bulls-and-cows)
