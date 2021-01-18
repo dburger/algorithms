@@ -126,16 +126,19 @@ class Solution {
             n--;
         }
 
-        // Attach the first segment to the middle reversed segment, if
-        // there was a first segment (m > 1).
-        if (prev1 != null) {
+        if (prev1 == null) {
+            // There was no first segment, m == 1, so point head at
+            // reversed segment.
+            head = prev2;
+        } else {
+            // Attach middle segment to first segment
             prev1.next = prev2;
         }
+
         // Attach the middle reversed segment to the tail.
         curr1.next = curr2;
-        // If there was no first segment (m == 1), return the middle
-        // segment, otherwise return the first segment via head.
-        return prev1 == null ? prev2 : head;
+
+        return head;
     }
 }
 ```
