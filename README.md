@@ -137,3 +137,4 @@ A collection of algorithm questions and solutions.
 1. [Get Maximum in Generated Array](get-maximum-generated-array)
 1. [Reverse Words in a String](reverse-words-in-string)
 1. [Reverse Nodes in k Group](reverse-nodes-k-group)
+1. [Triangle](triangle)
