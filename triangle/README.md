@@ -95,3 +95,74 @@ class Solution {
     }
 }
 ```
+
+### Dynamic programming
+
+This solution uses a dynamic programming table approach to solve the problem.
+An interesting aspect of this solution is that we create a full matrix but only
+use a triangular portion of it.
+
+It is really easy to mess up the indices in this problem. Be careful!
+
+```java
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        int rows = triangle.size();
+        int cols = triangle.get(rows - 1).size();
+        int[][] dp = new int[rows][cols];
+        dp[0][0] = triangle.get(0).get(0);
+        for (int row = 1; row < rows; row++) {
+            for (int col = 0; col <= row; col++) {
+                // If in bounds use it, otherwise provide value that will not be chosen.
+                int leftParent = col - 1 > -1 ? dp[row - 1][col - 1] : Integer.MAX_VALUE;
+                int rightParent = col < row ? dp[row - 1][col] : Integer.MAX_VALUE;
+                dp[row][col] = Math.min(leftParent, rightParent) + triangle.get(row).get(col);
+            }
+        }
+
+        // Finally locate the minimum in the last row.
+        int[] dpr = dp[rows - 1];
+        int min = dpr[0];
+        for (int i = 1; i < rows; i++) {
+            int val = dpr[i];
+            if (val < min) {
+                min = val;
+            }
+        }
+        return min;
+    }
+}
+```
+
+### Dynamic programming, in place
+
+Finally I present a solution that uses a dynamic programming approach and solves
+the problem in place. Note that by solving in place the original input is
+"destroyed."
+
+```java
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        int rows = triangle.size();
+        for (int row = 1; row < rows; row++) {
+            List<Integer> prior = triangle.get(row - 1);
+            List<Integer> trow = triangle.get(row);
+            for (int col = 0; col < trow.size(); col++) {
+                int leftParent = col - 1 > -1 ? prior.get(col - 1) : Integer.MAX_VALUE;
+                int rightParent = col < prior.size() ? prior.get(col) : Integer.MAX_VALUE;
+                trow.set(col, Math.min(leftParent, rightParent) + trow.get(col));
+            }
+        }
+
+        List<Integer> trow = triangle.get(rows - 1);
+        int min = trow.get(0);
+        for (int col = 1; col < trow.size(); col++) {
+            int val = trow.get(col);
+            if (val < min) {
+                min = val;
+            }
+        }
+        return min;
+    }
+}
+```
