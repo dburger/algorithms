@@ -140,3 +140,4 @@ A collection of algorithm questions and solutions.
 1. [Triangle](triangle)
 1. [Balanced Binary Tree](balanced-binary-tree)
 1. [Subarray Sum Equals K](subarray-sum-equals-k)
+1. [Factorial Trailing Zeroes](factorial-trailing-zeroes)
