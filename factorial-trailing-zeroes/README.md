@@ -46,16 +46,16 @@ class Solution {
 ### Counting fives
 
 This solution goes down the trail of the second hint. In order for a factorial
-to have a trailing zero it must contain a factor of 10. The prime factorization
-of 10 is 2 and 5. Because 2 is a factor in all even numbers, there are many more
-2 factors in a given factorial than 5 factors. Therefore the number of trailing
-zeroes in a factorial is equivalent to the number of 5 factors in that
-factorial. So how do you compute this?
+to have a trailing zero it must contain a factor of `10`. The prime
+factorization of 10 is `{2, 5}`. Because `2` is a factor in all even numbers,
+there are many more `2` factors in a given factorial than `5` factors. Therefore
+the number of trailing zeroes in a factorial is equivalent to the number of `5`
+factors in that factorial. So how do you compute this?
 
-Well first say we are computer `45!`. Within this number we have the following,
+Well first say we are computing `45!`. Within this number we have the following,
 `{5, 10, 15, 20, 25, 30, 35, 40, 45`, that contain a `5` factor. It is pretty
 clear that a first step is taking `n` and dividing by `5`. In this case we get
-`9`. This is not correct, however. Note that the `25` in that last has two `5`
+`9`. This is not correct, however. Note that the `25` in that list has two `5`
 factors. This leads to the correct solution that the number of trailing zeroes
 is equal to the number of times `{5, 25, 125, ...}`, that is the powers of `5`,
 divide into `n`.
