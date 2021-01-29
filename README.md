@@ -141,3 +141,4 @@ A collection of algorithm questions and solutions.
 1. [Balanced Binary Tree](balanced-binary-tree)
 1. [Subarray Sum Equals K](subarray-sum-equals-k)
 1. [Factorial Trailing Zeroes](factorial-trailing-zeroes)
+1. [Merge k Sorted Lists](merge-k-sorted-lists)
