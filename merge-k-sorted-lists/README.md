@@ -219,3 +219,79 @@ class Solution {
     }
 }
 ```
+
+### Merge pairs in place
+
+Ah you couldn't leave well enough alone could ya? Here we do the same merge
+pairs as above but we use the passed in `lists` to hold the intermediate
+results. This reduces the space complexity to O(1).
+
+```java
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        if (lists.length == 0) {
+            return null;
+        }
+        if (lists.length == 1) {
+            return lists[0];
+        }
+        int size = lists.length;
+        while (size > 1) {
+            int fill = 0;
+            for (int i = 0; i < size; i += 2) {
+                ListNode l1 = lists[i];
+                ListNode l2 = i < size - 1 ? lists[i + 1] : null;
+                ListNode head = merge(l1, l2);
+                lists[fill++] = head;
+            }
+            size = fill;
+        }
+        return lists[0];
+    }
+
+    private ListNode merge(ListNode l1, ListNode l2) {
+        ListNode head = null;
+        ListNode curr = null;
+        for (;;) {
+            if (l1 == null && l2 == null) {
+                break;
+            } else if (l2 == null) {
+                if (head == null) {
+                    head = curr = l1;
+                } else {
+                    curr.next = l1;
+                    curr = l1;
+                }
+                l1 = l1.next;
+            } else if (l1 == null) {
+                if (head == null) {
+                    head = curr = l2;
+                } else {
+                    curr.next = l2;
+                    curr = l2;
+                }
+                l2 = l2.next;
+            } else {
+                if (l1.val < l2.val) {
+                    if (head == null) {
+                        head = curr = l1;
+                    } else {
+                        curr.next = l1;
+                        curr = l1;
+                    }
+                    l1 = l1.next;
+                } else {
+                    if (head == null) {
+                        head = curr = l2;
+                    } else {
+                        curr.next = l2;
+                        curr = l2;
+                    }
+                    l2 = l2.next;
+                }
+            }
+        }
+        return head;
+    }
+}
+```
