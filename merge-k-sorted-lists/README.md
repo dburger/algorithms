@@ -62,9 +62,9 @@ class Solution {
 
 ### Merge one at a time
 
-This solution merges in pairs at a time, much like the typical merge two sorted
-lists problems. It is faster than the above solution in practice but is still not
-a good performer.
+This solution merges in one list at a time, much like the typical merge two
+sorted lists problems. It is faster than the above solution in practice but is
+still not a good performer.
 
 The time complexity of this solution is O(m * n) where m is the number of lists
 and n is the total number of nodes. The space complexity is O(1) as we merge
@@ -136,7 +136,7 @@ class Solution {
 ### Merge pairs
 
 Here instead of merging one list in at a time we merge pairs of lists and then
-repeated merge the resultant pairs until there is only one list left.
+repeatedly merge the resultant pairs until there is only one list left.
 
 This reduces the time complexity to O(log(m) * n) where m is the number of lists
 and n is the total number of nodes. That is up to n nodes are merged in each
