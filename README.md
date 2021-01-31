@@ -143,3 +143,4 @@ A collection of algorithm questions and solutions.
 1. [Factorial Trailing Zeroes](factorial-trailing-zeroes)
 1. [Merge k Sorted Lists](merge-k-sorted-lists)
 1. [Count Servers that Communicate](count-servers-communicate)
+1. [Valid Perfect Square](valid-perfect-square)
