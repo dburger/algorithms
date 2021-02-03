@@ -145,3 +145,4 @@ A collection of algorithm questions and solutions.
 1. [Count Servers that Communicate](count-servers-communicate)
 1. [Valid Perfect Square](valid-perfect-square)
 1. [Pascal's Triangle](pascals-triangle)
+1. [Pascal's Triangle II](pascals-triangle-ii)
