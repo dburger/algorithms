@@ -9,7 +9,7 @@ it.
 ## Hints
 
 1. This is pretty mechanical. If they asked you to generate just one row you
-   could use the formulate for combinations. Here since they are asking you for
+   could use the formula for combinations. Here since they are asking you for
    everything it is just as fast to directly build the triangle.
 
 ## Solutions
