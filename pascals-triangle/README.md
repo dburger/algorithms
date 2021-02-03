@@ -6,7 +6,6 @@ Pascal's triangle.
 In Pascal's triangle, each number is the sum of the two numbers directly above
 it.
 
-
 ## Hints
 
 1. This is pretty mechanical. If they asked you to generate just one row you
