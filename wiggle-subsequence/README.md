@@ -18,11 +18,47 @@ order.
 
 ## Hints
 
+1. A dynamic approach works here where we think in terms of the current diff at
+   position i and whether it is a positive or negative diff. If it is positive,
+   then the new max for wiggle sequences that end at i on a positive note is
+   `down[i - 1] + 1`. If it is negative then the new max for wiggle sequences
+   that end at i on a negative note is `up[i - 1] + 1`. The solution will be
+   `max(down[n - 1], up[n - 1])` where `n` is the length of `nums`.
 1. Don't let the "delete" in the description fool you. It is probably better to
    just think in terms of advancing through the sequence and tracking how many
    times you flip differences.
 
 ## Solutions
+
+### Dynamic programmingn with the arrays stripped out
+
+This solution follows the first hint. Since the suggested algorithm only needs
+to look back at the prior up and down positions, the arrays are unnecessary and
+only a last value need be kept.
+
+The time complexity for this solution is O(n), where `n` is the length of the
+`nums` array. The space complexity is O(1).
+
+```java
+class Solution {
+    public int wiggleMaxLength(int[] nums) {
+        if (nums.length < 2) {
+            return nums.length;
+        }
+        int down = 1;
+        int up = 1;
+        for (int i = 1; i < nums.length; i++) {
+            int diff = nums[i] - nums[i - 1];
+            if (diff > 0) {
+                up = down + 1;
+            } else if (diff < 0) {
+                down = up + 1;
+            }
+        }
+        return Math.max(down, up);
+    }
+}
+```
 
 ### Greedy tracking
 
