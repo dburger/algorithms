@@ -147,3 +147,4 @@ A collection of algorithm questions and solutions.
 1. [Pascal's Triangle](pascals-triangle)
 1. [Pascal's Triangle II](pascals-triangle-ii)
 1. [Self Dividing Numbers](self-dividing-numbers)
+1. [Wiggle Subsequence](wiggle-subsequence)
