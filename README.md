@@ -149,3 +149,4 @@ A collection of algorithm questions and solutions.
 1. [Self Dividing Numbers](self-dividing-numbers)
 1. [Wiggle Subsequence](wiggle-subsequence)
 1. [Find the Winner of an Array Game](find-winner-array-game)
+1. [Reverse Integer](reverse-integer)
