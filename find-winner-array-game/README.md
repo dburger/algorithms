@@ -14,22 +14,22 @@ It is **guaranteed** that there will be a winner of the game.
 
 1. If you brute forced this and followed the process as described the shifting
    of elements would become the expensive part of the routine. Thus pointing
-   at the candidate and challenger would be preferred.
+   at the champion and challenger would be preferred.
 1. If `k` is big enough then the largest element in the array will be
    encountered and win from there on out. This is an obvious optimization that
    should be done.
 1. Whenever you hit the end of the array you are done. At that point you've seen
-   every candidate and your current winner will continue to win.
+   every candidate and your current champion will continue to win.
 
 ## Solutions
 
-### Candidate and challenger
+### Champion and challenger
 
 This solution follows the hints above. First, if `k` is greater than or equal to
 `n - 1`, where `n` is the length of `arr`, then every element is going to get
 a chance to compete. In that case the maximum value will always end up winning.
 Thus a short circuit that just takes the maximum from the array. If that doesn't
-hold, we merely track a candidate and challenger, incrementing the `wins` or
+hold, we merely track a champion and challenger, incrementing the `wins` or
 setting it back to one depending on who wins. We continue until we hit `k`
 wins or the end of the array. If we hit `k` wins the game is obviously over. If
 we hit the end of the array we have encountered every element and the highest of
@@ -48,19 +48,19 @@ class Solution {
         if (k >= n - 1) {
             return max(arr);
         }
-        int candidate = arr[0];
+        int champion = arr[0];
         int i = 1;
         int wins = 0;
         while (wins < k && i < n) {
             int challenger = arr[i++];
-            if (candidate > challenger) {
+            if (champion > challenger) {
                 wins++;
             } else {
-                candidate = challenger;
+                champion = challenger;
                 wins = 1;
             }
         }
-        return candidate;
+        return champion;
     }
 
     private int max(int[] nums) {
