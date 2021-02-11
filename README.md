@@ -150,3 +150,4 @@ A collection of algorithm questions and solutions.
 1. [Wiggle Subsequence](wiggle-subsequence)
 1. [Find the Winner of an Array Game](find-winner-array-game)
 1. [Reverse Integer](reverse-integer)
+1. [Longest Palindromic Substring](longest-palindromic-substring)
