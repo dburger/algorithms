@@ -1,6 +1,8 @@
 # algorithms
 
-A collection of algorithm questions and solutions.
+This document contains links to an
+[Interview Fundamentals](interview-fundamentals) document and links to a number
+of interview questions / answers, below.
 
 1. [Two Sum](two-sum)
 1. [Add Two Numbers](add-two-numbers)
