@@ -47,6 +47,10 @@ TODO
 
 TODO - index off center, longest common palindromic subsequence, march to the middle
 
+### Dynamic Programming
+
+TODO - memoization and tabular approaches
+
 ## Core Questions
 
 ### Matching Parenthesis
