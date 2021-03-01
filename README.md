@@ -155,3 +155,4 @@ of interview questions / answers, below.
 1. [Longest Palindromic Substring](longest-palindromic-substring)
 1. [Palindrome Number](palindrome-number)
 1. [Map of Highest Peak](map-highest-peak)
+1. [Convert Binary Number in a Linked List to Integer](convert-binary-linked-list-integer)
