@@ -6,32 +6,26 @@ customers who never order anything.
 
 Table `Customers`:
 
-+----+-------+
-| Id | Name  |
-+----+-------+
-| 1  | Joe   |
-| 2  | Henry |
-| 3  | Sam   |
-| 4  | Max   |
-+----+-------+
+Id | Name
+-- | -----
+1  |   Joe
+2  | Henry
+3  |   Sam
+4  |   Max
 
 Table `Orders`:
 
-+----+------------+
-| Id | CustomerId |
-+----+------------+
-| 1  | 3          |
-| 2  | 1          |
-+----+------------+
+Id | CustomerId
+-- | ----------
+1  |          3
+2  |          1
 
 Using the above tables as an example, return the following:
 
-+-----------+
-| Customers |
-+-----------+
-| Henry     |
-| Max       |
-+-----------+
+  | Customers
+- | ---------
+  |     Henry
+  |       Max
 
 ## Hints
 
