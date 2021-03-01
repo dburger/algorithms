@@ -22,7 +22,7 @@ Id | CustomerId
 
 Using the above tables as an example, return the following:
 
-  | Customers
+x | Customers
 - | ---------
   |     Henry
   |       Max
