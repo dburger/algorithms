@@ -43,6 +43,10 @@ TODO
 
 TODO
 
+### Multiset without Multiset
+
+TODO - explain map code to do multiset type map
+
 ### Manipulating Multiple Pointers / Indices
 
 TODO - index off center, longest common palindromic subsequence, march to the middle
