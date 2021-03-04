@@ -158,3 +158,4 @@ of interview questions / answers, below.
 1. [Convert Binary Number in a Linked List to Integer](convert-binary-linked-list-integer)
 1. [Customers Who Never Order](customers-who-never-order)
 1. [Maximum Product Subarray](maximum-product-subarray)
+1. [pow(x, n)](pow-x-n)
