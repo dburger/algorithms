@@ -161,3 +161,4 @@ of interview questions / answers, below.
 1. [pow(x, n)](pow-x-n)
 1. [Jump Game](jump-game)
 1. [Jump Game II](jump-game-ii)
+1. [Merge Intervals](merge-intervals)
