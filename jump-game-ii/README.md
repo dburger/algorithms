@@ -19,6 +19,14 @@ to get to each position in the array. A value of `0` for all positions other
 than the first position indicates that the position has not been initialized
 yet.
 
+The time complexity of this algorithm is O(n^2). This is because of the nested
+loops where the inner loop could iterate from the current position to the end
+of the array. The space complexity of this algorithm is O(n). This is because
+of the auxillary array `mins` used to hold the minimum jumps to each position.
+
+Oddly, this algorithm seems to finish is 0 ms on the leeter. One would think
+that only O(n) solutions would do so.
+
 ```java
 class Solution {
     public int jump(int[] nums) {
