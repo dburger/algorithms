@@ -44,3 +44,31 @@ class Solution {
     }
 }
 ```
+
+### Current and max reach tracking
+
+Here we keep track of the maxReach and the current position at or before that
+we would need to jump.
+
+This solution has time complexity O(n) and space complexity O(1).
+
+```java
+class Solution {
+    public int jump(int[] nums) {
+        int n = nums.length;
+        int jumps = 0;
+        int current = 0;
+        int maxReach = 0;
+
+        for (int i = 0; i < n - 1; i ++) {
+            // Keep track of furthest we can get to.
+            maxReach = Math.max(maxReach, i + nums[i]);
+            if (i == current) {
+                // Would need to jump at or before current.
+                jumps++;
+                current = maxReach;
+            }
+        }
+    }
+}
+```
