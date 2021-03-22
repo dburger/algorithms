@@ -25,14 +25,14 @@ class Solution {
         int[] mins = new int[nums.length];
         for (int i = 0; i < mins.length; i++) {
             int maxHop = nums[i];
-	    for (int j = 1; j <= maxHop && i + j < mins.length; j++) {
-	        // If not initialized or better than previous value.
-	        if (mins[i + j] == 0 || mins[i] + 1 < mins[i + j]) {
-		  mins[i + j] = mins[i] + 1;
-		}
-	    }
+            for (int j = 1; j <= maxHop && i + j < mins.length; j++) {
+                // If not initialized or better than previous value.
+                if (mins[i + j] == 0 || mins[i] + 1 < mins[i + j]) {
+                    mins[i + j] = mins[i] + 1;
+                }
+            }
         }
-	return mins[mins.length - 1];
+        return mins[mins.length - 1];
     }
 }
 ```
