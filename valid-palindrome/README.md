@@ -10,8 +10,9 @@ alphanumeric characters and ignoring cases.
 
 ## Solutions
 
-### Index pointers that
-[meeeeeet in the middle](https://www.youtube.com/watch?v=qWKpCmPdGmM)
+### Index pointers that meet in the middle
+
+[Meeeeeet in the middle](https://www.youtube.com/watch?v=qWKpCmPdGmM)
 
 Here we set an index pointer to the front and end of the string, peel off a
 character at a time, comparing them and advancing the pointers as necessary.
