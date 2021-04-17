@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+if [[ $# -eq 0 ]]; then
+  echo "Algorithm directory name not provided, nothing done."
+  exit 1
+fi
+
+if [[ -e "$1" ]]; then
+  echo "File $1 already exists, nothing done."
+  exit 1
+fi
+
+mkdir "$1"
+
+cat << EOF > "$1/README.md"
+# PROBLEM TITLE
+
+## Hints
+
+1. 
+
+## Solutions
+
+### SOLUTION TITLE
+
+```java
+```
+EOF
