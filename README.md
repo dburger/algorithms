@@ -1,4 +1,4 @@
-\65;6202;1c# algorithms
+# algorithms
 
 This document contains links to an
 [Interview Fundamentals](interview-fundamentals) document and links to a number
@@ -166,3 +166,4 @@ of interview questions / answers, below.
 1. [Valid Parentheses](valid-parentheses)
 1. [Restore IP Addresses](restore-ip-addr)
 1. [Valid Palindrome](valid-palindrome)
+1. [Unique Binary Search Trees](unique-binary-search-trees)
