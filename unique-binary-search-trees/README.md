@@ -7,6 +7,8 @@ trees which has exactly `n` nodes.
 
 1. Think in terms of a tree with `n` nodes being constructed of the root
    node and trees with `0` to `n - 1` nodes in the left and right subtrees.
+1. This is a great problem as it succumbs quite easily to the two common
+   dynamic programming approaches.
 
 ## Solutions
 
