@@ -167,3 +167,4 @@ of interview questions / answers, below.
 1. [Restore IP Addresses](restore-ip-addr)
 1. [Valid Palindrome](valid-palindrome)
 1. [Unique Binary Search Trees](unique-binary-search-trees)
+1. [Single Number](single-number)
