@@ -46,6 +46,7 @@ of interview questions / answers, below.
 1. [Alphabet Board Path](alphabet-board-path)
 1. [Binary Tree Level Order Traversal](binary-tree-level-order-traversal)
 1. [Binary Tree Preorder Traversal](binary-tree-preorder-traversal)
+1. [Binary Tree Inorder Traversal](binary-tree-inorder-traversal)
 1. [Binary Tree Postorder Traversal](binary-tree-postorder-traversal)
 1. [Minimum Window Substring](minimum-window-substring)
 1. [Permutation in String](permutation-in-string)
