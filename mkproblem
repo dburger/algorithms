@@ -5,14 +5,16 @@ if [[ $# -eq 0 ]]; then
   exit 1
 fi
 
-if [[ -e "$1" ]]; then
+directory="${1}"
+
+if [[ -e "${directory}" ]]; then
   echo "File $1 already exists, nothing done."
   exit 1
 fi
 
-mkdir "$1"
+mkdir "${directory}"
 
-cat << 'EOF' > "$1/README.md"
+cat << 'EOF' > "${directory}/README.md"
 # PROBLEM TITLE
 
 ## Hints
@@ -26,3 +28,5 @@ cat << 'EOF' > "$1/README.md"
 ```java
 ```
 EOF
+
+echo "1. [LONG TITLE](${directory})" >> README.md
