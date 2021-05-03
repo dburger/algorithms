@@ -171,3 +171,4 @@ of interview questions / answers, below.
 1. [Single Number](single-number)
 1. [Divide Two Integers](divide-two-integers)
 1. [Remove Nth Node From End of List](remove-nth-node)
+1. [Remove Duplicates from Sorted Array](remove-duplicates-sorted-array)
