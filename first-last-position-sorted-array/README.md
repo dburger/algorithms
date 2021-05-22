@@ -5,7 +5,7 @@ and ending position of a given `target` value.
 
 If `target` is not found in the array, return `[-1, -1]`.
 
-Follow up: Could you write an algorithm with `O(log n)` runtime complexity?
+You must write an algorithm with `O(log n)` runtime complexity.
 
 ## Hints
 
@@ -16,9 +16,49 @@ Follow up: Could you write an algorithm with `O(log n)` runtime complexity?
 
 ## Solutions
 
-### Binary search and expand
+### Brute force
 
-From the second hint, this is the binary search and expand from there approach.
+The brute force approach has an O(n) time complexity and O(1) space complexity. This surprisingly
+passes the leeter grader even though the problem states:
+
+"You must write an algorithm with `O(log n)` runtime complexity."
+
+Thus it is not a valid solution given the problem constraints.
+
+```java
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int start = -1;
+        int end = -1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
+                if (start == -1) {
+                    start = i;
+                }
+            } else if (start != -1 && end == -1) {
+                end = i - 1;
+                break;
+            }
+        }
+        if (start != -1 && end == -1) {
+            end = nums.length - 1;
+        }
+        return new int[] {start, end};
+    }
+}
+```
+
+### Binary search (recursive) and expand
+
+From the second hint, this is the binary search and expand from there approach. Once again, this
+is not a valid solution for this problem given the constraints per the time complexity as
+described below. As in the prior problem, this one passes the leeter grader in spite of this
+invalid time complexity.
+
+This solution has a time complexity of O(n) and a space complexity of O(log(n)). The time
+complexity comes from the expand step. It is possible that each item in the input array matches
+target and thus the expand step will expand to both ends of the array. The space complexity
+comes from the usage of a recursive binary search which could lead to a stack depth of log(n).
 
 ```java
 class Solution {
@@ -54,6 +94,48 @@ class Solution {
         } else {
             return mid;
         }
+    }
+}
+```
+
+### Binary search (iterative) and expand
+
+This is the same solution as the prior with the recursive binary search replaced with an
+iterative approach. This makes the space complexity for this solution O(1). The time complexity
+remains O(n), due to the expand, as in the prior problem.
+
+```java
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int lo = binSearch(nums, target);
+        if (lo == -1) {
+            return new int[] {-1, -1};
+        }
+        int hi = lo;
+        while (lo > 0 && nums[lo - 1] == target) {
+            lo--;
+        }
+        while (hi < nums.length - 1 && nums[hi + 1] == target) {
+            hi++;
+        }
+        return new int[] {lo, hi};
+    }
+
+    private int binSearch(int[] nums, int target) {
+        int lo = 0;
+        int hi = nums.length - 1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            int val = nums[mid];
+            if (val < target) {
+                lo = mid + 1;
+            } else if (val > target) {
+                hi = mid - 1;
+            } else {
+                return mid;
+            }
+        }
+        return -1;
     }
 }
 ```
@@ -99,4 +181,3 @@ class Solution {
     }
 }
 ```
-
