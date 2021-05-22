@@ -142,9 +142,16 @@ class Solution {
 
 ### Modified binary search
 
-This approach modifies the binary search to be able to return the
-leftmost and rightmost occurrences. By doing two binary searches
-this is a 2*O(log n) approach which is O(log n).
+This approach modifies the binary search to be able to return the leftmost and rightmost
+occurrences. It does this by adding a boolean flag that indicates whether it is looking for
+leftmost or rightmost. In the case of leftmost, an attempt to return the correct index is made.
+In the case of rightmost, the value returned will be one beyond the last matching value, unless
+matching values run to the end of the array. In that case the value returned will be correct.
+This adds a slight complexity in the usage of this binary search function. Checks must be
+performed on the returned values.
+
+By doing two binary searches the time complexity is 2 * O(log n) which is O(log n). The space
+complexity, due to using a recursive binary search, is O(log n).
 
 ```java
 class Solution {
@@ -152,31 +159,28 @@ class Solution {
         if (nums.length == 0) {
             return new int[] {-1, -1};
         }
-        int lo = binSearch(nums, target, 0, nums.length, true);
-        if (lo == nums.length || nums[lo] != target) {
+        int lo = binSearch(nums, 0, nums.length - 1, target, true);
+        if (nums[lo] != target) {
             return new int[] {-1, -1};
         }
-        // Found lo on left, this right result will be one higher than
-        // actual value.
-        int hi = binSearch(nums, target, 0, nums.length, false) - 1;
+        int hi = binSearch(nums, 0, nums.length - 1, target, false);
+        // hi is only right if target goes to end of array, otherwise it is one beyond
+        if (nums[hi] != target) {
+            hi--;
+        }
         return new int[] {lo, hi};
     }
 
-    private int binSearch(int[] nums, int target, int lo, int hi, boolean left) {
+    private int binSearch(int[] nums, int lo, int hi, int target, boolean left) {
         if (lo == hi) {
             return lo;
         }
         int mid = lo + (hi - lo) / 2;
         int val = nums[mid];
-        if (val > target || (left && target == val)) {
-            // Note the recursion on the left side when the target matches
-            // that includes the match (mid).
-            return binSearch(nums, target, lo, mid, left);
+        if (val > target || (left && val == target)) {
+            return binSearch(nums, lo, mid, target, left);
         } else {
-            // Note that when matches but left is false, recursion on the
-            // right side. Thus when left is false will return index one
-            // higher than rightmost.
-            return binSearch(nums, target, mid + 1, hi, left);
+            return binSearch(nums, mid + 1, hi, target, left);
         }
     }
 }
