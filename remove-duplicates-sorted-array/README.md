@@ -17,13 +17,69 @@ input array** in-place with O(1) extra memory.
 
 ## Solutions
 
+### Brute force but violating, part I
+
+Here I present a brute force solution that works but violates the problem
+constraints. Namely, it violates the "Do not allocate space for another
+array..." part.
+
+This solution has a time complexity of O(n) where n is the length of the input
+array as it iterates through the array up to twice. The space complexity of
+this solution is also O(n), as an array is allocated to hold the result before
+it is copied back into `nums`.
+
+```java
+class Solution {
+    public int[] removeDuplicates(int nums[]) {
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            int val = nums[i];
+            int size = result.size();
+            if (size == 0 || val != result.get(size - 1)) {
+                result.add(val);
+            }
+        }
+        for (int i = 0; i < result.size(); i++) {
+            nums[i] = result.get(i);
+        }
+        return result.size();
+    }
+}
+```
+
+### Brute force but violating, part II
+
+This is the same solution as above with a minor twist. Here instead of looking
+at the last element in `result` to identify duplicates, we look at the prior
+element in `nums`.
+
+```java
+class Solution {
+    public int[] removeDuplicates(int nums[]) {
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            int val = nums[i];
+            if (result.size() == 0 || val != nums[i - 1]) {
+                result.add(val);
+            }
+        }
+        for (int i = 0; i < result.size(); i++) {
+            nums[i] = result.get(i);
+        }
+        return result.size();
+    }
+}
+```
+
 ### Fill and iterate
 
 To do this problem in place we use a common technique in this type of array
-problem. That is, we keep track of a `filled` position, starting at `0`, and
-when we see a next that doesn't match a prior we increment `filled` and fill
-that value. Whenever we see a next that does match the prior that value has
-already been filled and nothing needs to be done.
+problem. That is, we keep track of a `filled` position, starting at `0`.
+Position `0` is obviously always correct. Then, as we iterate across starting
+at position `1`, if a number is the same as its prior we do nothing. If it is
+not the same we increment `filled` and fill that position. Note the guard
+clause at the top that checks for special cases of input `nums` of length
+less than 2 where no work needs to be done.
 
 The time complexity of this solution is O(n), the size of the input array,
 as we must examine each value in the array. The time complexity for this
