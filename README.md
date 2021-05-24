@@ -173,3 +173,4 @@ of interview questions / answers, below.
 1. [Remove Nth Node From End of List](remove-nth-node)
 1. [Remove Duplicates from Sorted Array](remove-duplicates-sorted-array)
 1. [Search Insert Position](search-insert-position)
+1. [Remove Element](remove-element)
