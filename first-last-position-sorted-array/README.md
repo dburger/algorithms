@@ -9,7 +9,7 @@ You must write an algorithm with `O(log n)` runtime complexity.
 
 ## Hints
 
-1. Brute force can easily be done a couple of different ways and is O(n).
+1. Brute force can easily be done a couple of different ways but is O(n).
 1. Binary searching to the target and then expanding from there is also easy,
    however, expanding from target makes this also O(n).
 1. Could binary search be adjusted to be able to return leftmost and rightmost?
@@ -35,7 +35,7 @@ class Solution {
                 if (start == -1) {
                     start = i;
                 }
-            } else if (start != -1 && end == -1) {
+            } else if (start != -1) {
                 end = i - 1;
                 break;
             }
@@ -143,12 +143,18 @@ class Solution {
 ### Modified binary search
 
 This approach modifies the binary search to be able to return the leftmost and rightmost
-occurrences. It does this by adding a boolean flag that indicates whether it is looking for
-leftmost or rightmost. In the case of leftmost, an attempt to return the correct index is made.
-In the case of rightmost, the value returned will be one beyond the last matching value, unless
-matching values run to the end of the array. In that case the value returned will be correct.
-This adds a slight complexity in the usage of this binary search function. Checks must be
-performed on the returned values.
+occurrences. It does this by making some modifications to the standard binary search. First,
+it only returns when `lo == hi`, as it has reduced the search space to a single element. It
+returns this value regardless of whether or not the target was located. Thus, a check must be
+made with the returned value. Second, a boolean flag is added indicating if it is looking for the
+left end or right end of the range. There is a subtle difference between the two. Because the
+integer division used to choose `mid` rounds down the search space reduction on the right and
+left are different. When heading left, a reduction to `[lo, mid]` works. When heading right and
+there are only two elements left, a choice of `[mid, hi]` would cause and endless recursion of
+the same boundaries. Thus we instead search on `[mid + 1, hi]`. This ensures that the search
+space is reduced but also necessitates checking the result. If `target` is known to be present
+and the value returned by a search for `target` is incorrect, then the correct value is at one
+less than the returned value.
 
 By doing two binary searches the time complexity is 2 * O(log n) which is O(log n). The space
 complexity, due to using a recursive binary search, is O(log n).
@@ -181,6 +187,52 @@ class Solution {
             return binSearch(nums, lo, mid, target, left);
         } else {
             return binSearch(nums, mid + 1, hi, target, left);
+        }
+    }
+}
+```
+
+### Another modified binary search
+
+The prior solution checks all the boxes. It has time complexity of O(log n), however, the
+special casing of the two different types of searches, leftmost or rightmost, leaves something
+to be desired. More specifically, the need to check on rightmost for the return of an index that
+is off by one is rather annoying. This problem stems from how the search space is partioned and
+the nature of integer division when searching to the right. Here we eliminate that problem by
+special casing two remaining elements in the binary search. This eleminates the off by one check
+necessary in the prior code.
+
+```java
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        if (nums.length == 0) {
+            return new int[] {-1, -1};
+        }
+        int lo = bs(nums, 0, nums.length - 1, target, true);
+        if (nums[lo] != target) {
+            return new int[] {-1, -1};
+        }
+        int hi = bs(nums, 0, nums.length - 1, target, false);
+        return new int[] {lo, hi};
+    }
+
+    private int bs(int[] nums, int lo, int hi, int target, boolean left) {
+        if (lo == hi) {
+            return lo;
+        }
+        if (hi - lo == 1) {
+            if (left) {
+                return nums[lo] == target ? lo : hi;
+            } else {
+                return nums[hi] == target ? hi : lo;
+            }
+        }
+        int mid = lo + (hi - lo) / 2;
+        int val = nums[mid];
+        if (val > target || (left && val == target)) {
+            return bs(nums, lo, mid, target, left);
+        } else {
+            return bs(nums, mid, hi, target, left);
         }
     }
 }
