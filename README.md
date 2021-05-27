@@ -174,3 +174,4 @@ of interview questions / answers, below.
 1. [Remove Duplicates from Sorted Array](remove-duplicates-sorted-array)
 1. [Search Insert Position](search-insert-position)
 1. [Remove Element](remove-element)
+1. [Flatten Binary Tree to Linked List](flatten-binary-tree-linked-list)
