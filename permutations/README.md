@@ -6,7 +6,7 @@ permutations*. You can return the answer in **any order**.
 ## Hints
 
 1. This is much like
-   [Generate String Permutations](generate-string-permutations). The same
+   [Generate String Permutations](../generate-string-permutations). The same
    techniques apply. Think in terms of "consumed" and "remaining" buckets
    with an accumulator.
 
