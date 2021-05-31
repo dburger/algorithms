@@ -172,7 +172,7 @@ takes 1 ms under the leeter grader while the prior could do 0 ms.
 ```
 
 ### Consumed and remaining, handling with `int[]` and `boolean[]`, reduced
-`int[]` creation
+    `int[]` creation
 
 Talk about beating a dead horse. Now we take the solution above that uses an
 `int[]` and `boolean[]` and avoid `int[]` creation by using a single array and
