@@ -9,8 +9,19 @@ permutations*. You can return the answer in **any order**.
    [Generate String Permutations](../generate-string-permutations). The same
    techniques apply. Think in terms of "consumed" and "remaining" buckets
    with an accumulator.
+1. This problem is typically done as a "backtracking" problem. That is, you
+   advance towards a solution by adding an element and then recurse. When you
+   back out of that solution you remove that element and then advance with
+   a different element added.
 
 ## Solutions
+
+Below I laboriously go through the different approaches to handling this
+problem. This includes starting with initial approaches that are not as
+efficent. Primarily this has to do with starting approaches that manipulate
+data structures in more expensive ways such as creating new copies of arrays
+and lists and shuffling elements. The final two solutions shown here are done
+in more optimal ways.
 
 ### Consumed and remaining, handling as `int[]`
 
