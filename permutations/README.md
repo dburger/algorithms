@@ -169,6 +169,31 @@ expensive than the creation and copy of the `int[]`. This solution typically
 takes 1 ms under the leeter grader while the prior could do 0 ms.
 
 ```java
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> acc = new ArrayList<>();
+        int len = nums.length;
+        permute(nums, new boolean[len], new ArrayList<>(), acc);
+        return acc;
+    }
+
+    private static <E> void permute(int[] nums, boolean[] used, List<Integer> consumed, List<List<Integer>> acc) {
+        if (consumed.size() == nums.length) {
+            acc.add(new ArrayList<>(consumed));
+            return;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if (used[i]) {
+                continue;
+            }
+            consumed.add(nums[i]);
+            used[i] = true;
+            permute(nums, used, consumed, acc);
+            consumed.remove(consumed.size() - 1);
+            used[i] = false;
+        }
+    }
+}
 ```
 
 ### Consumed and remaining, handling with `int[]` and `boolean[]`, reduced `int[]` creation
