@@ -177,3 +177,4 @@ of interview questions / answers, below.
 1. [Flatten Binary Tree to Linked List](flatten-binary-tree-linked-list)
 1. [Permutations](permutations)
 1. [Permuations II](permutations-ii)
+1. [Swap Nodes in Pairs](swap-nodes-in-pairs)
