@@ -105,6 +105,13 @@ of the inputs to narrow in on the final two values that will work with
 the starting two values. Duplicates are rejected by entering the solutions
 into a `Set`.
 
+Note that you could make the loop comparisons be `i < nums.length - 3` and
+`j < nums.length - 2`. This leaves enough room for `left` and `right` to
+always have at least one set of valid values. Here we didn't bother as the
+`left < right` comparisons reject invalid starting points automatically,
+without the need of further cluttering the for conditions. The change, while
+simple, does not change the Big O time complexity.
+
 ```java
 class Solution {
     public List<List<Integer>> fourSum(int[] nums, int target) {
