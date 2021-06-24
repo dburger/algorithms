@@ -32,6 +32,8 @@ terms of "consuming" `s1` and `s2`. This approach will fail the leeter's time
 limits but is shown here as it provides the basis for the following dynamic
 programming solutions.
 
+The time complexity of this solution is O(2^(m + n)). This follows from the
+upper bound of trying each character from each string at each position.
 The space complexity of this solution is O(m + n) where m is the length of
 `s1` and n is the length of `s2`. This follows from the depth of the recursion,
 where a character of `s1` or `s2` is consumed on each recursive call.
