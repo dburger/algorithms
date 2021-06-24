@@ -32,6 +32,10 @@ terms of "consuming" `s1` and `s2`. This approach will fail the leeter's time
 limits but is shown here as it provides the basis for the following dynamic
 programming solutions.
 
+The space complexity of this solution is O(m + n) where m is the length of
+`s1` and n is the length of `s2`. This follows from the depth of the recursion,
+where a character of `s1` or `s2` is consumed on each recursive call.
+
 ```java
 class Solution {
     public boolean isInterleave(String s1, String s2, String s3) {
@@ -76,8 +80,8 @@ memoizer to prevent repeated subproblem computation.
 
 The time and space complexity for this solution is O(m * n) where m is the
 length of `s1` and n is the length of `s2`. This is because the number of
-computations and the size of the memo is bound by having to compute each
-`(m, n)` position only once.
+computations and the size of the memo is bound by having to potentially
+compute each `(m, n)` position once.
 
 ```java
 class Solution {
@@ -129,7 +133,7 @@ This solution aces the leeter's time limit grader. It even beats the table
 approach below.
 
 The space and time complexity of this solution is also O(m * n) as each
-position in the `memo` array is computed only once.
+position in the `memo` array is potentially computed once.
 
 ```java
 class Solution {
