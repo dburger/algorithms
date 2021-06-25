@@ -184,3 +184,4 @@ of interview questions / answers, below.
 1. [Interleaving Strings](interleaving-strings)
 1. [Recover Binary Search Tree](recover-binary-search-tree)
 1. [Number of Islands](number-of-islands)
+1. [Convert Sorted Array to Binary Search Tree](convert-sorted-array-bst)
