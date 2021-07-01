@@ -9,6 +9,7 @@ trees which has exactly `n` nodes.
    node and trees with `0` to `n - 1` nodes in the left and right subtrees.
 1. This is a great problem as it succumbs quite easily to the two common
    dynamic programming approaches.
+1. Do the math. Knuth would know.
 
 ## Solutions
 
@@ -163,6 +164,59 @@ class Solution {
             }
         }
         return dp[n];
+    }
+}
+```
+
+### Doing the math, catalan numbers
+
+Turns out reading Knuth would help on these problems. There is a recurrence relation that defines this
+sequence. Unlike the "dynamic programming" approach above, this one features a one shot run through the
+dp table. This is the recurrence relation from the
+[Catalan Numbers wikipedia page](https://en.wikipedia.org/wiki/Catalan_number).
+
+It would be difficult to memorize this or derive this during an interview. You might, however,
+remember that this exists.
+
+```java
+class Solution {
+    public int numTrees(int n) {
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        for (int i = 1; i < dp.length; i++) {
+            // Simplified
+            // dp[i] = (int) (dp[i - 1] * ((2 * (2 * (i - 1) + 1)) / (double) (i -1 + 2)));
+            dp[i] = (int) (dp[i - 1] * ((4 * i - 2) / (double) (i + 1)));
+        }
+        return dp[n];
+    }
+}
+```
+
+### Doing the math, closed form formula
+
+There is a closed form formula for this! Also found in Knuth and in the
+[Catalan Numbers wikipedia page](https://en.wikipedia.org/wiki/Catalan_number).
+
+```java
+class Solution {
+    public int numTrees(int n) {
+        BigInteger numerator = combs(2 * n, n);
+        return numerator.divide(BigInteger.valueOf(n + 1)).intValue();
+    }
+
+    private BigInteger combs(int n, int k) {
+        BigInteger numerator = fact(n);
+        BigInteger denominator = fact(k).multiply(fact(n - k));
+        return numerator.divide(denominator);
+    }
+
+    private BigInteger fact(int n) {
+        BigInteger result = BigInteger.ONE;
+        while (n > 1) {
+            result = result.multiply(BigInteger.valueOf(n--));
+        }
+        return result;
     }
 }
 ```
