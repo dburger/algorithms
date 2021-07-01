@@ -92,6 +92,48 @@ class Solution {
 }
 ```
 
+### Memoized with an array
+
+Here is the same solution as the above with an array used for the memo instead
+of a map.
+
+```java
+class Solution {
+    public int numTrees(int n) {
+        int[] memo = new int[n + 1];
+        for (int i = 0; i < memo.length; i++) {
+            memo[i] = -1;
+        }
+        memo[0] = 0;
+        memo[1] = 1;
+        return numTrees(1, n, memo);
+    }
+
+    private int numTrees(int start, int end, int[] memo) {
+        if (start > end) {
+            return 0;
+        }
+        int size = end - start + 1;
+        int mval = memo[size];
+        if (mval != -1) {
+            return mval;
+        }
+        int count = 0;
+        for (int i = start; i <= end; i++) {
+            int left = numTrees(start, i - 1, memo);
+            int right = numTrees(i + 1, end, memo);
+            if (left == 0 || right == 0) {
+                count += left + right;
+            } else {
+                count += left * right;
+            }
+        }
+        memo[size] = count;
+        return count;
+    }
+}
+```
+
 ### Classic dynamic programming
 
 Alternatively, this problem can also be solved with the typical table
