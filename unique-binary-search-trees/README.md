@@ -107,29 +107,25 @@ class Solution {
         }
         memo[0] = 0;
         memo[1] = 1;
-        return numTrees(1, n, memo);
+        return nt(n, memo);
     }
 
-    private int numTrees(int start, int end, int[] memo) {
-        if (start > end) {
-            return 0;
-        }
-        int size = end - start + 1;
-        int mval = memo[size];
-        if (mval != -1) {
-            return mval;
+    private int nt(int n, int[] memo) {
+        int result = memo[n];
+        if (result != -1) {
+            return result;
         }
         int count = 0;
-        for (int i = start; i <= end; i++) {
-            int left = numTrees(start, i - 1, memo);
-            int right = numTrees(i + 1, end, memo);
+        for (int i = 0; i < n; i++) {
+            int left = nt(i, memo);
+            int right = nt(n - i - 1, memo);
             if (left == 0 || right == 0) {
                 count += left + right;
             } else {
                 count += left * right;
             }
         }
-        memo[size] = count;
+        memo[n] = count;
         return count;
     }
 }
