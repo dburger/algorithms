@@ -94,6 +94,7 @@ class Solution {
         while (!q.isEmpty()) {
             List<Integer> part = new ArrayList<>();
             // We must snapshot the size as it will grow during the loop.
+            // This is how we process one level at a time.
             int len = q.size();
             for (int i = 0; i < len; i++) {
                 TreeNode n = q.remove();
