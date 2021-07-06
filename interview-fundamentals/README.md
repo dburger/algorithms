@@ -7,14 +7,64 @@ software engineers.
 
 ### DFS
 
-TODO - stack or recursion
+A depth first search, or DFS, is a search approach in a tree or graph structure
+that searches for a target by starting at some node (usually the root) and
+explores as far as possible along each branch before backtracking.
+
+#### Basic DFS, recursion
+
+DFS can be implemented using recursion. A basic DFS using recursion
+implemented in Java follows:
+
+```java
+boolean exists(TreeNode node, int target) {
+    if (node == null) {
+        retturn false;
+    }
+    if (node.val == target) {
+        return true;
+    }
+    return exists(node.left) || exists(node.right);
+}
+```
+
+#### Basic DFS, stack
+
+DFS can also be implemented using a stack. A basic DFS using a stack
+implemented in Java follows:
+
+(Note that this search order is different than the recursive version above.
+ To get the same order we should add right and then left.)
+
+```java
+boolean exists(TreeNode node, int target) {
+    if (node == null) {
+        return false;
+    }
+    Stack<TreeNode> s = new LinkedList<>();
+    s.add(node);
+    while (!s.isEmpty()) {
+        TreeNode n = s.pop();
+        if (n.val == target) {
+            return true;
+        }
+        if (n.left != null) {
+            s.push(n.left);
+        }
+        if (n.right != null) {
+            s.push(n.right);
+        }
+    }
+    return false;
+}
+```
 
 ### BFS
 
-A breadth first search, or BFS, is a search approach in a tree structure that
-searches for a target by examining a level at a time. A queue structure is
-used to ensure this order. Many interview questions require either a BFS
-search or a BFS traversal.
+A breadth first search, or BFS, is a search approach in a tree or graph
+structure that searches for a target by examining a level at a time. A queue
+structure is used to ensure this order. Many interview questions require
+either a BFS search or a BFS traversal.
 
 #### Basic BFS
 
