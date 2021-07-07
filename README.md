@@ -195,3 +195,4 @@ of interview questions / answers, below.
 1. [Remove Duplicates from Sorted List II](remove-duplicates-sorted-list-ii/)
 1. [Combination Sum II](combination-sum-ii)
 1. [Best Time to Buy and Sell Stock](buy-stock)
+1. [Binary Search Tree Iterator](binary-search-tree-iterator)
