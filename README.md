@@ -197,3 +197,4 @@ of interview questions / answers, below.
 1. [Best Time to Buy and Sell Stock](buy-stock)
 1. [Binary Search Tree Iterator](binary-search-tree-iterator)
 1. [Count and Say](count-and-say)
+1. [Find Peak Element](find-peak-element)
