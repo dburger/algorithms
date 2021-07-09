@@ -25,7 +25,8 @@ class Solution {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         Arrays.sort(nums);
         Set<List<Integer>> acc = new HashSet<>();
-        for (int i = 0; i < Math.pow(2, nums.length); i++) {
+        int max = (int) Math.pow(2, nums.length);
+        for (int i = 0; i < max; i++) {
             List<Integer> l = new ArrayList<>();
             for (int j = 0; j < nums.length; j++) {
                 if ((i & (1 << j)) != 0) {
