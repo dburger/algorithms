@@ -96,3 +96,26 @@ class Solution {
     }
 }
 ```
+
+### Pure bit manipulation magic
+
+OK, I didn't come up with this solution. I realized from
+[Single Number](../single-number) that is was probably possible. For more
+on this solution see
+[here](https://leetcode.com/problems/single-number-ii/discuss/1299457/Simple-Bit-Manipulation-Approach).
+
+This solution has O(n) time complexity and the required O(1) space complexity.
+
+```java
+class Solution {
+    public int singleNumber(int[] nums) {
+        int ones=0;
+        int twos=0;
+        for(int n : nums) {
+            ones = (ones^n) & ~twos;
+            twos = (twos^n) & ~ones;
+        }
+        return ones;
+    }
+}
+```
