@@ -202,5 +202,5 @@ of interview questions / answers, below.
 1. [Longest Consecutive Sequence](longest-consecutive-sequence)
 1. [Subsets II](subsets-ii)
 1. [LRU Cache](lru-cache)
-1. [LONG TITLE](copy-list-random-pointer)
+1. [Copy List Random Pointer](copy-list-random-pointer)
 1. [Odd Even Linked List](odd-even-linked-list)
