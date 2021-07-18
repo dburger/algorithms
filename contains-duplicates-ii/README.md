@@ -102,10 +102,8 @@ class Solution {
                 if (i - m.get(val) <= k) {
                     return true;
                 }
-                m.put(val, i);
-            } else {
-                m.put(val, i);
             }
+            m.put(val, i);
         }
         return false;
     }
