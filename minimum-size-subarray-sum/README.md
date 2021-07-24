@@ -49,7 +49,7 @@ I noticed that special casing a single element beating `target` seemed to
 increase the running speed quite a bit. Apparently initializing the second
 loop is expensive?
 
-Still time complexity O(n^2) and space complexity O(1).
+Still, time complexity O(n^2) and space complexity O(1).
 
 ```java
 class Solution {
@@ -73,7 +73,7 @@ class Solution {
 }
 ```
 
-### Slide that window
+### Sliding window expand and clamp
 
 This approach expands a window right index `j` until it becomes `>= target`.
 Then it proceeds by moving the left index `i` as far as possible and still hit
