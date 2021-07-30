@@ -216,3 +216,4 @@ of interview questions / answers, below.
 1. [Minimum Size Subarray Sum](minimum-size-subarray-sum)
 1. [String Compression](string-compression)
 1. [Sum of Two Integers](sum-of-two-integers)
+1. [Guess Number Higher or Lower](guess-number-higher-lower)
