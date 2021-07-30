@@ -203,6 +203,10 @@ TODO - counting bits, enumerating set, finding set with constraint
 
 TODO
 
+### Counting characters
+
+TODO: counts[c - 'a'] += 1;
+
 ## Core Techniques
 
 ### Hash Table for Marking Visited
@@ -213,9 +217,9 @@ TODO
 
 TODO
 
-### Multiset without Multiset
+### Classes to use for Stacks, Queues, Multiset (counting map) in Java
 
-TODO - explain map code to do multiset type map
+TODO - explain map code to do multiset type map m.put(k, m.getOrDefault(k, 0) + 1);
 
 ### Manipulating Multiple Pointers / Indices
 
