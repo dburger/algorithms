@@ -218,3 +218,4 @@ of interview questions / answers, below.
 1. [Sum of Two Integers](sum-of-two-integers)
 1. [Guess Number Higher or Lower](guess-number-higher-lower)
 1. [Contiguous Array](contiguous-array)
+1. [Leaf Similar Trees](leaf-similar-trees)
