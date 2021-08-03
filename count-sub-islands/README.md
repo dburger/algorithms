@@ -109,3 +109,62 @@ class Solution {
     }
 }
 ```
+
+### Mark and count
+
+Whoa that last solution was ok but that is a lot of code and 3, count em, 3
+passes through the grids!
+
+Here we improve things by doing a single pass. The keys are that we don't
+bother marking the separate islands instead we expand land cells back to
+water cells (`1` gets marked to `0`) as we work through the pass. Also in the
+pass we check if `grid1` mirrors the current island with a land cell without
+short circuiting out of the evaluation if it does not. This is because we we
+fully mark `grid2`'s islands or the left over bits will appear as separate
+islands in the remaining iteration.
+
+These improvements don't improve the big O time complexity, it remains
+O(m * n) as we still must do a pass through the grids. In practice, however,
+we are slightly faster as the number of passes is reduced to 1. The space
+complexity for this solution is improved to O(1), as we do all of our marking
+directly into the input grids.
+
+```java
+class Solution {
+    public int countSubIslands(int[][] grid1, int[][] grid2) {
+        int count = 0;
+        for (int r = 0; r < grid2.length; r++) {
+            for (int c = 0; c < grid2[0].length; c++) {
+                if (check(grid1, grid2, r, c)) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    private boolean check(int[][] grid1, int[][] grid2, int r, int c) {
+        if (grid2[r][c] == 1) {
+            return expand(grid1, grid2, r, c);
+        } else {
+            return false;
+        }
+    }
+
+    private boolean expand(int[][] grid1, int[][] grid2, int r, int c) {
+        if (r < 0 || r >= grid2.length || c < 0 || c >= grid2[0].length) {
+            return true;
+        }
+        if (grid2[r][c] != 1) {
+            return true;
+        }
+        grid2[r][c] = 0;
+        boolean result = grid1[r][c] == 1;
+        result &= expand(grid1, grid2, r + 1, c);
+        result &= expand(grid1, grid2, r - 1, c);
+        result &= expand(grid1, grid2, r, c + 1);
+        result &= expand(grid1, grid2, r, c - 1);
+        return result;
+    }
+}
+```
