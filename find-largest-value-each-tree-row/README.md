@@ -52,3 +52,39 @@ class Solution {
     }
 }
 ```
+
+### DFS max that list
+
+In a DFS traversal approach to this problem we pass the depth and an
+accumulating list into the recursive calls. The depth is used to
+index into the list to track the max value seen at each depth.
+
+The time complexity of this solution is O(n) as each node in the tree is
+visited. The space complexity corresponds to the number of levels in the
+tree as they must be accounted for in the accumulating list and in the
+recursive calls. Thus the time complexity is O(n).
+
+```java
+class Solution {
+    public List<Integer> largestValues(TreeNode root) {
+        List<Integer> l = new ArrayList<>();
+        lv(root, 0, l);
+        return l;
+    }
+
+    private void lv(TreeNode node, int depth, List<Integer> l) {
+        if (node == null) {
+            return;
+        }
+        if (depth > l.size() - 1) {
+            l.add(node.val);
+        } else {
+            if (node.val > l.get(depth)) {
+                l.set(depth, node.val);
+            }
+        }
+        lv(node.left, depth + 1, l);
+        lv(node.right, depth + 1, l);
+    }
+}
+```
