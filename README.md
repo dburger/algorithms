@@ -224,3 +224,4 @@ of interview questions / answers, below.
 1. [Find Largest Value in Each Tree Row](find-largest-value-each-tree-row)
 1. [Sort Characters by Frequency](sort-characters-by-frequency)
 1. [Longest Word in Dictionary Through Deleting](longest-word-through-deleting)
+1. [Random Pick with Weight](random-pick-with-weight)
