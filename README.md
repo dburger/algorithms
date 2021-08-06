@@ -227,3 +227,4 @@ of interview questions / answers, below.
 1. [Random Pick with Weight](random-pick-with-weight)
 1. [Reverse Substrings Between Each Pair of Parentheses](reverse-substrings-between-parentheses)
 1. [Word Subsets](word-subsets)
+1. [Shortest Path in Binary Matrix](shortest-path-binary-matrix)
