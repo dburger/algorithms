@@ -66,6 +66,7 @@ pass the same string but instead pass indices indicating what to look at.
 Second, the standard implemenation starts over at the head and tail of the
 string, when some portion of this may have already been checked. Passing
 indices indicating where to perform the work can solve this problem as well.
+The following solution takes just that approach.
 
 This solution ends up being time complexity O(n) and space complexity O(1).
 This is the same big O speed as the prior solution however in practice these
