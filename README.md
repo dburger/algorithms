@@ -231,3 +231,4 @@ of interview questions / answers, below.
 1. [Valid Palindrome II](valid-palindrome-ii)
 1. [Coin Change II](coin-change-ii)
 1. [Kth Largest Element in an Array](kth-largest-element-in-array)
+1. [Number of Burgers with No Waste of Ingredients](number-of-burgers-no-waste)
