@@ -50,3 +50,42 @@ class Solution {
     }
 }
 ```
+
+### DFS, not as natural
+
+This problem can also be solved with a DFS traversal but this approach is not
+quite as natural as the BFS approach. With this approach a recursive DFS is
+used. An accumulator `acc` and depth indicator `depth` are passed into the
+recursive calls. In this way we can locate the list for the nodes by using
+the current `depth`. The result is produced by reversing the accumulated
+list.
+
+The time complexity and space complexity for this solution is also O(n). The
+time complexity comes from visiting each node. The space complexity comes
+from the recursive calls and accumulating nodes.
+
+```java
+class Solution {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> acc = new ArrayList<>();
+        lob(root, acc, 1);
+        List<List<Integer>> result = new ArrayList<>();
+        for (int i = acc.size() - 1; i > -1; i--) {
+            result.add(acc.get(i));
+        }
+        return result;
+    }
+
+    private void lob(TreeNode node, List<List<Integer>> acc, int depth) {
+        if (node == null) {
+            return;
+        }
+        if (depth > acc.size()) {
+            acc.add(new ArrayList<>());
+        }
+        acc.get(depth - 1).add(node.val);
+        lob(node.left, acc, depth + 1);
+        lob(node.right, acc, depth + 1);
+    }
+}
+```
