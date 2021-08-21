@@ -49,8 +49,11 @@ class Solution {
     }
 
     private int partition(int[] nums, int lo, int hi) {
+        if (lo == hi) {
+            return lo;
+        }
         // Random pivot to avoid problem with degenerate already sorted case.
-        int pivot = hi == lo ? lo : r.nextInt(hi - lo) + lo;
+        int pivot = r.nextInt(hi - lo) + lo;
         int pval = nums[pivot];
         swap(nums, pivot, hi);
 
