@@ -61,3 +61,56 @@ class Solution {
     }
 }
 ```
+
+### Trie me
+
+By using a [trie](https://en.wikipedia.org/wiki/Trie) we can collapse the
+prefix comparisons into a single traversal down the trie.
+
+The time complexity of this solution is O(n), where n is the length of
+`sentence`. The space complexity of this solution is also O(n). This comes
+from the size of the buffer used to build the result.
+
+```java
+class Solution {
+    private class Trie {
+        private final Trie[] children = new Trie[26];
+        // Set if this is a terminal position, otherwise null.
+        private String word;
+    }
+
+    public String replaceWords(List<String> dictionary, String sentence) {
+        Trie root = new Trie();
+        // First build a Trie of the dictionary words.
+        for (String word : dictionary) {
+            Trie curr = root;
+            for (char c : word.toCharArray()) {
+                int pos = c - 'a';
+                Trie t = curr.children[pos];
+                if (t == null) {
+                    t = new Trie();
+                    curr.children[pos] = t;
+                }
+                curr = t;
+            }
+            curr.word = word;
+        }
+
+        StringBuilder buf = new StringBuilder();
+        for (String word : sentence.split(" ")) {
+            if (buf.length() > 0) {
+                buf.append(" ");
+            }
+            Trie curr = root;
+            for (char c : word.toCharArray()) {
+                curr = curr.children[c - 'a'];
+                if (curr == null || curr.word != null) {
+                    break;
+                }
+            }
+            buf.append(curr != null && curr.word != null ? curr.word : word);
+        }
+        return buf.toString();
+    }
+}
+```
