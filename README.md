@@ -236,3 +236,4 @@ of interview questions / answers, below.
 1. [Statistics From a Large Sample](statistics-from-large-sample)
 1. [Longest Increasing Subsequnce](longest-increasing-subsequence)
 1. [Replace Words](replace-words)
+1. [Remove All Occurrences of a Substring](remove-occurrences-substring)
