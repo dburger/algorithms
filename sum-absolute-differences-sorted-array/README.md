@@ -52,7 +52,9 @@ class Solution {
 
         int[] result = new int[len];
         for (int i = 0; i < len; i++) {
-            result[i] = -((len - (i + 1)) * nums[i] - suffix[i]) + ((i * nums[i]) - prefix[i]);
+            // result[i] = -((len - (i + 1)) * nums[i] - suffix[i]) + ((i * nums[i]) - prefix[i]);
+            // simplified
+            result[i] = nums[i] * (-len + 1 + 2 * i) + suffix[i] - prefix[i];
         }
         return result;
     }
