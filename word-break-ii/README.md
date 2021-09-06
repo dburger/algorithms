@@ -37,7 +37,7 @@ class Solution {
         }
 
         for (String word : wordDict) {
-            if (s.indexOf(word, pos) == pos) {
+            if (s.startsWith(word, pos)) {
                 parts.add(word);
                 wordBreak(s, pos + word.length(), wordDict, parts, acc);
                 parts.remove(parts.size() - 1);
