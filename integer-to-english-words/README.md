@@ -9,6 +9,9 @@ Create a non-negative integer `num` to English words representation.
 
 ## Solutions
 
+The solution here is pretty straightforward if a bit tedious. It doesn't seem
+this problem really earns a leeter "hard".
+
 ### Crank through your groups
 
 The solution is pretty straighforward. First, get the 3 digit converter nailed
