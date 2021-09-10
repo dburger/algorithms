@@ -245,3 +245,4 @@ of interview questions / answers, below.
 1. [Integer to English Words](integer-to-english-words)
 1. [Find All Anagrams in a String](find-all-anagrams-string)
 1. [Majority Element](majority-element)
+1. [Happy Number](happy-number)
