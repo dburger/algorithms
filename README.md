@@ -247,3 +247,4 @@ of interview questions / answers, below.
 1. [Majority Element](majority-element)
 1. [Happy Number](happy-number)
 1. [Top k Frequent Words](top-k-frequent-words)
+1. [Maximum Erasure Value](maximum-erasure-value)
