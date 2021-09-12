@@ -250,7 +250,7 @@ The solution process is some variation of the following:
 Examples of sliding window algorithm problems include:
 
 *   [Maximum Erasure Value](../maximum-erasure-value)
-*   [Find All Anagrams in a String](find-all-anagrams-string)
+*   [Find All Anagrams in a String](../find-all-anagrams-string)
 
 ### Dynamic Programming
 
