@@ -219,7 +219,26 @@ TODO
 
 ### Classes to use for Stacks, Queues, Multiset (counting map) in Java
 
-TODO - explain map code to do multiset type map m.put(k, m.getOrDefault(k, 0) + 1);
+#### Stack
+
+#### Queue
+
+#### Counting map
+
+Guava contains a data structure called a [Multiset](https://guava.dev/releases/18.0/api/docs/com/google/common/collect/Multiset.html). A multiset allows you
+to add objects to it and it maintains a count for objects considered equal.
+For interviews you can likely assume that this class is available and use it
+in your solutions. If you need to write counting code without this third party
+library a map can be used for simple counting. This is useful for many
+leeter problems. The code would look something like this:
+
+```java
+Map<Thingy, Integer> m = new HashMap<>();
+m.put(t, m.getOrDefault(t, 0) + 1);
+```
+
+Removal can be handled via subtraction in a similar way, but you likely want to
+remove the entry instead of allowing zero / allowing to go negative.
 
 ### Manipulating Multiple Pointers / Indices
 
