@@ -225,6 +225,33 @@ TODO - explain map code to do multiset type map m.put(k, m.getOrDefault(k, 0) + 
 
 TODO - index off center, longest common palindromic subsequence, march to the middle
 
+### Sliding window
+
+There is a large class of problems that can be solved by a sliding window
+algorithm approach. Typically these problems have an input that is an array
+or list and ask for some optimization across a contiguous subsequence of the
+input.
+
+The solution process is some variation of the following:
+
+*   Set up temp variables to hold current and max values.
+*   Set up temp variables for the left and right sides of the window, `l` and
+    `r`, starting at 0.
+*   Set up temp variables that will be used to track if the current subsequence
+    is valid. For example, this could be a `Set` that tracks the values in the
+    window if the criteria for a valid subsequence is that all values must be
+    unique.
+*   In a loop consume the next value at `r`. If this value causes the window
+    to be invalid slide `l` to the right until it is valid again. All while
+    keeping the current and max variables up to date.
+*   Increment `r` and continue with the next iteration until you have consumed
+    the entire input.
+
+Examples of sliding window algorithm problems include:
+
+*   [Maximum Erasure Value](../maximum-erasure-value)
+*   [Find All Anagrams in a String](find-all-anagrams-string)
+
 ### Dynamic Programming
 
 TODO - memoization and tabular approaches
