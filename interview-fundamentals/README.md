@@ -236,7 +236,7 @@ The solution process is some variation of the following:
 
 *   Set up temp variables to hold current and max values.
 *   Set up temp variables for the left and right sides of the window, `l` and
-    `r`, starting at 0.
+    `r`, starting at `0`.
 *   Set up temp variables that will be used to track if the current subsequence
     is valid. For example, this could be a `Set` that tracks the values in the
     window if the criteria for a valid subsequence is that all values must be
