@@ -20,7 +20,9 @@ compute your deletions. The only real wrinkle to understand here is that
 because you are trying to minimize deletion cost you need to record the
 `runMax` and `runSum` and your deletion cost for a run will be
 `runSum - runMax`. When you detect that a run is over, you enter the values
-for deletions amongst that run and then reset.
+for deletions amongst that run and then reset. Be careful here, don't forget
+to handle the potential for a final run at the end of the input. This is
+handled outside the loop.
 
 The time complexity for this solution is O(n), where n is the length of the
 input string. The space complexity is O(1).
