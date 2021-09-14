@@ -248,3 +248,4 @@ of interview questions / answers, below.
 1. [Happy Number](happy-number)
 1. [Top k Frequent Words](top-k-frequent-words)
 1. [Maximum Erasure Value](maximum-erasure-value)
+1. [Minimum Deletion Cost to Avoid Repeating Letters](minimum-deletion-cost-repeating-letters)
