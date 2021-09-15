@@ -251,3 +251,4 @@ of interview questions / answers, below.
 1. [Minimum Deletion Cost to Avoid Repeating Letters](minimum-deletion-cost-repeating-letters)
 1. [Reconstruct Original Digits from English](reconstruct-original-digits-from-english)
 1. [Populating Next Right Pointers in Each Node](populating-next-right-pointers)
+1. [Number of Steps to Reduce a Number in Binary Representation to One](reduce-binary-representation-to-one)
