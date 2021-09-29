@@ -253,3 +253,4 @@ of interview questions / answers, below.
 1. [Populating Next Right Pointers in Each Node](populating-next-right-pointers)
 1. [Number of Steps to Reduce a Number in Binary Representation to One](reduce-binary-representation-to-one)
 1. [Two Sum II](two-sum-ii)
+1. [Delete Operation for Two Strings](delete-operation-two-strings)
