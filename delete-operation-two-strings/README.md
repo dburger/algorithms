@@ -22,7 +22,8 @@ position `(i, j)` we check if the characters match. If they do match, then no
 delete is required and we can carry the delete value from `(i - 1, j - 1)`
 forward. If they do not match we need to perform a delete. The value carried
 forward is the minimum of `(i - 1, j)` and `(i, j - 1)` plus `1` for the
-additional delete.
+additional delete. This corresponds to choosing to delete `word1`'s `i - 1`
+character or `word2`'s `j - 1` character to get to position `(i, j)`.
 
 The time complexity of this algorithm is O(m * n) where m is the length of
 `word1` and n is the length of `word2`. This comes from the need to make a
