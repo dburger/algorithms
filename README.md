@@ -256,3 +256,4 @@ of interview questions / answers, below.
 1. [Delete Operation for Two Strings](delete-operation-two-strings)
 1. [Longest Common Subsequence](longest-common-subsequence)
 1. [Insert Into a Binary Search Tree](insert-into-binary-search-tree)
+1. [Find Unique Binary String](find-unique-binary-string)
