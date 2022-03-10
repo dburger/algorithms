@@ -257,4 +257,5 @@ of interview questions / answers, below.
 1. [Longest Common Subsequence](longest-common-subsequence)
 1. [Insert Into a Binary Search Tree](insert-into-binary-search-tree)
 1. [Find Unique Binary String](find-unique-binary-string)
-1. [LONG TITLE](excel-sheet-column-title)
+1. [Excel Sheet Column Title](excel-sheet-column-title)
+1. [Excel Sheet Column Number](excel-sheet-column-number)
