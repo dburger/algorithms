@@ -261,3 +261,4 @@ of interview questions / answers, below.
 1. [Excel Sheet Column Number](excel-sheet-column-number)
 1. [Remove Linked List Elements](remove-linked-list-elements)
 1. [Power of Two](power-of-two)
+1. [Invert Binary Tree](invert-binary-tree)
