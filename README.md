@@ -262,3 +262,4 @@ of interview questions / answers, below.
 1. [Remove Linked List Elements](remove-linked-list-elements)
 1. [Power of Two](power-of-two)
 1. [Invert Binary Tree](invert-binary-tree)
+1. [Convert a Number to Hexadecimal](convert-number-hexadecimal)
