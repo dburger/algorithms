@@ -268,3 +268,4 @@ of interview questions / answers, below.
 1. [Non-overlapping Intervals](non-overlapping-intervals)
 1. [Beautiful Arrangement](beautiful-arrangement)
 1. [Duplicate Zeros](duplicate-zeros)
+1. [Check if Every Row and Column Contains All Numbers](check-every-row-column)
