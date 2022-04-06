@@ -59,3 +59,47 @@ class Solution {
     }
 }
 ```
+
+### Reduce the space
+
+The prior solution is pretty simple and works well enough but we can do better
+on the space complexity. This is done by working on a single row or column at
+a time and thus we only allocate O(n) space. The time complexity remains as
+before.
+
+```
+class Solution {
+    public boolean checkValid(int[][] matrix) {
+        int n = matrix.length;
+        for (int row = 0; row < n; row++) {
+            int[] check = new int[n];
+            for (int col = 0; col < n; col++) {
+                int val = matrix[row][col] - 1;
+                check[val]++;
+            }
+            for (int i = 0; i < n; i++) {
+                int val = check[i];
+                if (val != 1) {
+                    return false;
+                }
+            }
+        }
+
+        for (int col = 0; col < n; col++) {
+            int[] check = new int[n];
+            for (int row = 0; row < n; row++) {
+                int val = matrix[row][col] - 1;
+                check[val]++;
+            }
+            for (int i = 0; i < n; i++) {
+                int val = check[i];
+                if (val != 1) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+}
+```
