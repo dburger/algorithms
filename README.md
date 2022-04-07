@@ -269,3 +269,4 @@ of interview questions / answers, below.
 1. [Beautiful Arrangement](beautiful-arrangement)
 1. [Duplicate Zeros](duplicate-zeros)
 1. [Check if Every Row and Column Contains All Numbers](check-every-row-column)
+1. [Find the Town Judge](find-town-judge)
