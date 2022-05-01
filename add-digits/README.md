@@ -53,7 +53,7 @@ Digital sums cycle around with each additional unit. For example:
 
 The reason is fairly obvious as each additional unit adds one to the
 subsequent sum that cascades down to the result. This value rolls over when
-the digital root goes from `9` to `0`. Since any number where the digits add
+the digital root goes from `9` to `1`. Since any number where the digits add
 to `9` is divisible by 9, we can use this trick to get an O(1) time complexity
 and space complexity solution:
 
