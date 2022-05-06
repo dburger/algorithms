@@ -100,3 +100,39 @@ class Solution {
     }
 }
 ```
+
+### Prior counts
+
+Motivated by the prior solution how about if we just keep the counts for the
+prior reachable values, and for each new element create the new counts? We can
+do this with a two hash map approach.
+
+The time complexity for this approach is O(t * n) where t is the total of
+`nums` and `n` is the number of elements. The space complexity is O(2^n). This
+comes from each iteration potential doubling the number of elements in the
+counting map.
+
+```java
+class Solution {
+    public int findTargetSumWays(int[] nums, int target) {
+        Map<Integer, Integer> curr = new HashMap<>();
+        Map<Integer, Integer> next = new HashMap<>();
+        curr.put(nums[0], 1);
+        curr.put(-nums[0], curr.getOrDefault(-nums[0], 0) + 1);
+        for (int i = 1; i < nums.length; i++) {
+            int val = nums[i];
+            next.clear();
+            for (Map.Entry<Integer, Integer> entry : curr.entrySet()) {
+                int plusVal = entry.getKey() + val;
+                int oldCount = entry.getValue();
+                next.put(plusVal, next.getOrDefault(plusVal, 0) + oldCount);
+                int minusVal = entry.getKey() - val;
+                next.put(minusVal, next.getOrDefault(minusVal, 0) + oldCount);
+            }
+            curr = new HashMap<>(next);
+        }
+
+        return curr.getOrDefault(target, 0);
+    }
+}
+```
