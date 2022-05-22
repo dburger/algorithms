@@ -281,3 +281,4 @@ of interview questions / answers, below.
 1. [Reverse String II](reverse-string-ii)
 1. [Greatest Common Divistor of Strings](greatest-common-divisor-strings)
 1. [Daily Temperatures](daily-temperatures)
+1. [Finding 3 Digit Even Numbers](finding-3-digit-even-numbers)
