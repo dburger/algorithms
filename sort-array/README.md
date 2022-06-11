@@ -19,10 +19,13 @@ The time complexity of this solution depends on the selection of the pivot.
 If the pivot ends up dividing the array pieces in half then the time complexity
 is O(n * log(n)) and the space complexity is O(log(n)) to handle the recursion.
 In degenerate cases where the pivot does not divide the array pieces the
-time complexity is O(n^2) and space complexity is O(n).
+time complexity is O(n^2) and space complexity is O(n). In this solution we
+try to avoid this degenerate case by randomzing the selection of the pivot.
 
 ```
 class Solution {
+    private final Random r = new Random();
+
     public int[] sortArray(int[] nums) {
         if (nums.length < 2) {
             return nums;
@@ -42,23 +45,27 @@ class Solution {
         sort(nums, p + 1, hi);
     }
 
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
     int partition(int[] nums, int lo, int hi) {
-        // Should randomize the pivot to avoid degenerate cases.
-        int pval = nums[lo];
+        // Randomize the pivot to avoid degenerate cases.
+        int pindex = lo + r.nextInt(hi - lo + 1);
+        int pval = nums[pindex];
+        swap(nums, pindex, lo);
+        
         int fill = lo + 1;
         for (int i = fill; i <= hi; i++) {
             int val = nums[i];
             if (val <= pval) {
-                int temp = nums[i];
-                nums[i] = nums[fill];
-                nums[fill] = temp;
-                fill++;
+                swap(nums, i, fill++);
             }
         }
 
-        fill--;
-        nums[lo] = nums[fill];
-        nums[fill] = pval;
+        swap(nums, lo, --fill);
         return fill;
     }
 }
