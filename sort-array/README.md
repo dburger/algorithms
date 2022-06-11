@@ -9,6 +9,61 @@ Given an array of integers `nums`, sort the array in ascending order.
 
 ## Solutions
 
+### Yort snajort quicksort!
+
+This solution is a quicksort implementation. It works by partioning elements
+lower than or equal to and higher than the pivot. Then recursion operates on
+both sides of the partition.
+
+The time complexity of this solution depends on the selection of the pivot.
+If the pivot ends up dividing the array pieces in half then the time complexity
+is O(n * log(n)) and the space complexity is O(log(n)) to handle the recursion.
+In degenerate cases where the pivot does not divide the array pieces the
+time complexity is O(n^2) and space complexity is O(n).
+
+```
+class Solution {
+    public int[] sortArray(int[] nums) {
+        if (nums.length < 2) {
+            return nums;
+        }
+
+        sort(nums, 0, nums.length - 1);
+        return nums;
+    }
+
+    private void sort(int[] nums, int lo, int hi) {
+        if (lo >= hi) {
+            return;
+        }
+
+        int p = partition(nums, lo, hi);
+        sort(nums, lo, p - 1);
+        sort(nums, p + 1, hi);
+    }
+
+    int partition(int[] nums, int lo, int hi) {
+        // Should randomize the pivot to avoid degenerate cases.
+        int pval = nums[lo];
+        int fill = lo + 1;
+        for (int i = fill; i <= hi; i++) {
+            int val = nums[i];
+            if (val <= pval) {
+                int temp = nums[i];
+                nums[i] = nums[fill];
+                nums[fill] = temp;
+                fill++;
+            }
+        }
+
+        fill--;
+        nums[lo] = nums[fill];
+        nums[fill] = pval;
+        return fill;
+    }
+}
+```
+
 ### Constraints yield buckets
 
 Looking at the constraints we can see that the possible values are limited
