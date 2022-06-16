@@ -288,3 +288,4 @@ of interview questions / answers, below.
 1. [Network Delay Time](network-delay-time)
 1. [Sort an Array](sort-array)
 1. [Element Appearing More Than 25% in Sorted Array](element-25-percent)
+1. [Minimum Swaps to Make Strings Equal](minimum-swaps-make-strings-equal)
