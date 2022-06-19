@@ -291,3 +291,4 @@ of interview questions / answers, below.
 1. [Minimum Swaps to Make Strings Equal](minimum-swaps-make-strings-equal)
 1. [Count Complete Tree Nodes](count-complete-tree-nodes)
 1. [Find Median from Data Stream](find-median-data-stream)
+1. [Rotate Array](rotate-array)
