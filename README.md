@@ -1,4 +1,4 @@
- # algorithms
+# algorithms
 
 This document contains links to an
 [Interview Fundamentals](interview-fundamentals) document and links to a number
@@ -297,3 +297,4 @@ of interview questions / answers, below.
 1. [Distance Between Bus Stops](distance-between-bus-stops)
 1. [Course Schedule](course-schedule)
 1. [Count Bits](count-bits)
+1. [Most Stones Removed with Same Row or Column](most-stones-removed)
