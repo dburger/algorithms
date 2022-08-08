@@ -21,13 +21,13 @@ encountered node. If it is already there you return false. If it is not there
 you continue iterating. If you hit the end of the list without finding such
 a repeat you return true. This solution is trivial so I will not add it here.
 
-### Fast and slow pointers
+### Fast and slow pointers (Floyd the Barber)
 
 This is the classic fast and slow pointer approach. In it, you iterate down the
 list with two pointers. One pointer you one hop on each round while the other
 you move two hops on each round. If the faster pointer catches up with the
 slower pointer you have a cycle. If it does not, and you reach the end of the
-list, no cycle.
+list, no cycle. This is known as Floyd's Cycle-Finding Algorithm.
 
 This solution has O(n) time complexity in that it must traverse the list. The
 space complexity is O(1) as only two pointers are needed regardless of the size
@@ -38,14 +38,11 @@ public class Solution {
     public boolean hasCycle(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;
-        while (slow != null && fast != null) {
+        while (fast != null && fast.next != null) {
             slow = slow.next;
-            fast = fast.next;
-            if (fast != null) {
-                fast = fast.next;
-                if (fast == slow) {
-                    return true;
-                }
+            fast = fast.next.next;
+            if (fast == slow) {
+                return true;
             }
         }
         return false;
