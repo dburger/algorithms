@@ -305,3 +305,4 @@ of interview questions / answers, below.
 1. [Valid Anagram](valid-anagram)
 1. [Peeking Iterator](peeking-iterator)
 1. [Longest Univalue Path](longest-univalue-path)
+1. [Rotate Function](rotate-function)
