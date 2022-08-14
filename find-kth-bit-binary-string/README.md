@@ -47,7 +47,7 @@ subsequent strings are formed. With no "magic", we can't expect it to naturally
 be performant. With the magic of recursion we can implement a fairly simple
 algorithm that greatly speeds it up.
 
-This algorithm works by first checking if we are at the base case of `n == 0`.
+This algorithm works by first checking if we are at the base case of `n == 1`.
 If we are, we can simply return that string. If we are not, we calculate what
 the middle point is given the `n`. If `k` corresponds to that middle point,
 we are done, we can return `'1'`. If `k < m`, we recurse on the front without
