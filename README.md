@@ -312,3 +312,4 @@ of interview questions / answers, below.
 1. [Implement Stack Using Queues](implement-stack-using-queues)
 1. [Binary Tree Right Side View](binary-tree-right-side-view)
 1. [Lowest Common Ancestor of a Binary Search Tree](lowest-common-ancestor-binary-search-tree)
+1. [Rotate Image](rotate-image)
