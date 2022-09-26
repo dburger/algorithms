@@ -39,9 +39,10 @@ class Solution {
         curr.add(String.valueOf(node.val));
         if (node.left == null && node.right == null) {
             accum.add(String.join("->", curr));
+        } else {
+            traverse(node.left, curr, accum);
+            traverse(node.right, curr, accum);
         }
-        traverse(node.left, curr, accum);
-        traverse(node.right, curr, accum);
         curr.remove(curr.size() - 1);
     }
 }
