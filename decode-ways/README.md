@@ -27,50 +27,44 @@ The answer is gauranteed to fit in a **32-bit** integer.
 
 ### Dynamic programming
 
-This is a pretty neat solution. Here recursion is used to branch into the
-single character and double character encodings and then the results are
-added back together. A memoizer is used to provide a dynamic programming
-lookup to eliminate repeated calculations.
+Here recursion is used to branch into the single and double character
+encodings. A memoizer is used to provide a dynamic programming lookup to
+eliminate repeated calculations. We get by using an array as the memo.
 
 ```java
 class Solution {
     public int numDecodings(String s) {
-        Map<Integer, Integer> memo = new HashMap<>();
-        return nd(s, 0, memo);
+        int[] memo = new int[s.length()];
+        Arrays.fill(memo, -1);
+        return numDecodings(s, 0, memo);
     }
 
-    private int nd(String s, int index, Map<Integer, Integer> memo) {
-        // Check the dynamic programming memoizer first.
-        if (memo.containsKey(index)) {
-            return memo.get(index);
-        }
-
-        // Exhausted the string, we have a decoding.
-        if (index == s.length()) {
+    private int numDecodings(String s, int offset, int[] memo) {
+        if (offset == s.length()) {
             return 1;
         }
 
-        // Check if invalid decoding.
-        char c = s.charAt(index);
-        if (c == '0') {
+        int memoized = memo[offset];
+        if (memoized != -1) {
+            return memoized;
+        }
+
+        char first = s.charAt(offset);
+        if (first == '0') {
             return 0;
         }
 
-        // Decoding count when consuming the first character.
-        int singleDecodings = nd(s, index + 1, memo);
-        memo.put(index + 1, singleDecodings);
+        int count = numDecodings(s, offset + 1, memo);
 
-        // Decoding count when consuming the first two characters.
-        int doubleEncodings = 0;
-        if (index < s.length() - 1) {
-            char c2 = s.charAt(index + 1);
-            if (c == '1' || (c == '2' && c2 <= '6')) {
-                doubleEncodings = nd(s, index + 2, memo);
+        if (offset < s.length() - 1) {
+            char second = s.charAt(offset + 1);
+            if (first == '1' || (first == '2' && second <= '6')) {
+                count += numDecodings(s, offset + 2, memo);
             }
         }
-        memo.put(index + 2, doubleEncodings);
 
-        return singleDecodings + doubleEncodings;
+        memo[offset] = count;
+        return count;
     }
 }
 ```
