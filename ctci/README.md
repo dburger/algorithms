@@ -77,7 +77,7 @@ repeat of a neighbor. This would require `O(n * log(n))` for the sort.
     Given two strings, write a method to decide if on is a permutation of the
     other.
 
-# Solution 1
+## Solution 1
 
 An easy way to solve this problem is to sort the two input strings and compare
 the result. If they are permutations of one another the sorted strings will
@@ -99,7 +99,7 @@ boolean isPerm(String a, String b) {
 }
 ```
 
-# Solution 2
+## Solution 2
 
 This more efficient solution works by creating a counting map for one
 string and then subtracting back out of the counting map with the other.
