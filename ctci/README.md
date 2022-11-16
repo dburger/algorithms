@@ -1,8 +1,9 @@
 # Arrays and Strings
 
 ## 1.1 **Is Unique:**
-    Implement an algorithm to determine if a string has all unique characters.
-    What if you cannot use additional data structures?
+
+Implement an algorithm to determine if a string has all unique characters.
+What if you cannot use additional data structures?
 
 ### Solution 1
 
@@ -76,8 +77,9 @@ possible approach would be to sort the characters and then check for a
 repeat of a neighbor. This would require `O(n * log(n))` for the sort.
 
 ## 1.2 **Check Permutation:**
-    Given two strings, write a method to decide if on is a permutation of the
-    other.
+
+Given two strings, write a method to decide if on is a permutation of the
+other.
 
 ### Solution 1
 
@@ -134,11 +136,12 @@ private static boolean isPerm(String a, String b) {
 ```
 
 ## 1.3 **URLify:**
-    Write a method to replace all spaces in a string with `%20`. You may assume
-    that the string has sufficient space at the end to hold the additional
-    characters, and that you are given the "true" length of the string. (Note:
-    If implementing in Java, please use a character array so that you can
-    perform this operation in place.)
+
+Write a method to replace all spaces in a string with `%20`. You may assume
+that the string has sufficient space at the end to hold the additional
+characters, and that you are given the "true" length of the string. (Note:
+If implementing in Java, please use a character array so that you can
+perform this operation in place.)
 
 ### Solution 1
 
@@ -180,10 +183,11 @@ void urlify(char[] input, int len) {
 ```
 
 ## 1.4 **Palindrome Permutation:**
-    Given a string, write a function to check if it is a permutation of a
-    palindrome. A palindrome is a word or phrase that is the same forwards
-    or backwards. A permutation is a rearrangement of letters. The palindrome
-    does not need to be limited to just dictionary words.
+
+Given a string, write a function to check if it is a permutation of a
+palindrome. A palindrome is a word or phrase that is the same forwards
+or backwards. A permutation is a rearrangement of letters. The palindrome
+does not need to be limited to just dictionary words.
 
 ### Solution 1
 
@@ -218,10 +222,11 @@ boolean isPalindromePerm(String input) {
 ```
 
 ## 1.5 **One Away:**
-    There are three types of edits that can be performed on strings:
-    insert a character, remove a character, or replace a character.
-    Given two strings, write a function to check if they are one edit
-    (or zero edits) away.
+
+There are three types of edits that can be performed on strings:
+insert a character, remove a character, or replace a character.
+Given two strings, write a function to check if they are one edit
+(or zero edits) away.
 
 ### Solution 1
 
@@ -279,11 +284,12 @@ boolean oneInsert(String shorter, String longer) {
 ```
 
 ## 1.6 **String Compression:**
-    Implement a method to perform basic string compression using the counts
-    of repeated characters. For example, the string `aabcccccaaa` would
-    become `a2b1c5a3`. If the "compressed" string would not become smaller
-    than the original string, your method should return the original string.
-    You can assume the string has only uppercase and lowercase letters (a-z).
+
+Implement a method to perform basic string compression using the counts
+of repeated characters. For example, the string `aabcccccaaa` would
+become `a2b1c5a3`. If the "compressed" string would not become smaller
+than the original string, your method should return the original string.
+You can assume the string has only uppercase and lowercase letters (a-z).
 
 ### Solution 1
 
@@ -329,9 +335,10 @@ String tryCompress(String s) {
 ```
 
 ## 1.7 **Rotate Matrix:**
-    Given an image represented by an `NxN` matrix, where each pixel in the
-    image is 4 bytes, write a method to rotate the image by 90 degrees. Can
-    you do this in place?
+
+Given an image represented by an `NxN` matrix, where each pixel in the
+image is 4 bytes, write a method to rotate the image by 90 degrees. Can
+you do this in place?
 
 ### Solution 1
 
@@ -371,8 +378,9 @@ void rotate(int[][] matrix) {
 ```
 
 ## 1.8 **Zero Matrix:**
-    Write an algorithm such that if an element in an `NxN` matrix is 0, its
-    entire row and column are set to 0.
+
+Write an algorithm such that if an element in an `NxN` matrix is 0, its
+entire row and column are set to 0.
 
 ### Solution 1
 
@@ -415,9 +423,10 @@ void zeroOut(int[][] input) {
 ```
 
 ## 1.9 **String Rotation:**
-    Assume you have a method `isSubstring` which checks if one word is a
-    substring of another. Given two strings `s1` and `s2`, write code to
-    check if `s2` is a rotation of `s1` using only one call to `isSubstring`.
+
+Assume you have a method `isSubstring` which checks if one word is a
+substring of another. Given two strings `s1` and `s2`, write code to
+check if `s2` is a rotation of `s1` using only one call to `isSubstring`.
 
 ### Solution 1
 
@@ -442,9 +451,10 @@ boolean isRotation(String s1, String s2) {
 ## Linked Lists
 
 ## 2.1 **Remove Dups:**
-    Write code to remove duplicates from an unsorted linked list.
-    How would you solve this problem if a temporary buffer is not
-    allowed?
+
+Write code to remove duplicates from an unsorted linked list.
+How would you solve this problem if a temporary buffer is not
+allowed?
 
 ### Solution 1
 
@@ -510,8 +520,9 @@ void removeDups(Node head) {
 ```
 
 ## 2.2 **Return Kth to Last:**
-    Implement an algorithm to find the kth to last element of a singly
-    linked list.
+
+Implement an algorithm to find the kth to last element of a singly
+linked list.
 
 ### Solution 1
 
@@ -609,9 +620,10 @@ Node kth(Node head, int k) {
 ```
 
 ## 2.3 **Delete Middle Node:**
-    Implement an algoirthm to delete a node in the middle (i.e., any node but
-    the first and last node, no necessarily the exact middle) of a singly
-    linked list, given only access to that node.
+
+Implement an algoirthm to delete a node in the middle (i.e., any node but
+the first and last node, no necessarily the exact middle) of a singly
+linked list, given only access to that node.
 
 ### Solution 1
 
@@ -635,12 +647,13 @@ void deleteNode(Node node) {
 ```
 
 ## 2.4 **Partition:**
-    Write code to partition a linked list around a value x, such that all nodes
-    less than x come before all nodes greater than or equal to x. If x is
-    contained within the list, the values of x only need to be after elements
-    less than x. The partition element x can appear anywhere in the "right
-    partition"; it does not need to appear between the left and right
-    partitions.
+
+Write code to partition a linked list around a value x, such that all nodes
+less than x come before all nodes greater than or equal to x. If x is
+contained within the list, the values of x only need to be after elements
+less than x. The partition element x can appear anywhere in the "right
+partition"; it does not need to appear between the left and right
+partitions.
 
 ### Solution 1
 
@@ -690,11 +703,12 @@ Node partitionList(Node head, int val) {
 ```
 
 ## 2.5 **Sum Lists:**
-    You have two numbers represented by a linked list, where each node contains
-    a single digit. The digits are stored in reverse order, such that the 1's
-    digit is at the head of the list. Write a function that adds the two
-    numbers and returns the sum as a linked list. Suppose the digits are stored
-    in forward order. Repeat the above problem.
+
+You have two numbers represented by a linked list, where each node contains
+a single digit. The digits are stored in reverse order, such that the 1's
+digit is at the head of the list. Write a function that adds the two
+numbers and returns the sum as a linked list. Suppose the digits are stored
+in forward order. Repeat the above problem.
 
 ### Solution 1
 
@@ -779,7 +793,8 @@ Node sumLists(Node n1, Node n2) {
 ```
 
 ## 2.6 **Palindrome:**
-    Implement a function to check if a linked list is a palindrome.
+
+Implement a function to check if a linked list is a palindrome.
 
 ### Solution 1
 
@@ -860,11 +875,12 @@ boolean equalLists(Node l1, Node l2) {
 ```
 
 ## 2.7 **Intersection:**
-    Given two (singly) linked lists, determine if the two lists intersect.
-    Return the intersecting node. Note that the intersection is defined based
-    on reference, not value. That is, if the kth node of the first linked list
-    is the exact same node (by reference) as the jth node of the second linked
-    list, then they are intersecting.
+
+Given two (singly) linked lists, determine if the two lists intersect.
+Return the intersecting node. Note that the intersection is defined based
+on reference, not value. That is, if the kth node of the first linked list
+is the exact same node (by reference) as the jth node of the second linked
+list, then they are intersecting.
 
 ### Solution 1
 
@@ -956,8 +972,9 @@ NodeLength lastNode(Node node) {
 ```
 
 ## 2.8 **Loop Detection:**
-    Given a circular linked list, implement an algorithm that returns the node
-    at the beginning of the loop.
+
+Given a circular linked list, implement an algorithm that returns the node
+at the beginning of the loop.
 
 ### Solution 1
 
@@ -1001,7 +1018,8 @@ Node findLoopStart(Node head) {
 ## Stacks and Queues
 
 ## 3.1 **:**
-    Describe how you could use a single array to implement three stacks.
+
+Describe how you could use a single array to implement three stacks.
 
 ### Discussion
 
@@ -1081,9 +1099,10 @@ public class MultiStack {
 ```
 
 ## 3.2 **:**
-    How would you design a stack which, in addition to push and pop, has a
-    function min which returns the minimum element? Push, pop and min should
-    all operate in `O(1)` time.
+
+How would you design a stack which, in addition to push and pop, has a
+function min which returns the minimum element? Push, pop and min should
+all operate in `O(1)` time.
 
 ## Solution 1
 
@@ -1147,16 +1166,17 @@ class MinStack<T extends Comparable<T>> {
 ```
 
 ## 3.3 **Stack of Plates:**
-   Imagine a (literal) stack of plates. If the stack gets too high, it might
-   topple. Therefore, in real life, we would likely start a new stack when the
-   previous statck exceeds some threshold. Implement a data structure
-   `SetOfStacks` that mimics this. `SetOfStacks` should be composed of several
-   stacks and should create a new stack once a previous one exceeds capacity.
-   `SetOfStacks.push()` and `SetOfStacks.pop()` should behave identically to a
-   single stack (that is `pop()` should return the same values as it would if
-   there were just a single stack).
-   Follow up: Implement a function `popAt(int)` which performs a pop operation
-   on a specific sub-stack.
+
+Imagine a (literal) stack of plates. If the stack gets too high, it might
+opple. Therefore, in real life, we would likely start a new stack when the
+previous statck exceeds some threshold. Implement a data structure
+`SetOfStacks` that mimics this. `SetOfStacks` should be composed of several
+stacks and should create a new stack once a previous one exceeds capacity.
+`SetOfStacks.push()` and `SetOfStacks.pop()` should behave identically to a
+single stack (that is `pop()` should return the same values as it would if
+there were just a single stack).
+Follow up: Implement a function `popAt(int)` which performs a pop operation
+on a specific sub-stack.
 
 ### Solution 1
 
@@ -1266,7 +1286,8 @@ public class SetOfStacks<T> {
 ```
 
 ## 3.4 **Queue Via Stacks:**
-   Implement a `MyQueue` class which implements a queue using two stacks.
+
+Implement a `MyQueue` class which implements a queue using two stacks.
 
 ### Solution 1
 
@@ -1315,10 +1336,11 @@ public class MyQueue<T> {
 ```
 
 ## 3.5 **Sort Stack:**
-   Write a program to sort a stack such that the smallest items are on the top.
-   You can use an additional temporary stack, but you may not copy the elements
-   into any other data structure (such as an array). The stack supports the
-   following operations: `push`, `pop`, `peek`, and `isEmpty`.
+
+Write a program to sort a stack such that the smallest items are on the top.
+You can use an additional temporary stack, but you may not copy the elements
+into any other data structure (such as an array). The stack supports the
+following operations: `push`, `pop`, `peek`, and `isEmpty`.
 
 ### Solution 1
 
@@ -1350,14 +1372,15 @@ void sortStack(Stack<Integer> s) {
 ```
 
 ## 3.6 **Animal Shelter:**
-   An animal shelter, which holds only dogs and cats, operates on a strictly
-   "first in, first out" basis. People must adopt either the "oldest" (based on
-   arrival time) of all animals at the shelter or they can select whether they
-   will receive a dog or a cat (and will receive the oldes animal of that
-   type). They cannot select which specific animal they would like. Create the
-   data strucutres to maintain this system and implement operations such as
-   `enqueue`, `dequeueAny`, `dequeueDog`, and `dequeueCat`. You may use the
-   built-in `LinkedList` data structure.
+
+An animal shelter, which holds only dogs and cats, operates on a strictly
+"first in, first out" basis. People must adopt either the "oldest" (based on
+arrival time) of all animals at the shelter or they can select whether they
+will receive a dog or a cat (and will receive the oldes animal of that
+type). They cannot select which specific animal they would like. Create the
+data strucutres to maintain this system and implement operations such as
+`enqueue`, `dequeueAny`, `dequeueDog`, and `dequeueCat`. You may use the
+built-in `LinkedList` data structure.
 
 ### Solution 1
 
@@ -1437,8 +1460,9 @@ public class AnimalShelter {
 # Trees and Graphs
 
 ## 4.1 **Route Between Nodes:**
-    Given a directed graph, design an algorithm to find out whether there is a
-    route between two nodes.
+
+Given a directed graph, design an algorithm to find out whether there is a
+route between two nodes.
 
 ### Solution 1
 
@@ -1478,8 +1502,9 @@ boolean directedRoute(Node<?> n1, Node<?> n2) {
 ```
 
 ## 4.2 **Minimal Tree:**
-   Given a sorted (increasing order) array with unique integer elements, write
-   an algorithm to create a binary search tree with minimal height.
+
+Given a sorted (increasing order) array with unique integer elements, write
+an algorithm to create a binary search tree with minimal height.
 
 ### Solution 1
 
@@ -1511,8 +1536,9 @@ same as `O(log(n))` as the tree will end up relatively balanced.
 ```
 
 ## 4.3 **List of Depths:**
-   Given a binary tree, design an algorithm which creates a linked list of all
-   the nodes at each depth.
+
+Given a binary tree, design an algorithm which creates a linked list of all
+the nodes at each depth.
 
 ### Solution 1
 
@@ -1549,9 +1575,10 @@ size of `2^d - 1`. I suppose this makes the space complexity `O(2^d)`.
 ```
 
 ## 4.4 **Check Balanced:**
-   Implement a function to check if a binary tree is balanced. For the purposes
-   of this question, a balanced tree is defined to be a tree such that the
-   heights of the two subtrees of any one node never differ by more than one.
+
+Implement a function to check if a binary tree is balanced. For the purposes
+of this question, a balanced tree is defined to be a tree such that the
+heights of the two subtrees of any one node never differ by more than one.
 
 ### Solution 1
 
@@ -1587,7 +1614,8 @@ the tree. In the worst case this may be every node so it is also `O(n)`.
 ```
 
 ## 4.5 **Validate BST:**
-   Implement a function to check if a binary tree is a binary search tree.
+
+Implement a function to check if a binary tree is a binary search tree.
 
 ### Solution 1
 
@@ -1697,9 +1725,10 @@ boolean isBst(TreeNode node, Integer lo, Integer hi) {
 ```
 
 ## 4.6 **Successor:**
-   Write an algorithm to find the "next" node (in order successor) of a given
-   node in a binary search tree. You may assume each node has a link to its
-   parent.
+
+Write an algorithm to find the "next" node (in order successor) of a given
+node in a binary search tree. You may assume each node has a link to its
+parent.
 
 ### Solution 1
 
@@ -1822,11 +1851,12 @@ TreeNode leftMost(TreeNode node) {
 ```
 
 ## 4.7 **Builder Order:**
-   You are given a list of projects and a list of dependencies (which is a list
-   of pairs of projects, where the second project is dependent on the first
-   project). All of a project's dependencies must be built before the project
-   is. Find a build order that will allow the projects to be built. If there is
-   no valid build order, return an error.
+
+You are given a list of projects and a list of dependencies (which is a list
+of pairs of projects, where the second project is dependent on the first
+project). All of a project's dependencies must be built before the project
+is. Find a build order that will allow the projects to be built. If there is
+no valid build order, return an error.
 
 ### Solution 1
 
@@ -1879,9 +1909,10 @@ List<String> buildOrder(List<String> projects, List<List<String>> dependencies) 
 ```
 
 ## 4.8 **First Common Ancestor:**
-   Design an algorithm and write code to find the first common ancestor of two
-   nodes in a binary tree. Avoid storing additional nodes in a data structure.
-   NOTE: This is not necessarily a binary search tree.
+
+Design an algorithm and write code to find the first common ancestor of two
+nodes in a binary tree. Avoid storing additional nodes in a data structure.
+NOTE: This is not necessarily a binary search tree.
 
 ### Solution 1
 
@@ -1991,10 +2022,11 @@ class Solution {
 ```
 
 ## 4.9 **BST Sequences:**
-    A binary search tree was created by traversing through an array from left
-    to right and inserting each element. Given a binary search tree with
-    distinct elements, print all possible arrays that could have led to this
-    tree.
+
+A binary search tree was created by traversing through an array from left
+to right and inserting each element. Given a binary search tree with
+distinct elements, print all possible arrays that could have led to this
+tree.
 
 ### Solution 1
 
@@ -2053,12 +2085,13 @@ void weaveLists(LinkedList<Integer> first, LinkedList<Integer> second,
 ```
 
 ## 4.10 **Check Subtree:**
-   `T1` and `T2` are two very large binary trees, with `T1` much bigger than
-   `T2`. Create an algorithm to determine if `T2` is a subtree of `T1`.
 
-   A tree `T2` is a subtree of `T1` if there exists a node `n` in `T1` such
-   that the subtree of `n` is identical to `T2`. That is, if you cut off the
-   tree at node `n`, the two trees would be identical.
+`T1` and `T2` are two very large binary trees, with `T1` much bigger than
+`T2`. Create an algorithm to determine if `T2` is a subtree of `T1`.
+
+A tree `T2` is a subtree of `T1` if there exists a node `n` in `T1` such
+that the subtree of `n` is identical to `T2`. That is, if you cut off the
+tree at node `n`, the two trees would be identical.
 
 ### Solution 1
 
@@ -2090,11 +2123,12 @@ boolean checkSubtree(TreeNode needle, TreeNode haystack) {
 ```
 
 ## 4.11 **Random Node:**
-    You are implemented a binary tree class from scratch which, in addition to
-    insert, find, and delete, has a method `getRandomNode()` which returns a
-    random node from the tree. All nodes should be equally likely to be chosen.
-    Design and implement an algorithm for `getRandomNode()`, and explain how you
-    would implement the rest of the methods.
+
+You are implemented a binary tree class from scratch which, in addition to
+insert, find, and delete, has a method `getRandomNode()` which returns a
+random node from the tree. All nodes should be equally likely to be chosen.
+Design and implement an algorithm for `getRandomNode()`, and explain how you
+would implement the rest of the methods.
 
 ### Solution 1
 
