@@ -1433,3 +1433,770 @@ public class AnimalShelter {
     }
 }
 ```
+
+# Trees and Graphs
+
+## 4.1 **Route Between Nodes:**
+    Given a directed graph, design an algorithm to find out whether there is a
+    route between two nodes.
+
+### Solution 1
+
+A BFS approach should do the trick with a `Set` to track already visited nodes.
+Note that as the graph is directed, we start a search from each node to check
+if there is a route in either direction.
+
+The time complexity of this solution is `O(n)` where `n` is the number of nodes
+in the graph. This comes from the possible need to visit every node through the
+traversal. Likewise, the space complexity is also `O(n)` to accomodate adding
+the nodes to the `enqueued` set.
+
+```java
+boolean route(Node<?> n1, Node<?> n2) {
+    return directedRoute(n1, n2) || directedRoute(n2, n1);
+}
+
+boolean directedRoute(Node<?> n1, Node<?> n2) {
+    Set<Node<?>> enqueued = new HashSet<>();
+    Queue<Node<?>> q = new LinkedList<>();
+    q.add(n1);
+    enqueued.add(n1);
+    while (!q.isEmpty()) {
+        Node<?> n = q.remove();
+        if (n == n2) {
+            return true;
+        }
+        for (Node<?> c : n.neighbors) {
+            if (!enqueued.contains(c)) {
+                q.add(c);
+                enqueued.add(c);
+            }
+        }
+    }
+    return false;
+}
+```
+
+## 4.2 **Minimal Tree:**
+   Given a sorted (increasing order) array with unique integer elements, write
+   an algorithm to create a binary search tree with minimal height.
+
+### Solution 1
+
+This can be done with a recursive solution that makes the middle element the
+root of a tree and then recurses around that middle element for the left and
+right subtrees.
+
+The time complexity of this solution is `O(n)` where `n` is the number of
+elements in the array. The comes from invoking the recursive function for
+the creation of each `TreeNode`. The space complexity of this solution is
+`O(d)` where `d` is the depth of the resultant tree. This would be the
+same as `O(log(n))` as the tree will end up relatively balanced.
+
+```java
+<T> TreeNode<T> createTree(T[] arr) {
+    return createTree(arr, 0, arr.length - 1);
+}
+
+<T> TreeNode<T> createTree(T[] arr, int lo, int hi) {
+    if (lo > hi) {
+        return null;
+    }
+    int mid = lo + (hi - lo) / 2;
+    TreeNode<T> node = new TreeNode<>(arr[mid], null, null);
+    node.left = createTree(arr, 0, mid - 1);
+    node.right = createTree(arr, mid + 1, hi);
+    return node;
+}
+```
+
+## 4.3 **List of Depths:**
+   Given a binary tree, design an algorithm which creates a linked list of all
+   the nodes at each depth.
+
+### Solution 1
+
+Whenever you see a question asking you to process a tree by level you should
+first think of a BFS traversal solution. With the double loop trick (see the
+usage of the `size` variable), this type of problem becomes trivial.
+
+The time complexity of this solution is `O(n)` where `n` is the number of
+elements in the tree.  The space complexity question is a little different.
+The data structure holding the solution has to have the `n` nodes in it so
+it is `O(n)`. In the processing, however, the space used is the maximum size
+of the `Queue` used to hold the BFS solution. This would be the size of the
+largest level. Given a tree with depth `d` the largest level would have the
+size of `2^d - 1`. I suppose this makes the space complexity `O(2^d)`.
+
+```java
+<T> List<List<TreeNode<T>>> extractLevels(TreeNode<T> root) {
+    List<List<TreeNode<T>>> levels = new ArrayList<>();
+    Queue<TreeNode<T>> q = new LinkedList<>();
+    q.add(root);
+    int level = 0;
+    while (!q.isEmpty()) {
+        int size = q.size();
+        while (size-- > 0) {
+            TreeNode<T> tn = q.remove();
+            if (level == levels.size()) {
+                levels.add(new ArrayList<>());
+            }
+            levels.get(level).add(tn);
+        }
+    }
+    return levels;
+}
+```
+
+## 4.4 **Check Balanced:**
+   Implement a function to check if a binary tree is balanced. For the purposes
+   of this question, a balanced tree is defined to be a tree such that the
+   heights of the two subtrees of any one node never differ by more than one.
+
+### Solution 1
+
+This solution uses a recursive approach to get the height of the left and right
+subtrees to percolate back up to each node. A special value, a height of `-1`
+is used to indicate that the tree is not balanced and further checking is
+unnecessary.
+
+The time complexity of this solution is `O(n)` where `n` is the number of nodes
+in the tree. The space complexity, due to the use of recursion, is the depth of
+the tree. In the worst case this may be every node so it is also `O(n)`.
+
+```java
+<T> boolean balanced(TreeNode<T> node) {
+        return getTreeHeight(node) != -1;
+}
+
+<T> int getTreeHeight(TreeNode<T> node) {
+    if (node == null) {
+        return 0;
+    }
+    int lheight = getTreeHeight(node.left);
+    int rheight = getTreeHeight(node.right);
+    if (lheight == -1 || rheight == -1) {
+        return -1;
+    }
+    int diff = Math.abs(lheight - rheight);
+    if (diff > 1) {
+        return -1;
+    }
+    return Math.max(lheight, rheight) + 1;
+}
+```
+
+## 4.5 **Validate BST:**
+   Implement a function to check if a binary tree is a binary search tree.
+
+### Solution 1
+
+One obvious way to do this that also will exercise your tree traversal skills
+is to realize that the accumulation of an in order traversal can be used to
+verify a BST. That is if the in order traversal results in an in order
+accumulated list then the tree is in fact a BST.
+
+The time complexity of this solution is `O(n)` where `n` is the number of nodes
+in the tree. This comes from the nature of the in order traversal and visiting
+each node. The space complexity of this solution is also `O(n)` as the
+accumulator obviously has to hold every node in the tree.
+
+
+```java
+boolean isBst(TreeNode root) {
+    List<TreeNode> acc = new ArrayList<>();
+    traverse(root, acc);
+    for (int i = 1; i < acc.size(); i++) {
+        if (acc.get(i).val < acc.get(i - 1).val) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void traverse(TreeNode node, List<TreeNode> acc) {
+    if (node == null) {
+        return;
+    }
+    traverse(node.left, acc);
+    acc.add(node);
+    traverse(node.right, acc);
+}
+```
+
+### Solution 2
+
+A cooler way to do this is to use what I will refer to here as "fencing". That
+is we use recursion and we pass a "fence" down the recursive calls that
+specifies the lower bound and upper bound `(lo, hi)` that all nodes from a
+paricular node must be between. How do you define the fence? When going left
+from node `n`, all descendant nodes must be between `(lo, n.val)`. When going
+right from node `n`, all descendant nodes must be between `(n.val, hi)`.
+
+The time complexity of this solution is `O(n)` where `n` is the number of nodes
+in the tree. The space complexity is also `O(n)`. This comes from the recursive
+calls and the case where the tree doesn't branch. If the tree is balanced, the
+space complexity is `O(d)` where `d` is the depth of the tree which is
+`O(log(n))`.
+
+Note that this solution assumes the tree doesn't allow for equivalent values.
+Also note that `Integer.MIN_VALUE` and `Integer.MAX_VALUE` can't be a part of
+the tree.
+
+```java
+boolean isBst(TreeNode root) {
+    if (root == null) {
+        return true;
+    }
+    return isBst(root.left, Integer.MIN_VALUE, root.val) &&
+            isBst(root.right, root.val, Integer.MAX_VALUE);
+}
+
+boolean isBst(TreeNode node, int lo, int hi) {
+    if (node == null) {
+        return true;
+    }
+    return node.val > lo && node.val < hi &&
+            isBst(node.left, lo, node.val) &&
+            isBst(node.right, node.val, hi);
+}
+```
+
+### Solution 3
+
+This solution is a minor variation on the prior. Here we use `Integer`
+objects to side step the `Integer.MIN_VALUE`, `Integer.MAX_VALUE` problem
+left in the prior solution by using `null` to indicate no limit.
+
+This solution has the same time and space complexity as the prior solution.
+In practice, the boxing / unboxing of `Integer <-> int` here would be
+interesting to profile compared to the prior solution.
+
+```java
+boolean isBst(TreeNode root) {
+    if (root == null) {
+        return true;
+    }
+
+    return isBst(root.left, null, root.val) &&
+            isBst(root.right, root.val, null);
+}
+
+boolean isBst(TreeNode node, Integer lo, Integer hi) {
+    if (node == null) {
+        return true;
+    }
+    if (lo != null && node.val < lo) {
+        return false;
+    }
+    if (hi != null && node.val > hi) {
+        return false;
+    }
+    return isBst(node.left, lo, node.val) && isBst(node.right, node.val, hi);
+}
+```
+
+## 4.6 **Successor:**
+   Write an algorithm to find the "next" node (in order successor) of a given
+   node in a binary search tree. You may assume each node has a link to its
+   parent.
+
+### Solution 1
+
+A simplistic solution merely accumulates the in order traversal and then looks
+for the node in question. Note that the problem description doesn't say you
+will be given the root node. However, if you have any node you can walk the tree
+back to the root.
+
+The time and space complexity of this solution is `O(n)` where `n` is the number
+of nodes in the tree. The time complexity comes from visiting each node and then
+going through the accumulated node list. The space complexity comes from the
+recursion and the accumulated node list.
+
+```java
+TreeNode successor(TreeNode node) {
+    List<TreeNode> acc = new ArrayList<>();
+    successor(findRoot(node), acc);
+    int i = 0;
+    while (acc.get(i) != node) {
+        i++;
+    }
+    return i < acc.size() - 1 ? acc.get(i + 1) : null;
+}
+
+TreeNode findRoot(TreeNode node) {
+    while (node.parent != null) {
+        node = node.parent;
+    }
+    return node;
+}
+
+void successor(TreeNode node, List<TreeNode> acc) {
+    if (node == null) {
+        return;
+    }
+    successor(node.left, acc);
+    acc.add(node);
+    successor(node.right, acc);
+}
+```
+
+### Solution 2
+
+There is a much simpler way to do this problem if we think of how an in order
+accumulating traversal works. If instead of passing a data structure that
+accumlates the traversal we pass something that indicates when the "last"
+accumulated node was the node in question, we can then return the successor.
+Note that we need the `findRoot` method above for this approach.
+
+This solution has time complexity `O(n)` where `n` is the number of nodes in
+the tree. This comes from finding the root and also potentially visiting all
+the nodes in the tree during accumulation. The space complexity is also `O(n)`,
+coming from both the recursive stack frames and the accumulating list.
+
+```java
+TreeNode successor(TreeNode node) {
+  return successort(node, findRoot(node), new boolean[1]);
+}
+
+TreeNode findRoot(TreeNode node) {
+    while (node.parent != null) {
+        node = node.parent;
+    }
+}
+
+TreeNode successor(TreeNode n1, TreeNode curr, boolean[] last) {
+    if (curr == null) {
+        return null;
+    }
+
+    TreeNode result = successor2(n1, curr.left, last);
+    if (result != null) {
+        return result;
+    }
+    if (last[0]) {
+        return curr;
+    }
+    if (curr == n1) {
+        last[0] = true;
+    }
+    return successor2(n1, curr.right, last);
+}
+```
+
+### Solution 3
+
+This is the "big boy" solution for this problem. Here we almost certainly won't
+be recursing on the whole tree. Likewise, we don't have to start with finding
+the root node. The solution works by recognizing that the successor node will
+either be the leftmost node in the right subtree, or the first "left node" up
+the tree.
+
+The time complexity remains `O(n)` in the worst as you may need to visit all
+the nodes in the tree. The space complexity, however, is `O(1)`.
+
+```java
+TreeNode successor1(TreeNode node) {
+    if (node == null) {
+        return null;
+    }
+
+    if (node.right != null) {
+        return leftMost(node.right);
+    } else {
+        TreeNode parent = node.parent;
+        while (parent != null && parent.left != node) {
+            node = parent;
+            parent = parent.parent;
+        }
+        return node;
+    }
+}
+
+TreeNode leftMost(TreeNode node) {
+    while (node.left != null) {
+        node = node.left;
+    }
+    return node;
+}
+```
+
+## 4.7 **Builder Order:**
+   You are given a list of projects and a list of dependencies (which is a list
+   of pairs of projects, where the second project is dependent on the first
+   project). All of a project's dependencies must be built before the project
+   is. Find a build order that will allow the projects to be built. If there is
+   no valid build order, return an error.
+
+### Solution 1
+
+We solve this problem by maintaining two maps. The first map, `deps`, is from
+a project to the projects it is dependent on. The second map, `locs`, is from
+a project to the projects that are dependent on it. In each round we take a
+project that is "clear" (`deps` list is empty) and add it to the build order.
+Since it is clear, we can remove it as a dependency from all other projects.
+If this takes that project's dependencies to zero then we add it to `clear`
+to be processed in a later round. At the end of each round we remove the
+"clear" projects from `deps`. When `deps` or `clear` become empty we are
+finished. If `deps` is empty we have an acceptable build order. If `deps` is
+not empty there was no way to satisfy the build order.
+
+```java
+List<String> buildOrder(List<String> projects, List<List<String>> dependencies) {
+    // Map from project to projects it is dependent on.
+    Map<String, Set<String>> deps = new HashMap<>();
+    // Map from project to projects dependent on it.
+    Map<String, Set<String>> locs = new HashMap<>();
+    for (String project : projects) {
+        deps.put(project, new HashSet<>());
+        locs.put(project, new HashSet<>());
+    }
+    // Projects that are "clear" to execute, all dependencies satisfied.
+    Set<String> clear = new HashSet<>(projects);
+    for (List<String> d : dependencies) {
+        String dependent = d.get(1);
+        String on = d.get(0);
+        deps.get(dependent).add(on);
+        clear.remove(dependent);
+        locs.get(on).add(dependent);
+    }
+    List<String> order = new ArrayList<>();
+    while (!deps.isEmpty() && !clear.isEmpty()) {
+        String project = clear.iterator().next();
+        order.add(project);
+        for (String p : locs.get(project)) {
+            Set<String> d = deps.get(p);
+            d.remove(p);
+            if (d.isEmpty()) {
+                clear.add(p);
+            }
+        }
+        deps.remove(project);
+        clear.remove(project);
+    }
+    return deps.isEmpty() ? order : null;
+}
+```
+
+## 4.8 **First Common Ancestor:**
+   Design an algorithm and write code to find the first common ancestor of two
+   nodes in a binary tree. Avoid storing additional nodes in a data structure.
+   NOTE: This is not necessarily a binary search tree.
+
+### Solution 1
+
+Note that they up front say "avoid storing additional nodes in a data
+structure." This eliminates a solution that stores the paths down to `p` and
+`q` and then determines where these paths diverge. The last node before the
+divergence is the answer.
+
+We can use a recursive approach to do this. In this solution we use a `Finds`
+return value to indicate if the common node has been found. It does this by
+tracking if the `p` and `q` values have been found. When both are first found
+we set `common` to the common node. If `common` is found, in a sub-invocation,
+then the current invocation can merely pass back up that response. Note that
+this implementation avoids creating new `Find` instances by reusing the
+instances passed up through recursive calls. The code might be slightly more
+clear (but slower?) if it just created new `Find` instances.
+
+The time complexity of this solution is `O(n)` where `n` is the number of nodes
+in the tree. This comes from the potential need to visit every node to find
+`p` and `q` or to find that one or both is missing. The space complexity is
+also `O(n)`. This comes from the recursive calls and the possibility that the
+tree does not branch.
+
+```java
+class Finds {
+    TreeNode common;
+    boolean first;
+    boolean second;
+}
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        Finds f = finds(root, p, q);
+        return f.common;
+    }
+
+    private Finds finds(TreeNode node, TreeNode p, TreeNode q) {
+        if (node == null) {
+            return new Finds();
+        }
+
+        Finds left = finds(node.left, p, q);
+        if (left.common != null) {
+            return left;
+        }
+        Finds right = finds(node.right, p, q);
+        if (right.common != null) {
+            return right;
+        }
+
+        if ((left.first && right.second) || (left.second && right.first)) {
+            left.first = left.second = true;
+            left.common = node;
+            return left;
+        }
+
+        if (node == p) {
+            left.first = true;
+            left.second |= right.second;
+            if (left.second) {
+                left.common = node;
+            }
+            return left;
+        }
+        if (node == q) {
+            left.first |= right.first;
+            left.second = true;
+            if (left.first) {
+                left.common = node;
+            }
+            return left;
+        }
+        left.first |= right.first;
+        left.second |= right.second;
+        return left;
+    }
+}
+```
+
+### Solution 2
+
+If we assume that both `p` and `q` exist in the tree, which the wording in the
+problem description seems to imply, we can greatly simplify this code. We do
+this by merely having the recursive return `p` and `q` if found. If a non null
+is returned from the left and the right, then that parent invocation must be
+the common node. If a non null is only returned from one side, then that
+returned node must be the parent of both nodes that is percolating up the tree.
+
+The time and space complexity remain `O(n)`.
+
+```java
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) return null;
+        if (root == p || root == q) return root;
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if (left != null && right != null) {
+            return root;
+        } else if (left != null) {
+            return left;
+        } else {
+            return right;
+        }
+    }
+}
+```
+
+## 4.9 **BST Sequences:**
+    A binary search tree was created by traversing through an array from left
+    to right and inserting each element. Given a binary search tree with
+    distinct elements, print all possible arrays that could have led to this
+    tree.
+
+### Solution 1
+
+This is a hard problem. Thinking about an example tree, the root would have
+to be the first element in the array. After that, positions are dictated by
+their ordering with respect to the root. Smaller items go to the left, larger
+items to the right. What do we have to work with here? Well imagine we already
+have the solution for traveling through `node.left` and `node.right`. Then
+these solutions can be "woven" together with `node` at the front of the array
+and all weavings of the left and right that keep the respective orders in tact.
+The implementation involves two recursive methods where the inner method weaves
+the lists.
+
+```java
+List<LinkedList<Integer>> allSequences(TreeNode node) {
+    List<LinkedList<Integer>> results = new ArrayList<>();
+    if (node == null) {
+        results.add(new LinkedList<>());
+        return results;
+    }
+
+    LinkedList<Integer> prefix = new LinkedList<>();
+    prefix.add(node.val);
+
+    List<LinkedList<Integer>> left = allSequences(node.left);
+    List<LinkedList<Integer>> right = allSequences(node.right);
+
+    for (LinkedList<Integer> l : left) {
+        for (LinkedList<Integer> r : right) {
+            List<List<Integer>> weaved = new ArrayList<>();
+            weaveLists(l, r, prefix, weaved);
+        }
+    }
+
+    return results;
+}
+
+void weaveLists(LinkedList<Integer> first, LinkedList<Integer> second,
+        LinkedList<Integer> prefix, List<List<Integer>> results) {
+    if (first.isEmpty() || second.isEmpty()) {
+        List<Integer> result = new ArrayList<>();
+        result.addAll(prefix);
+        result.addAll(first);
+        result.addAll(second);
+        results.add(result);
+    }
+
+    prefix.add(first.removeFirst());
+    weaveLists(first, second, prefix, results);
+    first.addFirst(prefix.removeLast());
+
+    prefix.add(second.removeFirst());
+    weaveLists(first, second, prefix, results);
+    second.addFirst(prefix.removeLast());
+}
+```
+
+## 4.10 **Check Subtree:**
+   `T1` and `T2` are two very large binary trees, with `T1` much bigger than
+   `T2`. Create an algorithm to determine if `T2` is a subtree of `T1`.
+
+   A tree `T2` is a subtree of `T1` if there exists a node `n` in `T1` such
+   that the subtree of `n` is identical to `T2`. That is, if you cut off the
+   tree at node `n`, the two trees would be identical.
+
+### Solution 1
+
+A recursive solution works nicely here. We traverse `haystack` and whenever
+we find a node matching the root of `needle` we being a tree matching
+function.
+
+The time complexity of this solotion is `O(n*m)` where `n` is the number of
+nodes in `haystack` and `m` is the number of nodes in `needle`. The space
+complexity is `O(n)`. This comes from the recursive calls to iterate
+`haystack`.
+
+```java
+boolean checkSubtree(TreeNode needle, TreeNode haystack) {
+    if (needle == null) {
+        return true;
+    }
+    if (haystack == null) {
+        return false;
+    }
+    boolean subtree = needle.val == haystack.val &&
+            checkSubtree(needle.left, haystack.left) &&
+            checkSubtree(needle.right, haystack.right);
+    if (subtree) {
+        return subtree;
+    }
+    return checkSubtree(needle, haystack.left) || checkSubtree(needle, haystack.right);
+}
+```
+
+## 4.11 **Random Node:**
+    You are implemented a binary tree class from scratch which, in addition to
+    insert, find, and delete, has a method `getRandomNode()` which returns a
+    random node from the tree. All nodes should be equally likely to be chosen.
+    Design and implement an algorithm for `getRandomNode()`, and explain how you
+    would implement the rest of the methods.
+
+### Solution 1
+
+A rather clever problem indeed. Let's say we have implemented a tree class that
+keeps track of how many descendants are in the tree beneath it. It does this by
+augmenting the standard `TreeNode` class with `leftCount` and `rightCount`
+instance variables. This is not hard to do. When adding a node the traversal to
+the correct spot can increment the counts as it goes. Likewise with removing a
+node. The counts can be corrected going back to the root. For a balanced binary
+tree this may be a bit more involved, but I haven't throught this fully through
+yet.
+
+With these counts in place, choosing a random node is rather straightforward. We
+choose a random number in the range of the total node count. To make the
+selection random, we navigate per the value of this number. Say the root node is
+at position `x` with `l` nodes to the left of it and `r` nodes to the right. If
+the random value generated, `pos`, is `x`, we return the root node. If it is
+less than `x` we recurse to the left, greater than `x` we recurse to the right.
+When recursing to the left, no adjustment in the `pos` value is needed. When
+recursing to the right we reduce `pos` accordingly subtracting the value equal
+to the count in the left subtree.
+
+The time complexity of this solution is `O(d)` where `d` is the depth of the
+tree. For a balanced tree this is `O(log(n))`. The space complexity is the same,
+as the solution uses recursion to possibly travel to the bottom of the tree.
+
+```java
+TreeNode randomNode(TreeNode node) {
+    if (node == null) {
+        return null;
+    }
+    int count = 1 + node.leftCount + node.rightCount;
+    int pos = new Random().nextInt(count);
+    return node(node, pos);
+}
+
+TreeNode node(TreeNode node, int pos) {
+    if (pos == node.leftCount) {
+        return node;
+    } else if (pos < node.leftCount) {
+        return node(node.left, pos);
+    } else {
+        return node(node.right, pos - node.leftCount);
+    }
+}
+```
+
+## 4.12 **Paths with Sum:**
+
+You are given a binary tree in which each node contains an integer value (which
+might be positive or negative). Design an algorithm to count the number of paths
+that sum to a given value. The path does not need to start or end at the root or
+a leaf, but it must go downwards (traveling only from parent nodes to child
+nodes).
+
+### Solution 1
+
+A brute for solution does a traversal within a traversal. The second traversal
+stores the current path sum and increments a counter each time it finds a match.
+This is highly inefficient. First, it visits all `n` nodes, and from each node
+it does a full traversal of that subtree. Each one of these subtraversals is
+capped at a max of `n` nodes making this `O(n^2)`. Ok, it is polynomial. If the
+tree is balanced, it isn't quite as bad, as the number of nodes from each
+traversal is:
+
+`n + (n - 1) + (n - 2) + (n - 4) + ... (n - n)`
+
+The number of terms would be the depth of the tree, which is a balanced tree
+would be `O(log(n))`.  The second term in each grouping is a power of two.
+The sum of the powers of two from `1` to `n` is `n`. Thus the runtime in the
+case of a balanced tree is `O(n * log(n))`.
+
+To beat this, we use a map to track all the prior prefixes seen on the current
+path. We can match the target sum when the current path equals that target or
+the current path minus a prefix equals that target sum. The code is
+surprisingly concise.
+
+The time complexity of this solution is `O(n)` where `n` is the number of nodes
+in the tree. The space complexity is also `O(n)`, however, in the case of a
+balanced binary tree the space complexity is `O(log(n))`. This comes from the
+recursive stack frames and the map holding the prefixes.
+
+```java
+int pathSums(TreeNode root, int target) {
+    return pathSums(root, target, 0, new HashMap<>());
+}
+
+int pathSums(TreeNode node, int target, int curr, Map<Integer, Integer> prefixes) {
+    if (node == null) {
+        return 0;
+    }
+
+    curr = curr + node.val;
+    int counts = prefixes.getOrDefault(curr - target, 0);
+    if (curr == target) {
+        counts++;
+    }
+
+    prefixes.put(curr, prefixes.getOrDefault(curr, 0) + 1);
+    counts += pathSums(node.left, target, curr, prefixes);
+    counts += pathSums(node.right, target, curr, prefixes);
+    prefixes.put(curr, prefixes.get(curr) - 1);
+    return counts;
+}
+```
