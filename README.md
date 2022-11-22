@@ -316,3 +316,5 @@ of interview questions / answers, below.
 1. [Game of Life](game-of-life)
 1. [Binary Tree Paths](binary-tree-paths)
 1. [Move Zeroes](move-zeroes)
+1. [First Bad Version](first-bad-version)
+
