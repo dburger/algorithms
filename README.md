@@ -317,4 +317,4 @@ of interview questions / answers, below.
 1. [Binary Tree Paths](binary-tree-paths)
 1. [Move Zeroes](move-zeroes)
 1. [First Bad Version](first-bad-version)
-
+1. [Delete Node Linked List](delete-node-linked-list)
