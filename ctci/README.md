@@ -2234,3 +2234,420 @@ int pathSums(TreeNode node, int target, int curr, Map<Integer, Integer> prefixes
     return counts;
 }
 ```
+
+# Bit Manipulation
+
+## 5.1 **Insertion:**
+
+You are given two 32-bit numbers, N and M, and two bit positions, i and j.
+Write a method to insert M into N such that M starts at bit j and ends at
+bit i. You can assume the the bits j through i have enough space to fit
+all of M. That is, if M = 10011, you can assume that there are at least 5
+bits between j and i. You would not, for example, jave j = 3 and i = 2,
+because M could not fully fit between bit 3 and bit 2.
+
+### Solution 1
+
+The solution is pretty simple. First we clear the bits in `dest` that we wish
+to overwrite. The we shift `src` over to match the "hole", and or that into
+the result.
+
+```java
+int insertBits(int dest, int src, int start, int end) {
+    dest = clearBits(dest, start, end);
+    src = src << start;
+    dest = dest | src;
+    return dest;
+}
+
+int clearBits(int dest, int start, int end) {
+    for (int i = start; i <= end; i++) {
+        dest = dest & ~(1 << i);
+    }
+    return dest;
+}
+```
+
+## 5.2 **Binary to String:**
+
+Given a real number between 0 and 1 (e.g., 0.72) that is passed in as a double,
+print the binary representation. If the number cannot be represented accurately
+in binary with at most 32 characters, print "ERROR."
+
+### Solution 1
+
+This problem seems a bit contrived. First, it is confusing. One would think they
+might be talking about the binary representation. No, they want a binary bit
+string representation. Thus, we can solve this problem by thinking about the
+values and the positions. The first position is `1 / 2^1`, second is `1 / 2^2`
+and so on. The decimal values are `0.5`, `0.25`, ... Thus we can use a simple
+"see if it fits and reduce approch."
+
+```java
+String printBinary(double num) {
+    if (num >= 1.0 || num <= 0.0) {
+        return "ERROR";
+    }
+
+    StringBuilder buf = new StringBuilder(".");
+    double frac = 0.5;
+    while (num > 0) {
+        if (buf.length() > 32) {
+            return "ERROR";
+        }
+
+        if (num >= frac) {
+            buf.append(1);
+            num -= frac;
+        } else {
+            buf.append(0);
+        }
+        frac /= 2.0;
+    }
+    return buf.toString();
+}
+```
+
+## 5.3 **Flip Bit to Win:**
+
+You have an integer and you can flip exactly one bit from a 0 to a 1. Write
+code to find the length of the longest sequence of 1s you could create.
+
+### Solution 1
+
+One way to solve this problem that immediately comes to mind uses a prefix /
+suffix technique that is common to solving a certain type of problem. With
+this approach we construct two arrays, one of them holds counts of the run
+of a prefix of ones up to that position. The other holds counts of the run
+of a suffix of ones up to that position. With these contructed, we can do
+a final pass through the input and when we see a zero bit, we see if the
+prefix + suffix for that position beats the max.
+
+The time complexity of this solution is `O(n)` where `n` is the number of
+bits. Since we are processing an `int`, which is 32 bits, the time complexity
+is essentially `O(1)`. Likewise, the space complexity is also `O(1)`.
+
+```java
+int longest(int val) {
+    int[] prefix = new int[32];
+    int[] suffix = new int[32];
+    int count = 0;
+    for (int i = 31; i >= 0; i--) {
+        prefix[i] = count;
+        if ((val & (1 << i)) != 0) {
+            count++;
+        } else {
+            count = 0;
+        }
+    }
+
+    count = 0;
+    for (int i = 0; i <= 31; i++) {
+        suffix[i] = count;
+        if ((val & (1 << i)) != 0) {
+            count++;
+        } else {
+            count = 0;
+        }
+    }
+
+    int max = 0;
+    for (int i = 0; i < 32; i++) {
+        if ((val & (1 << i)) == 0) {
+            int left = i < 31 ? suffix[i] : 0;
+            int right = i > 0 ? prefix[i] : 0;
+            if (left + right > max) {
+                max = left + right;
+            }
+        }
+    }
+
+    return max + 1;
+}
+```
+
+### Solution 2
+
+Another solution approach is to keep track of `Run`s. Then a second pass
+can go through the runs and if a run is a single zero, check what would
+happen if flipping that bit.
+
+The time and space complexity remain the same as the prior problem. That is
+`O(n)` if there could actually be a variable number of bits, but `O(1)` if
+we are computing on a fixed size such as a java `int`.
+
+```java
+class Run {
+    int value;
+    int count;
+}
+
+int longest(int val) {
+    List<Run> runs = new ArrayList<>();
+    Run r = new Run();
+    r.value = (val & (1 << 31)) == 0 ? 0 : 1;
+    r.count = 0;
+    runs.add(r);
+    for (int i = 31; i > -1; i--) {
+        int bit = (val & (1 << i)) == 0 ? 0 : 1;
+        if (bit == r.value) {
+            r.count++;
+        } else {
+            r = new Run();
+            r.value = bit;
+            r.count = 1;
+            runs.add(r);
+        }
+    }
+
+    int max = 0;
+    for (int i = 0; i < runs.size(); i++) {
+        r = runs.get(i);
+        if (r.count == 1 && r.value == 0) {
+            int left = i > 0 ? runs.get(i - 1).count : 0;
+            int right = i < runs.size() - 1 ? runs.get(i + 1).count : 0;
+            int length = left + right;
+            if (length > max) {
+                max = length;
+            }
+        }
+    }
+    return max + 1;
+}
+```
+
+## 5.4 **Next Number:**
+
+Given a positive integer, print the next smallest and the next largest number
+that have the same number of 1 bits in their binary representation.
+
+### Solution 1
+
+Brute forcing this would be rather easy. Write a `countBits(val)` function and
+then walk up and down until you find the first number with the same number of
+bits. Note that this is probably not what the interviewer is looking for.
+
+```java
+public static void main(String[] args) {
+    int i = 20;
+    int count = countBits(i);
+    int smaller = i - 1;
+    while (countBits(smaller) != count) {
+        smaller--;
+    }
+    int larger = i + 1;
+    while (countBits(larger) != count) {
+        larger++;
+    }
+    System.out.println(smaller);
+    System.out.println(larger);
+}
+
+private static int countBits(int val) {
+    int bits = 0;
+    while (val != 0) {
+        bits++;
+        val = val & (val - 1);
+    }
+    return bits;
+}
+```
+
+### Solution 2
+
+Let's explain this approach by looking at an example for the next number larger.
+Say we have `0b1101100`. We can get the number we want by:
+
+- Changing the rightmost non-trailing zero to a one.
+- For the bits to the right, fill in with zeroes followed by ones, with the
+  count of ones being one less than what was already to the right.
+
+```java
+int binaryLargerSameBits(int val) {
+    int pos = rightMostNonTrailingZero(val);
+    int ones = onesFrom(val, pos);
+    val = val | (1 << pos);
+    val = fillOnes(val, pos - 1, ones - 1);
+    return val;
+}
+
+int rightMostNonTrailingZero(int val) {
+    // Find the first one.
+    int pos = 0;
+    while ((val & (1 << pos)) == 0) {
+        pos++;
+    }
+    // The first zero after the first one is the one we want.
+    while ((val & (1 << pos)) != 0) {
+        pos++;
+    }
+    return pos;
+}
+
+int onesFrom(int val, int from) {
+    int ones = 0;
+    for (; from > -1; from--) {
+        if ((val & (1 << from)) != 0) {
+            ones++;
+        }
+    }
+    return ones;
+}
+
+int fillOnes(int val, int pos, int num) {
+    for (; pos > -1; pos--) {
+        if (pos > num) {
+            val = val & ~(1 << pos);
+        } else {
+            val = val | (1 << pos);
+        }
+    }
+    return val;
+}
+```
+
+## 5.5 **Debugger:**
+
+Explain what the following code does: `((n & (n - 1)) == 0)`.
+
+### Solution 1
+
+Start by looking at the inner most nesting of this operation, that is the
+`n - 1`. For a binary number subtracting one changes the rightmost, least
+significant, `1` bit to a `0` and all the bits to the right to a `1`. Think
+about it, the "borrow" gets rid of that bit and as the borrows and then the
+subtraction continues to the first bit everything is change to a `1`. Thus,
+when you and that value with the number itself, that is looking at
+`((n & (n - 1))`. that lowest bit that you borrowed from gets cleared and
+everything else is left unchanged. So now step out to the full picture,
+`((n & (n - 1)) == 0)` is true if and only if there was only one bit set in `n`.
+This would also mean that `n` is a power of 2.
+
+## 5.6 **Conversion:**
+
+Write a function to determine the number of bits you would need to flip to
+convert integer A to integer B.
+
+### Solution 1
+
+Don't overthink this - one might start cooking up a dynamic programming
+solution with the bits of A on one axis and the bits of B on the other.
+Nope - it can be done much simpler. An xor will determine the number of
+bits that differ. That is how many need to be flipped.
+
+The time complexity of this solution, if we are limiting this to an `int`,
+is `O(1)`. Likewise for the space complexity.
+
+```java
+int conversions(int a, int b) {
+    return countBits(a ^ b);
+}
+
+int countBits(int val) {
+    int bits = 0;
+    while (val != 0) {
+        bits++;
+        val = val & (val - 1);
+    }
+    return bits;
+}
+```
+
+## 5.7 **Pairwise Swap:**
+
+Write a program to swap odd and even bits in an integer with as few
+instructions as possible. (e.g., bit 0 and bit 1 are swapped, bit 2 and
+bit 3 are swapped, and so on).
+
+### Solution 1
+
+Easy, mask the odds, mask the evens, or them together properly shifted.
+Note the logical shift on the odds to get a zero bit.
+
+```java
+int swapper(int val) {
+    int odds = 0b10101010101010101010101010101010;
+    int evens = 0b01010101010101010101010101010101;
+    int valOdds = val & odds;
+    int valEvens = val & evens;
+    return (valEvens << 1) | (valOdds >>> 1);
+}
+```
+
+## 5.8 **Draw Line:**
+
+A monochrome screen is stored as a single array of byes, allowing eight
+consecutive pixels to be stored in one byte. The screen has width `w`,
+where `w` is divisible by `8` (that is, no byte will be split across rows).
+The height of the screen, of course, can be derived from the length of the
+array and the width. Implement a function that draws a horizontal line from
+`(x1, y)` to `(x2, y)`. The method signature should look something like:
+
+`drawLine(byte[] screen, int width, int x1, int x2, int y)`
+
+### Solution 1
+
+A simple solution is just to draw each bit. This takes careful consideration
+of the target byte and the bit offsets. This iterates for each pixel set so the
+time complexity is `O(length of the line)`.
+
+```java
+void drawLine(byte[] screen, int width, int x1, int x2, int y) {
+    for (int x = x1; x <= x2; x++) {
+        setPixel(screen, width, x, y);
+    }
+}
+
+void setPixel(byte[] screen, int width, int x, int y) {
+    int offset = width * y + x;
+    int theByte = offset / 8;
+    int theBit = offset % 8;
+    screen[theByte] |= (0b1000 >>> theBit);
+}
+```
+
+### Solution 2
+
+Instead of drawing a pixel / bit at a time you can draw a byte at a time. This
+is still `O(length of the line)` but is reduced at `1 / 8`.
+
+It would be hard to get this exactly right in an interview. Heck, I haven't
+tested this, there is probably a mistake here:
+
+```java
+void faster(byte[] screen, int width, int x1, int x2, int y) {
+    int firstFull = x1 / 8;
+    int firstBit = x1 % 8;
+    if (firstBit != 0) {
+        firstFull++;
+    }
+
+    int lastFull = x2 / 8;
+    int lastBit = x2 % 8;
+    if (lastBit != 7) {
+        lastFull--;
+    }
+
+    for (int offset = firstFull; offset <= lastFull; offset++) {
+        screen[(width / 8) * y + offset] = (byte) 0xFF;
+    }
+
+    byte startMask = (byte) (0xFF >> firstBit);
+    byte endMask = (byte) ~(0xFF >> (lastBit + 1));
+
+    int startPartial = firstFull - 1;
+    int lastPartial = lastFull + 1;
+
+    if (startPartial == lastPartial) {
+        screen[(width / 8) * y + startPartial] = (byte) (startMask | endMask);
+    } else {
+        if (firstBit != 0) {
+            screen[(width / 8) * y + startPartial] = startMask;
+        }
+
+        if (lastBit != 7) {
+            screen[(width / 8) * y + lastPartial] = endMask;
+        }
+    }
+}
+```
