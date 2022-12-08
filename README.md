@@ -320,3 +320,4 @@ of interview questions / answers, below.
 1. [Delete Node Linked List](delete-node-linked-list)
 1. [Max Area of Island](max-area-island)
 1. [Keys and Rooms](keys-and-rooms)
+1. [Detect Capital](detect-capital)
