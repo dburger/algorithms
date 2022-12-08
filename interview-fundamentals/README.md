@@ -242,7 +242,21 @@ int binarySearch(int[] values, int target, int lo, int hi) {
 ```
 ### Horner's Method
 
-TODO
+Horner's method is a technique for converting between positional numeric
+systems. In algorithm problems it can come in handy in a variety of
+situations. The most bare bones example would be in converting a string
+into a number. See how it gets the correct power of ten by multiplying
+the prior result by 10.
+
+```java
+int convert(String value) {
+  int result = 0;
+  for (char c : value.toCharArray()) {
+    result += 10 * result + (c - '0');
+  }
+  return result;
+}
+```
 
 ### Stripping Digits
 
