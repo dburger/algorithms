@@ -187,8 +187,59 @@ with Wrapper (level) and without (zigzag has example)
 
 ### Binary Search
 
-TODO - recursive and iterative
+You should know how to implement binary search in both iterative and recursive
+fashion. You should also know the way determine the midpoint that helps to
+avoid overflow.
 
+Iterative:
+
+The iterative solution has the advantage of avoiding the memory from the
+recursive stack frames and ever the ever so slight slowdown from the recursion.
+
+```java
+int binarySearch(int[] values, int target) {
+  int lo = 0;
+  int hi = values.length - 1;
+  while (lo <= hi) {
+    int mid = lo + (hi - lo) / 2;
+    int value = values[mid];
+    if (target == value) {
+      return mid;
+    }
+    if (target < value) {
+       hi = mid - 1;
+    } else {
+       lo = mid + 1;
+    }
+  }
+  return -1;
+}
+```
+
+Recursive:
+
+The recursive solution is just clean and simple. Slightly slower and more
+memory intensive than the iterative solution.
+
+```java
+int binarySearch(int[] values, int target) {
+  return binarySearch(values, target, 0, values.length - 1);
+}
+
+int binarySearch(int[] values, int target, int lo, int hi) {
+  int mid = lo + (hi - lo) / 2;
+  int value = values[mid];
+  if (target == value) {
+    return mid;
+  }
+  if (target < value) {
+    mid = hi - 1;
+  } else {
+    mid = lo + 1;
+  }
+  return binarySearch(values, target, lo, hi);
+}
+```
 ### Horner's Method
 
 TODO
@@ -199,13 +250,74 @@ TODO
 
 ### Bit Techniques
 
-TODO - counting bits, enumerating set, finding set with constraint
+#### Flipping bits
+
+Many algorithm problems involving bit manipulation will require you to flip
+bits. Thus you should know how to do the basic bit operations. Setting a bit
+can be done by or'ing the input by a mask with a single bit set in the
+appropriate position. In Java this is done as:
+
+```java
+int setBit(int val, int bit) {
+  return val | (1 << bit);
+}
+```
+
+Clear bit is somewhat the opposite. You need to and with a mask that contains
+a zero in the bit to clear and a one everywhere else. Again, in Java:
+
+```java
+int clearBit(int val, int bit) {
+  return val & ~(1 << bit);
+}
+```
+
+#### Counting bits
+
+Counting bits can be done by sliding a one through every bit position and
+keep track of how many times and'ing with that mask results in a non-zero.
+
+```java
+int countBits(int val) {
+    int count = 0;
+    for (int i = 0; i < 32; i++) {
+        if ((val & (1 << i)) != 0) {
+            count++;
+        }
+    }
+    return count;
+}
+```
+
+Ah, but there is a trick. There is a better way to count bits. When you
+subract one from a number, in the binary representation, the least significant
+bit is changed to a zero and everything to its right becomes a one. This
+provides an optimized way to count bits. When you AND this subtracted by one
+value with the original number, this results in the lowest bit being cleared.
+Thus you can count bits by repeating this process until you drive the number
+to one. In practice, this means this loops only exactly as many times as the
+number of bits.
+
+```java
+int cb(int val) {
+    int count = 0;
+    while (val != 0) {
+        count++;
+        val = val & (val - 1);
+    }
+    return count;
+}
+```
+
+TODO - enumerating set, finding set with constraint
 
 ### Negative Modulus
 
 TODO
 
 ### Counting characters
+
+Many algorithm problems 
 
 TODO: counts[c - 'a'] += 1;
 
