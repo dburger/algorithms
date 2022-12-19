@@ -1,5 +1,29 @@
 # Interview Fundamentals
 
+TODO From other lists:
+
+Data structures:
+- Linked Lists
+- Trees, Tries, Graphs
+- Stacks and Queues
+- Heaps
+- Vectors / ArrayLists
+- Hash Tables
+
+Algos:
+BFS
+DFS
+Binary Search
+Merge Sort
+Quick Sort
+
+Concepts:
+Bit Manipulation
+Memory (stack vs heap)
+Recursion
+Dynamic Programming
+Big O
+
 TODO: sliding window techniques
 TODO: a recursion section?
 TODO: logarithms
