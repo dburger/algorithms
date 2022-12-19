@@ -1,6 +1,8 @@
 # Interview Fundamentals
 
-TODO
+TODO: sliding window techniques
+TODO: a recursion section?
+TODO: logarithms
 
 This document is a guide to the fundamentals of technical interviews for
 software engineers.
@@ -410,6 +412,14 @@ m.put(t, m.getOrDefault(t, 0) + 1);
 Removal can be handled via subtraction in a similar way, but you likely want to
 remove the entry instead of allowing zero / allowing to go negative.
 
+### Heap
+
+TODO
+
+### Suffix Trees
+
+TODO
+
 ### Manipulating Multiple Pointers / Indices
 
 TODO - index off center, longest common palindromic subsequence, march to the middle
@@ -440,6 +450,8 @@ Examples of sliding window algorithm problems include:
 
 *   [Maximum Erasure Value](../maximum-erasure-value)
 *   [Find All Anagrams in a String](../find-all-anagrams-string)
+
+### Sorting Algorithms
 
 ### Dynamic Programming
 
