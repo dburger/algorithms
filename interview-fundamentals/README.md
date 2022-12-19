@@ -11,15 +11,24 @@ software engineers.
 
 TODO
 
+#### Doubling Time
+
+Many algorithms split something in half and operate only on one of the halves.
+The continue to do this until there is only one unit left. For a given value
+`n`, these must operate `k` times until `2^k = n`. For discrete operations, we
+take the ceiling of `k`. This corresponds to the logarithm `log2(n) = k`. Thus
+the often seen `log(n)` time complexity.
+
 #### ArrayList Resizing and Amortized Time Complexity
 
 Many languages feature built in array like data structures that feature
-automatic resizing. A fundamental Big O question is how do these data structures
-perform when the adding of an element can cause an O(n) copy of the old elements
-into a new array of say double the size. We can think of this in terms of the
-number of copies that take place. Say we start with a backing array of size one
-and we double each time we reach full capacity. After a number of additions, the
-number of copies that were made would be:
+automatic resizing. In java this is the `ArrayList`. A fundamental Big O
+question is how do these data structures perform when the adding of an element
+can cause an O(n) copy of the old elements into a new array of say double the
+size. We can think of this in terms of the number of copies that take place. Say
+we start with a backing array of size one and we double each time we reach full
+capacity. After a number of additions, the number of copies that were made would
+be:
 
 `1 + 2 + 4 + 8 + ... + x`
 
