@@ -5,6 +5,31 @@ TODO
 This document is a guide to the fundamentals of technical interviews for
 software engineers.
 
+## Core Concepts
+
+### Big O Time and Space Complexity
+
+TODO
+
+#### ArrayList Resizing and Amortized Time Complexity
+
+Many languages feature built in array like data structures that feature
+automatic resizing. A fundamental Big O question is how do these data structures
+perform when the adding of an element can cause an O(n) copy of the old elements
+into a new array of say double the size. We can think of this in terms of the
+number of copies that take place. Say we start with a backing array of size one
+and we double each time we reach full capacity. After a number of additions, the
+number of copies that were made would be:
+
+`1 + 2 + 4 + 8 + ... + x`
+
+Reversing this, stating it in terms of `x` and summing these together, we have:
+
+`x + x/2 + x/4 + x/8 + ... + 1 = 2x`
+
+So for the insertion of `x` items we had `2x` copies and thus insertion of a
+single element into such a data structure is amortized O(1).
+
 ## Core Algorithms
 
 ### DFS
