@@ -11,6 +11,14 @@ software engineers.
 
 TODO
 
+#### Time Complexity for Algorithms to Generate Tree Like Structures
+
+Many algorithms solutions generate or expand into tree like structures. The
+time complexities of these are often bound by the creation of a full tree
+of a certain depth `d` with maximum branching `b`. The time complexity of
+such solutions follows from how many nodes are traversed or produced, which
+is `O(b^d)`.
+
 #### Doubling Time
 
 Many algorithms split something in half and operate only on one of the halves.
