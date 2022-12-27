@@ -34,29 +34,27 @@ This approach simply expands recursively. A couple of key points to note:
 
 ```java
 class Solution {
-    public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
         int oldColor = image[sr][sc];
-        if (oldColor == newColor) {
-            return image;
+        if (color != oldColor) {
+            expand(image, sr, sc, oldColor, color);
         }
-        expand(image, sr, sc, oldColor, newColor);
+
         return image;
     }
 
-    private void expand(int[][] image, int r, int c, int oldColor, int newColor) {
-        // First make sure (sr, sc) is in bounds.
-        if (r < 0 || r >= image.length || c < 0 || c >= image[0].length) {
+    private void expand(int[][] image, int sr, int sc, int oldColor, int newColor) {
+        if (sr < 0 || sr >= image.length || sc < 0 || sc >= image[0].length) {
             return;
         }
-        // Next check to see if qualifies as oldColor.
-        if (image[r][c] != oldColor) {
-            return;
+
+        if (image[sr][sc] == oldColor) {
+            image[sr][sc] = newColor;
+            expand(image, sr - 1, sc, oldColor, newColor);
+            expand(image, sr, sc - 1, oldColor, newColor);
+            expand(image, sr, sc + 1, oldColor, newColor);
+            expand(image, sr + 1, sc, oldColor, newColor);
         }
-        image[r][c] = newColor;
-        expand(image, r - 1, c, oldColor, newColor);
-        expand(image, r + 1, c, oldColor, newColor);
-        expand(image, r, c - 1, oldColor, newColor);
-        expand(image, r, c + 1, oldColor, newColor);
     }
 }
 ```
