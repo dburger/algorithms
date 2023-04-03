@@ -483,6 +483,11 @@ TODO - memoization and tabular approaches
 
 ## Core Questions
 
+### Primes
+
+TODO(dburger): check if n prime
+TODO(dburger): sieve
+
 ### Matching Parenthesis
 
 TODO
