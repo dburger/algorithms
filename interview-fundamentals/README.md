@@ -33,9 +33,24 @@ software engineers.
 
 ## Core Concepts
 
-### Big O Time and Space Complexity
+### [Big O Time and Space Complexity](https://en.wikipedia.org/wiki/Big_O_notation)
 
-TODO
+"Big O" is a concept that allows us to characterize the running time and memory
+space expansion of an algorithm based upon the input size. Formally, an algorithm
+f(n) is said to be O(g(n)) if f(n) <= Mg(n) for n > m where M is some constant. In
+other words, it is an upper bound on the algorithm. Of course giving a tight upper
+bound is preferred.
+
+Some of the most commonly used bounding functions, in order are:
+
+O(1)
+O(log(n))
+O(n)
+O(n * log(n))
+O(n^2)
+O(n^3)
+O(2^n)
+O(n!)
 
 #### Time Complexity for Algorithms to Generate Tree Like Structures
 
@@ -45,13 +60,26 @@ of a certain depth `d` with maximum branching `b`. The time complexity of
 such solutions follows from how many nodes are traversed or produced, which
 is `O(b^d)`.
 
+The fibonacci sequence is an example of an algorithm that can be implemented
+in a way that produces a tree. This leads directly from the definition of
+the sequence where `fib(n) = fib(n - 1) + fib(n - 2)` with base cases of
+`fib(0) = 0` and `fib(1) = 1`. This leads to a branching factor of 2 with a
+depth that reduces n by 1 at each layer. Thus the time complexity is bound by
+O(2^n). What happens if we slap in a memoizer? Think of `fib(5)`. The first
+execution will spawn `fib(4)` + `fib(3)`. By the time the "right child",
+`fib(3)` executes, the left child will have already seeded the memoizer with
+that result. This makes it so that execution will proceed down the left
+children, and all the right children will return immediately from the memoizer.
+Thus, with a memoizer, the time complexity of the fibonacci implementation
+is merely O(n).
+
 #### Doubling Time
 
 Many algorithms split something in half and operate only on one of the halves.
-The continue to do this until there is only one unit left. For a given value
-`n`, these must operate `k` times until `2^k = n`. For discrete operations, we
-take the ceiling of `k`. This corresponds to the logarithm `log2(n) = k`. Thus
-the often seen `log(n)` time complexity.
+They may continue to do this until there is only one unit left. For a given
+value `n`, these must operate `k` times until `2^k = n`. For discrete
+operations, we take the ceiling of `k`. This corresponds to the logarithm
+`log2(n) = k`. Thus the often seen `log(n)` time complexity.
 
 #### ArrayList Resizing and Amortized Time Complexity
 
