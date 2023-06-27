@@ -327,3 +327,4 @@ of interview questions / answers, below.
 1. [Longest Subarray of 1s After Deleting One Element](longest-subarray-deleting-ones)
 1. [Number of Closed Islands](number-closed-islands)
 1. [Intersection of Two Arrays](intersection-two-array)
+1. [Island Perimeter](island-perimeter)
