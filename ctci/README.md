@@ -39,6 +39,7 @@ private static boolean allUnique(String s) {
         if (seen[c]) {
             return false;
         }
+        seen[c] = true;
     }
     return true;
 }
@@ -87,8 +88,10 @@ An easy way to solve this problem is to sort the two input strings and compare
 the result. If they are permutations of one another the sorted strings will
 be equal.
 
-The time complexity of this solution is `O(a * log(a) + b * log(b))` where
-`a` is the length of the first string and `b` is the length of the second.
+The time complexity of this solution is `O(a * log(a))` where
+`a` is the length of the strings if they are of equal length. If
+they are not of equal length a short circuit exits the algorithm
+early.
 
 ```java
 boolean isPerm(String a, String b) {
@@ -110,16 +113,15 @@ string and then subtracting back out of the counting map with the other.
 If a value is not present, or if it reduces the count to a negative value,
 false is returned. Otherwise, true is returned.
 
-The time complexity of this solution is `O(n + m)` where `n` and `m` are
-the lengths of the two different strings. The space complexity is `O(m)`
-where `m` is the length of string `b`, as the counts for this string
-are kept in the counting map.
-
-Note that if we assume a restricted character set we could use a boolean
-array instead of the `Map`. This reduces the space complexity to `O(1)`.
+The time complexity of this solution is `O(n)` where `n` is the length
+of the strings. The space complexity is also `O(n)` to account for
+populating the counting map.
 
 ```java
 private static boolean isPerm(String a, String b) {
+    if (a.length() != b.length()) {
+        return false;
+    }
     Map<Character, Integer> counts = new HashMap<>();
     for (char c : b.toCharArray()) {
         counts.put(c, counts.getOrDefault(c, 0) + 1);
@@ -130,6 +132,33 @@ private static boolean isPerm(String a, String b) {
             return false;
         }
         counts.put(c, old - 1);
+    }
+    return true;
+}
+```
+
+### Solution 3
+
+If we assume a restricted character set, such as extended
+ASCII, it becomes very easy to use an array for the counts
+instead of a map. The space complexity is reduced to O(1)
+as the counting map only requires 256 entries regardless
+of the input.
+
+```java
+private static boolean isPerm(String a, String b) {
+    if (a.length() != b.length()) {
+        return false;
+    }
+    int[] counts = new int[256];
+    for (char c : a.toCharArray()) {
+        counts[c]++;
+    }
+    for (char c : b.toCharArray()) {
+        if (counts[c] == 0) {
+            return false;
+        }
+        counts[c]--;
     }
     return true;
 }
@@ -170,10 +199,9 @@ void urlify(char[] input, int len) {
     for (; len > -1; len--) {
         char c = input[len];
         if (c == ' ') {
-            input[dest] = '0';
-            input[dest - 1] = '2';
-            input[dest - 2] = '%';
-            dest -= 3;
+            input[dest--] = '0';
+            input[dest--] = '2';
+            input[dest--] = '%';
         } else {
             input[dest] = c;
             dest--;
@@ -218,6 +246,28 @@ boolean isPalindromePerm(String input) {
         }
     }
     return odds == 0 || odds == 1;
+}
+```
+
+### Solution 2
+
+Note that we can keep track of the number of odds as we go, thus
+eliminating the follow up counting loop. Here we also switch to
+the mapp approach.
+
+```java
+private static boolean isPalindromePerm(String s) {
+    Map<Character, Integer> counts = new HashMap<>();
+    int odds = 0;
+    for (char c : s.toCharArray()) {
+        Integer old = counts.put(c, counts.getOrDefault(c, 0) + 1);
+        if (old == null || old % 2 == 0) {
+            odds++;
+        } else {
+            odds--;
+        }
+    }
+    return odds <= 1;
 }
 ```
 
@@ -305,31 +355,26 @@ The space complexity is also `O(n)`. The `StringBuilder` may need to hold
 up to `n` characters.
 
 ```java
-void append(StringBuilder buf, char c, int count) {
-    buf.append(c);
-    if (count > 1) {
-        buf.append(count);
-    }
-}
-
-String tryCompress(String s) {
-    if (s.length() == 0 || s.length() == 1) {
+private static String compress(String s) {
+    if (s.length() < 3) {
         return s;
     }
-    StringBuilder buf = new StringBuilder();
-    char last = s.charAt(0);
+    char prior = s.charAt(0);
     int count = 1;
-    for (int i = 1; i < s.length() && buf.length() < s.length(); i++) {
-        char c = s.charAt(i);
-        if (c == last) {
+    StringBuilder buf = new StringBuilder();
+    for (int i = 1; i < s.length(); i++) {
+        char curr = s.charAt(i);
+        if (curr == prior) {
             count++;
         } else {
-            append(buf, last, count);
+            buf.append(prior);
+            buf.append(count);
+            prior = curr;
             count = 1;
-            last = c;
         }
     }
-    append(buf, last, count);
+    buf.append(prior);
+    buf.append(count);
     return buf.length() < s.length() ? buf.toString() : s;
 }
 ```
@@ -342,35 +387,40 @@ you do this in place?
 
 ### Solution 1
 
-This is tricky and because I haven't ran this code I almost certainly made
-an indexing error below. This works by storing the "bottom left" in a temporary
-variable and then going around the matrix copying the rotate value into its
-new slot. The `temp` variable takes care of the final copy for each round.
+This works by thinking of the four rotating groups. The top, right, bottom,
+and left.
 
 How do you figure out the indexing? Well, `j` moves faster than `i`. Think of
 which row or column index is moving faster for each position of the matrix.
-That is, top left, top right, bottom right, and bottom left. For the top left,
-we are moving from right to left before we move down a row. Thus the faster
-`j` would be used in the column index and the slower `i` would be used in the
-row index.
+That is, top, right, bottom, left. For the top, we are moving from right to
+left before we move down a row. Thus the faster `j` would be used in the column
+index and the slower `i` would be used in the row index.
 
-The time complexity of this solution is `O(n)` where `n` is the dimension of
-the input square matrix. The space complexity is `O(1)`.
+The time complexity of this solution is `O(n^2)` where `n` is the dimension of
+the input square matrix. This comes from iterating every cell of the matrix.
+The space complexity is `O(1)` as this is done in place with only one temp
+variable.
 
 ```java
 void rotate(int[][] matrix) {
-    int size = matrix.length;
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            // Record the bottom left corner.
-            int temp = matrix[size - 1 - j][i];
-            // Bottom left = bottom right.
-            matrix[size - 1 - j][i] = matrix[size - 1 - i][size - 1 - j];
-            // Bottom right = top right.
-            matrix[size - 1 - i][size - 1 - j] = matrix [j][size - 1 - i];
-            // Top right = top left.
-            matrix [j][size - 1 - i] = matrix[i][j];
-            // Top right = recorded bottom left.
+    int n = matrix.length;
+    for (int i = 0; i < (n + 2) / 2; i++) {
+        for (int j = 0; j < n / 2; j++) {
+            // j is fast, i is slow
+
+            // Record left.
+            int temp = matrix[n - 1 - j][i];
+
+            // left == bottom
+            matrix[n - 1 - j][i] = matrix[n - 1 - i][n - 1 - j];
+
+            // bottom == right
+            matrix[n - 1 - i][n - 1 - j] = matrix[j][n - 1 - i];
+
+            // right == top
+            matrix[j][n - 1 - i] = matrix[i][j];
+
+            // top == temp
             matrix[i][j] = temp;
         }
     }
@@ -385,11 +435,11 @@ entire row and column are set to 0.
 ### Solution 1
 
 Here we solve the problem with a two pass approach. In the first pass we flag
-a boolean array if a row or column should be "zeroed out." In the second pass
+boolean arrays if a row or column should be "zeroed out." In the second pass
 we do the actual zeroing.
 
-The time complexity of this solution is `O(n)` where `n` is the dimension of
-the matrix. The space complexity is also `O(n)` to hold the flagging arrays.
+The time complexity of this solution is `O(n^2)` where `n` is the dimension of
+the matrix. The space complexity is `O(n)` to hold the flagging arrays.
 
 ```java
 void zeroOut(int[][] input) {
@@ -422,6 +472,63 @@ void zeroOut(int[][] input) {
 }
 ```
 
+### Solution 2
+
+We can actually do a bit better on the space complexity. Instead
+of auxillary arrays to store whether or not to wipe out a given row
+or column, we can store these flag variables directly in the matrix.
+That is, we store them in the first row and column respectively. This
+reduces the space complexity to O(1).
+
+Now there is one problem implementing this approach. First row entries
+flag zeroing out columns and first column entries flag zeroing out
+rows. The entry (0, 0), however, is an overlap for flagging both the
+zeroth row and column. Therefore, without further steps, we can't tell
+if we should zero out the row, the column, or both when we encounter it.
+Thus we add separate boolean flags for these states and work on these
+last so as to not blow up the other flags.
+
+```java
+void zero(int[][] mat) {
+    boolean firstRowZero = false;
+    boolean firstColZero = false;
+    for (int m = 0; m < mat.length; m++) {
+        for (int n = 0; n < mat[0].length; n++) {
+            if (mat[m][n] == 0) {
+                firstRowZero |= m == 0;
+                firstColZero |= n == 0;
+                mat[m][0] = 0;
+                mat[0][n] = 0;
+            }
+        }
+    }
+    for (int m = 1; m < mat.length; m++) {
+        if (mat[m][0] == 0) {
+            for (int n = 0; n < mat[0].length; n++) {
+                mat[m][n] = 0;
+            }
+        }
+    }
+    for (int n = 1; n < mat[0].length; n++) {
+        if (mat[0][n] == 0) {
+            for (int m = 0; m < mat.length; m++) {
+                mat[m][n] = 0;
+            }
+        }
+    }
+    if (firstRowZero) {
+        for (int n = 0; n < mat[0].length; n++) {
+            mat[0][n] = 0;
+        }
+    }
+    if (firstColZero) {
+        for (int m = 0; m < mat.length; m++) {
+            mat[m][0] = 0;
+        }
+    }
+}
+```
+
 ## 1.9 **String Rotation:**
 
 Assume you have a method `isSubstring` which checks if one word is a
@@ -431,8 +538,13 @@ check if `s2` is a rotation of `s1` using only one call to `isSubstring`.
 ### Solution 1
 
 I consider this problem one of those "spot the trick" problems. The trick
-is concatenating the possibly rotated string `s2` to itself. If that string is a
-rotation of the other string `s1` then `s1` will be found in this concatenation.
+is concatenating the source string `s1` onto itself. If `s2` is a rotation
+of `s1`, then `s2` will be a substring of `s1 + s1`.
+
+More concretely. If `s1 = xy`, that is `s1` can be split into an `x` prefix and
+`y` suffix, and `s2 = yx`, then `s2` is a substring of `s1 + s1 == xyxy` (The
+middle `yx`).
+
 
 The solution is `O(n)` time complexity where `n` is the length of `s2`. The
 space complexity is `O(n)`, as we have to make a string twice as long to do
@@ -443,8 +555,8 @@ boolean isRotation(String s1, String s2) {
     if (s1.length() != s2.length()) {
         return false;
     }
-    String haystack = s2 + s2;
-    return haystack.contains(s1);
+    String haystack = s1 + s1;
+    return haystack.contains(s2);
 }
 ```
 
