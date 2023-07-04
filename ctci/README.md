@@ -1,3 +1,178 @@
+# The Interview Process
+
+This chapter talks about the current state of the programming
+interview process and why it is this way. Basically, it has been
+deciding that solving these types of technical problems is the
+best measuring stick for who will do well in these jobs. This
+could be seen as a combination of current knowledge and the
+discipline to prepare for these type of interviews.
+
+# Behind the Scenes
+
+This chapter goes through specifics of what it is like to interview
+at several specific high profile companies. This changes over time
+so this chapter's current value is debatable.
+
+# Special Situations
+
+This chapter delves into how you may be interviewed differently in
+special situations. For example, a very experienced developer that
+is far out of college may not be drilled as heavily on algorithms
+and may be interviewed more on distributed system design. Test
+engineers may also be interviewed in a different style. Product
+managers will be interviewed much more in a traditional manner.
+The chapter concludes with some information on interviews that
+take place in the case of acqui-hires and talks about preparing
+your staff for such interviews.
+
+# Before the Interview
+
+This chapter lays out a road map for the long term preparation leading
+up to a technical interview. It starts with some fairly obvious advice
+pertaining to resumes and then presents a road map that starts a year
+out. None of this seems to ground breaking. It starts with establishing
+good projects to talk about and then swings into algorithm practice,
+interview practice, and prepping your behavioral questions.
+
+# Behavioral Questions
+
+This chapter talks about preparing for those questions that are direct
+algorithm questions. These questions will be about your prior projects.
+For these they want to establish that you were really engaged in the
+work you did and that you did some deep dives into the technology.
+Filling out a table like this and practicing answering these questions
+is a great interview aid.
+
+| Common Questions | Project 1 | Project 2 | Project3 |
+| ----------- | ----------- | ----------- | ----------- |
+| Challenges | | | |
+| Mistakes/Failures | | | |
+| Enjoyed | | | |
+| Leadership | | | |
+| Conflicts | | | |
+| What You'd do Differently | | | |
+
+When responding to these questions a pattern of response called SAR
+can be very helpful. SAR stands for Situation, Action, and Result.
+Following this pattern allows for quick and direct communication of
+the positive outcome you facilitated.
+
+You should also be able to answer this introduction / culture fit
+question: "So, tell me about yourself..."
+
+# Big O
+
+[See Interview Fundamentals Big O](../interview-fundamentals)
+
+TODO(dburger): additional problems page 55.
+
+# Technical Questions
+
+## You need to practice by solving problems.
+
+- Try to solve the problem on your own.
+- Write the code on paper.
+- Test your code.
+- Type your paper code as is into a computer. Find out where you
+  went wrong.
+
+## Core Concepts
+
+### Data Structures
+
+- Linked Lists
+- Trees, Tries, and Graphs
+- Stacks & Queues
+- Heaps
+- Vectors / ArrayLists
+- Hash Tables
+
+### Algorithms
+
+- Breadth-First Search
+- Depth-First Search
+- Binary Search
+- Merge Sort
+- Quick Sort
+
+### Concepts
+
+- Bit Manipulation
+- Memory (Stack vs Heap)
+- Recursion
+- Dynamic Programming
+- Big O Time & Space
+
+Practice implementing the data structures and algorithms is great
+exercise.
+
+## Good to Know
+
+### Powers of Two
+
+| Power | Value | Approx | Named |
+| ----------- | ----------- | ----------- | ----------- |
+| 7 | 128 | | |
+| 8 | 256 | | |
+| 10 | 1024 | 1 thousand | 1 KB |
+| 16 | 65,536 | | 64 KB |
+| 20 | 1,048,576 | 1 million | 1 MB |
+| 30 | 1,073,741,824 | 1 billion | 1 GB |
+| 32 | 4,294,967,296 | | 4 GB |
+| 40 | 1,099,511,627,776 | 1 trillion | 1 TB |
+
+## Walking Through a Problem
+
+- Listen, "extra" information given usually is relevant
+  (given two sorted...)
+- Think up a small example
+- Think through the brute force approach
+- Optimize it
+- Do a walk through with your example
+- Implement
+- Test
+
+## BUD Optimization
+
+Look for:
+
+- Bottlenecks
+- Unnecessary work
+- Duplicated work
+
+## Other Techniques
+
+### DIY
+
+Often times if asked to work through an example our brain "knows"
+an approach. For example, ask persons not schooled in computer science
+how they would look up a name in the phone book and they will produce
+binary search.
+
+### Simplify and Generalize
+
+Another way to jump start a solution is to simplify some aspect of
+the problem, solve that, and then re-introduce the aspect. This may
+lead to generalizing the solution to work with the simplification
+removed.
+
+### Base Case and Build
+
+Sometimes a solution can be had by solving a base case and then
+building a solution from there. Think inducion proofs.
+
+### Data Structures Brainstorm
+
+It sounds simplistic, but sometimes just going through data structures
+and determinig which could be used to solve the problem may jump start
+an approach.
+
+### Best Conceivable Runtime
+
+Sometimes considering a theoretical best conceivable runtime can help to
+solve the problem. Not only may it point to an approach but it will certainly
+help you to determine when no further optimization is possible.
+
 # Arrays and Strings
 
 ## 1.1 **Is Unique:**
