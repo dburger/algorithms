@@ -756,23 +756,17 @@ of the linked list. The space complexity is `O(1)`.
 
 ```java
 void removeDups(Node head) {
-    if (head == null) {
-        return;
-    }
+    Node prev = null;
+    Node curr = head;
     Set<Integer> s = new HashSet<>();
-    s.add(head.val);
-    Node prev = head;
-    Node curr = head.next;
     while (curr != null) {
-        if (s.add(curr.val)) {
-            prev.next = curr;
+        if (s.add(curr.value)) {
             prev = curr;
-            curr = curr.next;
         } else {
-            curr = curr.next;
+            prev.next = curr.next;
         }
+        curr = curr.next;
     }
-    prev.next = null;
 }
 ```
 
@@ -828,6 +822,9 @@ Node kth(Node head, int k) {
     }
 
     int target = count - k;
+    if (target < 0) {
+        return null;
+    }
     curr = head;
     while (target > 0) {
         curr = curr.next;
@@ -863,7 +860,7 @@ class NodePosition {
 
 Node kth(Node head, int k) {
     NodePosition np = kthNode(head, k);
-    return np.node;
+    return np.position == k ? np.node : null;
 }
 
 NodePosition kthNode(Node node, int k) {
@@ -897,6 +894,9 @@ Node kth(Node head, int k) {
     while (k > 0) {
         n1 = n1.next;
         k--;
+    }
+    if (k > 0) {
+        return null;
     }
     while (n1 != null) {
         n1 = n1.next;
