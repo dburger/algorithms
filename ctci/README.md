@@ -915,8 +915,8 @@ linked list, given only access to that node.
 ### Solution 1
 
 This can't be done, right? Well no it can't. Not if you literally mean to
-delete the node. But what if you allow one to copy values. Then yes, yes it
-can be done.
+delete the node. But what if you allow one to copy/replace values. Then yes,
+yes it can be done.
 
 Here we copy the value of the next node into the deleted node and then skip
 that next node.
