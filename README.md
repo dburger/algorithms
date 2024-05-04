@@ -329,3 +329,4 @@ of interview questions / answers, below.
 1. [Intersection of Two Arrays](intersection-two-array)
 1. [Island Perimeter](island-perimeter)
 1. [Interleave Array](interleave-array)
+1. [Longest Strictly Increasing or Strictly Decreasing Subarray](longest-inc-dec-subarray)
